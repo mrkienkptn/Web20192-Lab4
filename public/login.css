@@ -1,0 +1,95 @@
+*{
+    font-family: 'Nunito', sans-serif;
+    font-size: large;
+}
+
+h1{
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    color: white;
+    font-size: 30px;
+}
+.overlay{
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image:linear-gradient(145deg, rgba(93,90,145,1) 0%, rgba(180, 91, 35, 0.5) 0%, rgba(223,217,173,0.8384395994726015) 100%),url("../images/login_background.jpg");
+    
+    background-size: cover;
+    z-index: -1;
+   opacity: 1;
+
+}
+.form{
+    border: solid 1px;
+    width: 400px;
+    height: 450px;
+    margin: auto auto;
+    z-index: 1;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+}
+.form h2{
+    text-align: center;
+    margin-top: 70px;
+    font-size: 35px;
+    color:rgb(23, 122, 179) ;
+}
+
+.login input[type="text"], .login input[type="password"]{
+    padding-left: 10px;
+    width: 65%;
+    margin-top: 30px;
+    border: none;
+    border-bottom: 1px solid rgb(23, 122, 179) ;
+}
+.login input[type="text"]:focus, .login input[type="password"]:focus{
+    border-bottom: 2.5px solid rgb(36, 152, 219);
+    transition: 0.03s;
+}
+.login input:focus{
+    outline: none;
+   
+}
+.login input[type="submit"]{
+    border-radius:15px;
+    border: none;
+    background-color: darkcyan;
+    color: white;
+    padding: 5px;
+    width: 75px;
+    display: block;    
+    margin: auto auto;
+    margin-top: 30px;
+}
+
+.login input[type="submit"]:hover{
+    transform: translateY(-1px);
+    background-color: rgb(53, 65, 61);
+    cursor: pointer;
+    transition: 0.03s;
+}
+.login input[type="submit"]:active{
+    transform: translateY(1px);
+    transition: 0.01s;
+}
+.input{
+    margin-bottom: 30px;
+}
+.other{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    margin: 3px;
+}
+
+
+
