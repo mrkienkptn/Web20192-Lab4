@@ -18,7 +18,7 @@ h1{
     width: 100%;
     height: 100%;
 
-    background-image:linear-gradient(145deg, rgba(93,90,145,1) 0%, rgba(180, 91, 35, 0.5) 0%, rgba(223,217,173,0.8384395994726015) 100%),url("../images/login_background.jpg");
+    background-image:linear-gradient(145deg, rgba(93,90,145,1) 0%, rgba(180, 91, 35, 0.5) 0%, rgba(223,217,173,0.8384395994726015) 100%),url("./images/login_background.jpg");
     
     background-size: cover;
     z-index: -1;
@@ -89,6 +89,14 @@ h1{
 a{
     text-decoration: none;
     margin: 3px;
+    color: blueviolet;
+}
+.login-option a{
+    font-size: 15px;
+}
+.alert{
+    font-size: 15px;
+    color: red;
 }
 
 
