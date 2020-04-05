@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+
+    <title>Sign up</title>
+</head>
+<body>
+    <h1>Divuvila</h1>
+    <div class="overlay"></div>
+    <div class="form signup">
+        <h2>Sign up</h2>
+        <div class="login">
+            <form action="/signup" method="post">
+                <div class="input">
+                    <input type="text" name="fullname" id="fullname" placeholder="Full Name" onkeyup="check()">
+                    <input type="text" name="username" id="username" placeholder="Username" onkeyup="check()" ><br/>
+                                        
+                    <input type="password" name="password" id="password" placeholder="Password" onkeyup="check()">
+                    <input type="password" name="confirmpassword" id="confirm-password" placeholder="Confirm Password" onkeyup="check()">
+                    <input type="email" name="email" id="email" placeholder="Email : example@divu.com">
+                    <% if(message.length>0){%>
+                        <p class="alert"><%= message%></p>
+                    <%}%>
+                    <!-- ---- -->
+                </div>
+                
+                <input id="submit" type="submit" value="Sign up">
+                
+            </form>
+        </div>
+
+
+        <div class="login-option">
+            
+            <br/>
+            <a href="/login">Login</a>
+            <br/>
+        </div>
+
+    </div>
+<script src="checkInfo.js"></script>
+<script src="jquery-3.4.1.min.js"></script>
+</body>
+</html>

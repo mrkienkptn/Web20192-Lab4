@@ -28,13 +28,16 @@ h1{
 .form{
     border: solid 1px;
     width: 400px;
-    height: 450px;
+    height: auto;
     margin: auto auto;
     z-index: 1;
     text-align: center;
     background-color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
+}
+.signup{
+    height: auto;
 }
 .form h2{
     text-align: center;
@@ -43,14 +46,14 @@ h1{
     color:rgb(23, 122, 179) ;
 }
 
-.login input[type="text"], .login input[type="password"]{
+.login input[type="text"], .login input[type="password"], .login input[type="email"]{
     padding-left: 10px;
     width: 65%;
     margin-top: 30px;
     border: none;
     border-bottom: 1px solid rgb(23, 122, 179) ;
 }
-.login input[type="text"]:focus, .login input[type="password"]:focus{
+.login input[type="text"]:focus, .login input[type="password"]:focus, .login input[type="email"]:focus{
     border-bottom: 2.5px solid rgb(36, 152, 219);
     transition: 0.03s;
 }

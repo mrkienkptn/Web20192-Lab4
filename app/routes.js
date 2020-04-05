@@ -1,39 +1,43 @@
+const needLogin=require("../config/authenticate").forwardAuthenticated
+const  isLogedin= require("../config/authenticate").ensureAuthenticated
 module.exports=(app, passport)=>{
-    const checkLoggedIn=(req, res, next)=>{
-        // if (req.isAuthenticated())
-        // return next()
-        // res.redirect('/')
-    }
+
+    app.get('/profile', isLogedin, (req, res)=>{
+        res.render('profile.ejs', {user: req.user.name })
+    } )
     app.get('/',(req, res)=>{
         res.render('index.ejs')
     })
     //form đăng nhập
-    app.get('/login',(req, res)=>{
-        res.render('login.ejs', {message:req.flash('loginMessage')})
+    app.get('/login', needLogin, (req, res)=>{
+        res.render('login.ejs', {
+            message:req.flash('message')        
+        })
     })
     // xác thực đăng nhập: xịt thì login lại, ok thì cho redirect sang home('/')
     app.post('/login', 
-        passport.authenticate('local',{
-            successRedirect:'/',
+        passport.authenticate('local-login',{
+            successRedirect:'/profile',
             failureRedirect: '/login',
             failureFlash: true
         }
     ))
-    app.get('/signup', (req, res)=>{
-        res.render('signup.ejs',{message: req.flash('signupMessage')})
+    app.get('/signup', needLogin,  (req, res)=>{
+        res.render('signup.ejs',{
+            message: req.flash('message'),
+            fullname: req.body.fullname,
+            username: req.body.username,
+            email: req.body.email
+        })
     })
     app.post('/signup',
-        passport.authenticate('local',{
+        passport.authenticate('local-signup',{
             successRedirect:'/profile',
             failureRedirect:'/signup',
             failureFlash:true
         }
     ))
-    app.get('/profile', checkLoggedIn, (req, res)=>{
-        res.render('profile.ejs',{
-            user:req.user
-        })
-    })
+
     app.get('/logout', (req, res)=>{
         req.logout()
         res.redirect('/')
