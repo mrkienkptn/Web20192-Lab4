@@ -3,21 +3,42 @@ const crypt = require("bcrypt")
 const UserSchema = new mongoose.Schema({
         name: {
             type: String,
-            require: true
+            require: [true, 'Please enter your name']
         },
         username: {
             type: String,
-            require : true
+            require : [true, 'Please enter your username']
             
         },
         password: {
             type: String,
-            require: true            
+            require: [true, 'Please enter your password']        
         },
-        email: {
+        Type:{
             type: String,
             require: true
+        },
+        other:{
+            email: {
+                type: String
+            },
+            skill:{
+                type: String
+            },
+            education_level:{
+                type: String
+            },
+            expericene:{
+                type: String
+            },
+            back_account:{
+                type: String
+            },
+            deal:{
+                type: Number
+            }
         }
+        
     
 })
 UserSchema.methods.genHashPassword=(password)=>{

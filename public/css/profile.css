@@ -1,0 +1,28 @@
+header{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(233, 233, 233);
+    color: rgb(83, 39, 139);
+    
+}
+
+
+.page-name{
+    padding-left: 10px;
+    font-size: 31px;
+}
+
+.search{
+  margin: auto;
+}
+.search input, .search button{
+    
+    font-size: 17px;
+}
+.user{
+    font-size: 20px;
+    padding-top: 5px;
+    padding-right: 10px;
+}

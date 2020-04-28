@@ -1,20 +1,21 @@
 const needLogin=require("../config/authenticate").forwardAuthenticated
 const  isLogedin= require("../config/authenticate").ensureAuthenticated
+const User = require("../app/models/user")
 module.exports=(app, passport)=>{
 
-    app.get('/profile', isLogedin, (req, res)=>{
-        res.render('profile.ejs', {user: req.user.name })
+    app.get('/profile', isLogedin,(req, res)=>{
+        res.render('profile.ejs', {user: req.user })
     } )
-    app.get('/',(req, res)=>{
-        res.render('index.ejs')
+    app.get('/',(req, res)=>{        
+            res.render('index.ejs')   
     })
-    //form đăng nhập
-    app.get('/login', needLogin, (req, res)=>{
+
+    app.get('/login', needLogin , (req, res)=>{
         res.render('login.ejs', {
             message:req.flash('message')        
         })
     })
-    // xác thực đăng nhập: xịt thì login lại, ok thì cho redirect sang home('/')
+
     app.post('/login', 
         passport.authenticate('local-login',{
             successRedirect:'/profile',

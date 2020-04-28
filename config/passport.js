@@ -29,6 +29,7 @@ module.exports=(passport)=>{
                         newUser.name=req.body.fullname
                         newUser.username=username
                         newUser.password=newUser.genHashPassword(password)
+                        newUser.Type = req.body.type
                         newUser.save(err=>{
                             if (err) console.log("err")
                             else{

@@ -18,7 +18,7 @@ h1{
     width: 100%;
     height: 100%;
 
-    background-image:linear-gradient(145deg, rgba(93,90,145,1) 0%, rgba(180, 91, 35, 0.5) 0%, rgba(223,217,173,0.8384395994726015) 100%),url("./images/login_background.jpg");
+    background-image:linear-gradient(145deg, rgba(93,90,145,1) 0%, rgba(180, 91, 35, 0.5) 0%, rgba(223,217,173,0.8384395994726015) 100%),url("../images/login_background.jpg");
     
     background-size: cover;
     z-index: -1;
@@ -64,7 +64,7 @@ h1{
 .login input[type="submit"]{
     border-radius:15px;
     border: none;
-    background-color: darkcyan;
+    background-color:rgb(233, 128, 0);
     color: white;
     padding: 5px;
     width: 75px;
@@ -75,7 +75,7 @@ h1{
 
 .login input[type="submit"]:hover{
     transform: translateY(-1px);
-    background-color: rgb(53, 65, 61);
+    background-color: rgb(255, 143, 6);
     cursor: pointer;
     transition: 0.03s;
 }
@@ -100,6 +100,41 @@ a{
 .alert{
     font-size: 15px;
     color: red;
+}
+
+.choose-type{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+}
+.choose-type input{
+    display: none;
+}
+.choose-type label{
+    background-color: rgb(248, 225, 195);
+    width: 80%;
+    margin: auto;
+    padding: 7px;
+    
+}
+
+.choose-type > #client:checked ~ .label-client{
+    background-color:  rgb(255, 149, 19);
+}
+.choose-type > #client:not(:checked) ~ .label-client{
+    background-color: rgb(248, 225, 195) ;
+}
+.choose-type > #freelancer:checked ~ .label-freelancer{
+    background-color:  rgb(255, 149, 19);
+}
+.choose-type > #freelancer:not(:checked) ~ .label-freelancer{
+    background-color: rgb(248, 225, 195) ;
+}
+.choose-type label:hover{
+    cursor: pointer;
+    transform: translateY(-1px);
+    transition: 0.1s ease;
+    box-shadow: 0 4px 8px 0 rgba(136, 136, 136, 0.2), 0 6px 20px 0 rgba(185, 185, 185, 0.19);
 }
 
 

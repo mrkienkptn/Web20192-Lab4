@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
 
     <title>Sign up</title>
@@ -21,7 +21,13 @@
                                         
                     <input type="password" name="password" id="password" placeholder="Password" onkeyup="check()">
                     <input type="password" name="confirmpassword" id="confirm-password" placeholder="Confirm Password" onkeyup="check()">
-                    <input type="email" name="email" id="email" placeholder="Email : example@divu.com">
+                    <p>You want to:</p>
+                    <div class="choose-type">
+                        <input type="radio" name="type" id="client" value="client">
+                        <label class="label-client" for="client">Hire for a Project</label>
+                        <input  type="radio" name="type" id="freelancer" value="freelancer">
+                        <label class="label-freelancer" for="freelancer">Find a Job</label>
+                    </div>
                     <% if(message.length>0){%>
                         <p class="alert"><%= message%></p>
                     <%}%>
@@ -37,7 +43,8 @@
         <div class="login-option">
             
             <br/>
-            <a href="/login">Login</a>
+            <a href="/login" style="font-size: 20px; color: rgb(255, 100, 19);">Login</a>
+            <br/>
             <br/>
         </div>
 
