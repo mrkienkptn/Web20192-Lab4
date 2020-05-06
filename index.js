@@ -1,17 +1,19 @@
-const express = require("express")
-const app = express()
-const port = process.env.PORT || 7000
-const mongoose = require("mongoose")
-const passport = require("passport")
-var flash = require("connect-flash")
-const path = require('path')
-const morgan = require("morgan")
-var cookieParser = require("cookie-parser")
-var bodyParser = require("body-parser")
-var session = require("express-session")
-const employee = require ('./routes/employee')
-const project = require ('./routes/project')
-var db = require("./config/database").URI
+const express      = require("express")
+const app          = express()
+const port         = process.env.PORT || 7000
+const mongoose     = require("mongoose")
+const passport     = require("passport")
+var   flash        = require("connect-flash")
+const path         = require('path')
+const morgan       = require("morgan")
+var   cookieParser = require("cookie-parser")
+var   bodyParser   = require("body-parser")
+var   session      = require("express-session")
+const employee     = require ('./routes/employee')
+const project      = require ('./routes/project')
+var   db           = require("./config/database").URI
+
+
 
 mongoose.connect(db, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true})
 .then(()=>console.log("Database is connected"))
