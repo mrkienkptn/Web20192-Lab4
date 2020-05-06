@@ -1,0 +1,23 @@
+<div>
+
+  <div> You have to fill info before star </div><br>
+  
+  <form method="POST" action='/profile'>
+      
+      <label>Email:</label>
+      <input type="email" name='email' placeholder="Enter your email" value='<%=user.other.email%>'  ><br><br>
+      <label>Skill:</label>
+      <input type="text" name='skill' placeholder="Enter your skill" value='<%=user.other.skill%>' ><br><br>
+      <label>Edu Level:</label>
+      <input type="text" name='edu_level' placeholder="Enter your education level" value='<%=user.other.education_level%>'><br><br>
+      <label>Experiences:</label>
+      <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.expericene%>'><br><br>
+      <label>Bank accound:</label>
+      <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.back_account%>'><br><br>
+      <label>Deal:</label>
+      <input type="text" name='deal' placeholder="Enter your Deal" value='<%=user.other.deal%>'><br><br>
+
+      <input type="submit" value="add infors">
+  </form>
+
+</div>
