@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="search-div">
-                    <i class="fas fa-search " id="search-icon"></i>
+                    <a href="/search_work"><i class="fas fa-search " id="search-icon"></i></a>
                     <input class="search-input " type="text" placeholder="Search..">
                     <!--search-active-->
 
@@ -31,14 +31,12 @@
                     <span class="bar"></span>
                 </div>
                 <ul class="nav no-search">                  
-
                     <li class="nav-item"><a href="#">Home</a></li>
                     <li class="nav-item"><a href="#">About</a></li>
                     <li class="nav-item"><a href="#">Work</a></li>
                     <li class="nav-item"><a href="#">Careers</a></li>
                     <li class="nav-item"><a href="#">Contact Us</a></li>
-                    <li class="nav-item " id="username"><%=user.name %>
-                    
+                <li class="nav-item " id="username"> <% if(locals.user){%> <%=user.name%> <% } %> 
                     </li>
 
                 </ul>

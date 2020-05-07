@@ -1,0 +1,14 @@
+<%- include ('header') %>
+
+<div>Here is seach work</div><br>
+<% if(project){%>
+
+<% for (let i = 0; i < project.length; i++ ){ %>
+    <p>work <%=i %> :  <%=project[i].name%> </p>
+    <p>price: <%= project[i].price%></p>
+    <p>candidates: <%= project[i].candidates%></p>
+    <p>requirements: <%= project[i].requirements%></p>
+    <br>
+
+<%}}%> 
+<%- include ('footer') %>

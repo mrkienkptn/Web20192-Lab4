@@ -18,5 +18,5 @@ const ProjectSchema = new mongoose.Schema({
         require: true,
     }
 })
-var Project=mongoose.model('Project',ProjectSchema, 'Projects');
+var Project=mongoose.model('project_model',ProjectSchema, 'project');
 module.exports = Project;
