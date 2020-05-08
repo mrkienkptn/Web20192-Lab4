@@ -4,10 +4,14 @@
 <%- include ('profile_contain') %> 
 
 
-<% if (user.Type=="client") {%>
-    <p>Client</p>
-<%}else{%> 
-    you are <p>Freelancer</p><%}%>
+<% if (user.Type=="client") { %>
+    <p>you are Client</p>  
+    your email: <%=user.other.email%><br>
+    <button><a href="/change_profile">Change profile</a></button><br>
+    <button><a href="/hire_info">Hire A Job</a></button>
+
+<%}else{ %>
+    <p>>you are Freelancer</p>
     your email: <%=user.other.email%><br>
     your skill: <%=user.other.skill%><br>
     your education level: <%=user.other.education_level%><br>
@@ -15,4 +19,6 @@
     your bank account: <%=user.other.back_account%><br>
     your deal: <%=user.other.deal%><br>
     <button><a href="/change_profile">Change profile</a></button>
+
+  <%}%>
 <%- include ('footer') %>
