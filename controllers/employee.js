@@ -106,14 +106,28 @@ exports.searchEmployeeByFilter = async(req, res)=>{
     const phigh = req.body.phigh;
     const ylow = req.body.ylow;
     const yhigh = req.body.yhigh;
+    var listUser = {};
     console.log(req.body);
     try{
-        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        res.render('display-employee',{listuser:listUser});
+        if(req.body.skill){
+            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
+        }
+        else{
+            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
+        }
+        res.render('employee-list',{listuser:listUser});
         console.log(listUser)
     } 
     catch{
         console.log("err");
     }
+}
+exports.getDetailProfile = async(req, res) => {
+    // console.log(req.params);
+    const profile = await User.findById(req.params.id);
+    
+    res.render('detail-employee-profile', {profile: profile})
+   
 }

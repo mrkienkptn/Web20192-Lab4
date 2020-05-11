@@ -1,0 +1,17 @@
+<!-- hiển thị toàn bộ thông tin của employee-->
+<% if(profile){%>
+    <p><%= profile.name%> </p>
+    <p><%= profile.other.country%></p>
+    <p><%= profile.other.email%></p>
+    <p><%= profile.other.price%></p>
+    <p>Rating: <%= profile.other.rating%></p>
+    <p><%= profile.other.education_level%></p>
+    <p><%= profile.other.experience%></p>
+    <p><%= profile.other.back_account%></p>
+    <p>skills : </p>
+    <%for(let i = 0; i < profile.other.skill.length; i++ ){%> <p><%=profile.other.skill[i]%></p><%}%>
+    
+    <p>Projects : </p>
+    <%for(let i = 0; i < profile.other.completed_projects.length; i++ ){%> <p><%=profile.other.completed_projects[i]%></p><%}%>
+    
+<%}%> 
