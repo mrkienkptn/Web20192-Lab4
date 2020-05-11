@@ -1,23 +1,61 @@
-<div>
-
-  <div> You have to fill info before star </div><br>
+<%- include ('header') %>
+<div class="fill-info-form">
+  <div class="overlay">
+    
+  </div>
+  <div class="question">
+    What do you want to change ?
+    <div class="close">
+      <span class="barr"></span>
+      <span class="barr"></span>
+    </div>
+  </div>
   
   <form method="POST" action='/profile'>
-      
-      <label>Email:</label>
-      <input type="email" name='email' placeholder="Enter your email" value='<%=user.other.email%>'  ><br><br>
-      <label>Skill:</label>
-      <input type="text" name='skill' placeholder="Enter your skill" value='<%=user.other.skill%>' ><br><br>
-      <label>Edu Level:</label>
-      <input type="text" name='edu_level' placeholder="Enter your education level" value='<%=user.other.education_level%>'><br><br>
-      <label>Experiences:</label>
-      <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.expericene%>'><br><br>
-      <label>Bank accound:</label>
-      <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.back_account%>'><br><br>
-      <label>Deal:</label>
-      <input type="text" name='deal' placeholder="Enter your Deal" value='<%=user.other.deal%>'><br><br>
-
-      <input type="submit" value="add infors">
+    
+      <div class="change-form">
+        <div class="f">
+          Email:
+        </div>
+        <div>
+          <input type="email" name='email' placeholder="Enter your email" value='<%=user.other.email%>'  >
+        </div>
+        <div class="f">
+          Skills: 
+        </div>
+        <div>
+          <input type="text" name='skill' placeholder="Enter your skill" value='<%=user.other.skill%>' >
+        </div>
+        <div class="f">
+          Education Level:
+        </div>
+        <div>
+          <input type="text" name='edu_level' placeholder="Enter your education level" value='<%=user.other.education_level%>'>
+        </div>
+        <div class="f">
+          Experiences:
+        </div>
+        <div>
+          <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.expericene%>'>
+        </div>
+        <div class="f">
+          Bank Account:
+        </div>
+        <div>
+          <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.back_account%>'>
+        </div>
+        <div class="f">
+          Deal: 
+        </div>
+        <div>
+          <input type="text" name='deal' placeholder="Enter your Deal" value='<%=user.other.deal%>'>
+        </div>
+      </div>
+      <div class="submit">
+        <input type="submit" value="Apply Changes">
+      </div>
   </form>
 
 </div>
+<script src="javascript/change-info.js"></script>
+<%- include ('footer') %>
