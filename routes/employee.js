@@ -18,7 +18,9 @@ const Employee =  require("../controllers/employee");
     })
 
     router.post('/profile' ,Employee.postEmployeeInfo)
-
+    router.get('/search', Employee.getAllEmployees)
+    router.post('/filter', Employee.searchEmployeeByFilter)
+    
 module.exports = router;
 
 

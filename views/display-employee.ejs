@@ -1,0 +1,33 @@
+ <%- include ('header') %>
+
+  <form method="POST" action='/search'><p>Enter:</p>
+  <div>Price per hour:</div>
+  <div>From</div>
+  <input type="number" id="op1" name="plow" value="0">
+  <div>To</div>
+  <input type="number" id="op1" name="phigh" value="999">
+  <div>Working experience year:</div>
+  <div>From</div>
+  <input type="number" id="op2" name="ylow" value="0">
+  <div>to</div>
+  <input type="number" id="op2" name="yhigh" value="99">
+  <div>Field:</div>
+  <!--<input type="text" id="op3" name="skill" value="Coding"> -->
+  <select id="op3" name = "skill" require = "true">
+  <option value="Coding">Coding</option>
+  <option value="Sleep">Sleep</option>
+  <option value="Not doing but eating">Not doing but eating</option>
+</select>
+  <input type="submit" value="Search">
+  </form>
+<div>Infomation of all employees: </div><br>
+<% if(listuser){%>
+
+<% for (let i = 0; i < listuser.length; i++ ){ %>
+    <p>Name   : <%= listuser[i].name%> </p>
+    <p>price  : <%= listuser[i].other.price%></p>
+    <p>rating : <%= listuser[i].other.rating%></p>
+    <p>skills : <%= listuser[i].other.skill%></p>
+    <br>
+<%}}%> 
+<%- include ('footer') %>

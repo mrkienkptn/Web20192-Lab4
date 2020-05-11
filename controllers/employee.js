@@ -42,16 +42,16 @@ exports.getProfileEmployee = (req, res)=>{
 }
 
 exports.getEmployeeInfobyId = async(req, res)=>{
-    try{
-        const employee = await Employee.findById(req.params.id);
-        res.status(200).json({
-            message:"success",
-            data : employee
-        })
-    }
-    catch{
-        console.log("err");
-    }
+    // try{
+    //     const employee = await Employee.findById(req.params.id);
+    //     res.status(200).json({
+    //         message:"success",
+    //         data : employee
+    //     })
+    // }
+    // catch{
+    //     console.log("err");
+    // }
     
     
 }
@@ -90,4 +90,30 @@ exports.postEmployeeInfo = (req, res)=>{
         )
         console.log(req.user)
         res.redirect('/profile')
+}
+
+exports.getAllEmployees = async(req, res)=>{
+    try {
+        const listUser = await User.find({"Type": "Freelancer"})
+        res.render('display-employee', {listuser:listUser})
+    }
+    catch{
+        console.log("err")
+    }
+}
+exports.searchEmployeeByFilter = async(req, res)=>{
+    const plow = req.body.plow;
+    const phigh = req.body.phigh;
+    const ylow = req.body.ylow;
+    const yhigh = req.body.yhigh;
+    console.log(req.body);
+    try{
+        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
+        res.render('display-employee',{listuser:listUser});
+        console.log(listUser)
+    } 
+    catch{
+        console.log("err");
+    }
 }

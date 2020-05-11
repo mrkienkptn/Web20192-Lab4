@@ -22,14 +22,17 @@ const UserSchema = new mongoose.Schema({
             email: {
                 type: String
             },
+            price: {
+                type: Number
+            },
             skill:{
                 type: String
             },
             education_level:{
                 type: String
             },
-            expericene:{
-                type: String
+            experience:{
+                type: Number
             },
             back_account:{
                 type: String
