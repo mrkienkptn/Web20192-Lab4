@@ -3,7 +3,7 @@ $(document).ready(() => {
   $(".search-input").keyup(() => {
     
     $.ajax({
-      url : "search/",
+      url : "search_work/",
       type : "GET",
       dataType : "json",
       success : (data) => {
@@ -29,7 +29,7 @@ $(document).ready(() => {
     // console.log('click search' + new Date())
     $.ajax(
       {
-        url: "search/",
+        url: "search_work/",
         type: "GET",
         dataType: "json",
         success : (data) =>{

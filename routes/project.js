@@ -12,7 +12,7 @@ const Project =  require("../controllers/project");
     })
 
     
-    router.get('/search', Project.searchAllProject)
+    router.get('/search_work', Project.searchAllProject)
 
 
     router.post('/hire_info' ,Project.addNewProject)
