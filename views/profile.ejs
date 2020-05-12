@@ -1,24 +1,142 @@
- 
 <%- include ('header') %>
 
-<%- include ('profile_contain') %> 
+
 
 
 <% if (user.Type=="client") { %>
-    <p>you are Client</p>  
-    your email: <%=user.other.email%><br>
-    <button><a href="/change_profile">Change profile</a></button><br>
-    <button><a href="/hire_info">Hire A Job</a></button>
+
+<p>you are Client</p>
+your email: <%=user.other.email%><br>
+<button><a href="/change_profile">Change profile</a></button><br>
+<button><a href="/hire_info">Hire A Job</a></button>
 
 <%}else{ %>
-    <p>>you are Freelancer</p>
-    your email: <%=user.other.email%><br>
-    your skill: <%=user.other.skill%><br>
-    your education level: <%=user.other.education_level%><br>
-    your experience: <%=user.other.expericene%><br>
-    your bank account: <%=user.other.back_account%><br>
-    your deal: <%=user.other.deal%><br>
-    <button><a href="/change_profile">Change profile</a></button>
+<div class="profile">
+  <!-- thanks -->
+  <div class="thanks">
+    Thanks for joining in <span style="color: green; font-weight: bold;">Divuvila</span>, <span
+      style="font-weight: bold; font-size: larger;"><%=user.name%></span>
 
-  <%}%>
+  </div>
+
+  <div class="change-profile">
+    <p>Some thing</p>
+
+  </div>
+  <div class="wrap">
+    <div class=" column-info">
+
+      <div class="col-1 name">
+        <p class="name"><%=user.name%></p>
+        <p class=""><%=user.other.email%></p>
+      </div>
+
+      <div class="col-1 skills">
+        <p class="h">Your Skills</p>
+        <div class="skill">
+          <!-- 
+        <% for (var i=0; i<=user.other.skill.length; i++){%>
+          <p><%=user.other.skill[i]%></p>
+        <%}%>
+         -->
+          <p><%=user.other.skill%></p>
+        </div>
+      </div>
+
+      <div class="col-1 edu-level">
+        <p class="h">Education</p>
+        <div>
+          <%=user.other.education_level%>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="more-info">
+
+      <div class="col-2 bank">
+        <p class="h1">Bank Account</p>
+        <p class="bank-num"><%=user.other.back_account%></p>
+      </div>
+
+      <div class="col-2 exp">
+        <p class="h1">Experience</p>
+        <p><%=user.other.expericene%></p>
+      </div>
+
+      <div class="col-2 deal">
+        <p class="h1">Deal</p>
+        <p style="color: rgb(255, 81, 0);"><%=user.other.deal%> $/h</p>
+      </div>
+
+      <div class="col-2 change-prof">
+        <button>Change Profiles</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<div class="overlay">
+    
+</div>
+<!-- ---------------- change -info -->
+<div class="fill-info-form">
+
+  <div class="question">
+    What do you want to change ?
+    <div class="close">
+      <span class="barr"></span>
+      <span class="barr"></span>
+    </div>
+  </div>
+
+  <form method="POST" action='/profile'>
+
+    <div class="change-form">
+      <div class="f">
+        Email:
+      </div>
+      <div>
+        <input type="email" name='email' placeholder="Enter your email" value='<%=user.other.email%>'>
+      </div>
+      <div class="f">
+        Skills:
+      </div>
+      <div>
+        <input type="text" name='skill' placeholder="Enter your skill" value='<%=user.other.skill%>'>
+      </div>
+      <div class="f">
+        Education Level:
+      </div>
+      <div>
+        <input type="text" name='edu_level' placeholder="Enter your education level"
+          value='<%=user.other.education_level%>'>
+      </div>
+      <div class="f">
+        Experiences:
+      </div>
+      <div>
+        <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.expericene%>'>
+      </div>
+      <div class="f">
+        Bank Account:
+      </div>
+      <div>
+        <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.back_account%>'>
+      </div>
+      <div class="f">
+        Deal:
+      </div>
+      <div>
+        <input type="text" name='deal' placeholder="Enter your Deal" value='<%=user.other.deal%>'>
+      </div>
+    </div>
+    <div class="submit">
+      <input type="submit" value="Apply Changes">
+    </div>
+  </form>
+
+</div>
+<%}%>
 <%- include ('footer') %>

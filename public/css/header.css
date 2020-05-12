@@ -2,8 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Nutino', sans-serif;
-  font-size: large;
+  font-family: 'Nunito', sans-serif;
+  font-size: small;
 
 }
 
@@ -16,6 +16,7 @@ li{
 .page-wrapper {
   width: 100%;
   height: auto;
+
 }
 
 .nav-wrapper {
@@ -24,6 +25,8 @@ li{
   position: sticky;
   top: 0;
   background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .grad-bar {
@@ -39,14 +42,14 @@ li{
 /* NAVIGATION */
 .page-name{
   font-size: 25px;
-  font-family: 'Nunito', sans-serif;
+  padding-left: 20px;
+  color: rgb(238, 107, 20);
 }
 .navbar {
   display: grid;
   grid-template-columns: 2fr 2fr 7fr;
   align-items: center;
   height: 50px;
-  overflow: hidden;
 }
 
 
@@ -68,7 +71,7 @@ li{
 }
 .nav-item a {
   color: #000;
-  font-size: 0.9rem;
+  font-size: medium;
   font-weight: 400;
   text-decoration: none;
   transition: color 0.3s ease-out;
@@ -77,32 +80,49 @@ li{
 .nav-item a:hover {
   color: #3498db;
 }
+#username{
+  position: relative;
+  font-size: medium;
+}
+#username p{
+  font-size: medium;
+  font-weight: bold;
+}
+#username .nav-dropdown{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 40px;
+  right: 8px;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  background-color: rgb(250, 119, 32);  
+  border-radius: 4px;
+  width: 160px;
+}
+#username .nav-dropdown li{
+  padding:10px 30px;
+}
+#username .nav-dropdown li a{
+  color: white;
+}
+#username .nav-dropdown li:hover{
+  background-color: rgb(221, 221, 221);  
+  transition: all 0.2s ease-in;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  
+}
+#username .nav-dropdown li a:hover{
+  color: #3498db;
+}
 
 #username:hover{
   cursor: pointer;
-  background-color: rgb(253, 210, 190);
+  color: rgb(238, 107, 20);
 }
-.user{
-  width: 20vw;  
-  position: fixed;
-  top: 50px;
-  right: 10px;
-  background-color: rgb(233, 183, 168);
-  transition: all 0.2s ease-in-out;
-}
-.show{
-  height: 100px; 
-  overflow-y: auto;
-}
-.no-show{
-  height: 0px;
-  overflow-y: hidden;
-}
-.user a{
-  display: block;
-  text-align: center;
-  padding: 10px;
-}
+
 
 /* SEARCH FUNCTION */
 .search {
@@ -230,10 +250,6 @@ input {
   /* Mobile Devices - Phones/Tablets */
 
 @media only screen and (max-width: 720px) { 
-  .features {
-    flex-direction: column;
-    padding: 50px;
-  }
   
   /* MOBILE HEADINGS */
   
@@ -281,7 +297,19 @@ input {
     display: block;
     cursor: pointer;
   }
+
+  #username .nav-dropdown{
+    position: absolute;
+    right:15;
+    height: fit-content;
+    margin: 0px;
+
+  }
   
+  #username .nav-dropdown li:first-child{
+    margin-top: 0px;
+  }
+
   .mobile-nav {
   transform: translate(0%)!important;
 }
@@ -292,5 +320,9 @@ input {
     height: 20vh;
   }
   
+}
+.page-wrapper p:not(:only-child):after {
+  padding-left: 4px;
+  content: ' ▾';
 }
 
