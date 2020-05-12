@@ -24,7 +24,9 @@
     margin: auto;
     margin-top: 15px;
     border-radius: 10px;
+    position: relative;
 }
+
 .wrap{
     width: 80%;
     margin: auto;
@@ -89,18 +91,23 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     margin-bottom: 15px;
     
 }
-.change-prof button{
+.change-prof button, #change_intro{
     border: none;
     text-decoration: none;
     background-color: rgb(238, 107, 20);
     margin: auto;
-    padding: 5px;
+
     color: aliceblue;
     border-radius: 5px;
     padding: 10px;
     width: auto;
 }
-.change-prof button:hover{
+#change_intro{
+    padding: 3px;
+    border-radius: 10px;
+    margin-top:20px;
+}
+.change-prof button:hover, #change_intro:hover{
     background-color: rgb(231, 95, 4);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
     transition: all 0.2s ease-in;
@@ -113,13 +120,64 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     background-color: green;
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 5px;
     padding: 4px; 
     border-radius: 2px;
     color: white;
 }
+.col-1{
+    position: relative;
+}
+.col-1 form{
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    border: none;
+
+}
+.col-1 form input[type="text"]{
+    border-radius: 10px;
+    border: 1px green solid;
+    padding: 3px;
+}
+.col-1 form input[type="submit"], .change_intro input[type="submit"]{
+    border: none;
+    text-decoration: none;
+    background-color: green;
+    margin: auto;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 3px;
+    width: auto;
+}
+.col-1 form input[type="submit"]:hover, .change_intro input[type="submit"]:hover{
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+
+.change_intro{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    height: 80%;
+}
+.change_intro input[type="text"]{
+    height: 100%;   
+    border: 1px solid green;
+    border-radius: 10px;
+    width: 200px;
+    
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
 @media(max-width: 870px){
     .wrap{
         display: flex;
         flex-direction: column;
     }
 }
+

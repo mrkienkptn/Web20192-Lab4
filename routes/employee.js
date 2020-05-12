@@ -13,12 +13,12 @@ const Employee =  require("../controllers/employee");
     router.get('/profile', isLogedin, Employee.getProfileEmployee )
 
 
-    router.get('/change_profile',(req, res)=>{        
-        res.render('fill_info', {user: req.user })   
-    })
+    router.post('/change_profile', Employee.changeProfile)
 
     router.post('/profile' ,Employee.postEmployeeInfo)
-
+    router.get('/search', Employee.getAllEmployees)
+    router.post('/filter', Employee.searchEmployeeByFilter)
+    
 module.exports = router;
 
 

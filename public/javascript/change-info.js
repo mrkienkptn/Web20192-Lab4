@@ -25,3 +25,12 @@ $('.profile .change-prof button').click(()=>{
         "z-index":0
     })
 })
+$('.change_intro').hide()
+$('#change_intro').click((e)=>{
+    $(".change_intro").toggle()
+    e.stopPropagation()
+})
+$('.change_intro').submit(()=>{
+    $(this).hide()
+})
+

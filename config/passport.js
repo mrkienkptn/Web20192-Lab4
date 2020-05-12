@@ -46,6 +46,7 @@ module.exports=(passport)=>{
                             if (err) console.log("err")
                             else{
                                 console.log("New user is saved in database")
+                                console.log(newUser)
                                 return done(null, newUser)
                             }
                         })
