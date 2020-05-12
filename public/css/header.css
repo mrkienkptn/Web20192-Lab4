@@ -7,7 +7,9 @@
 
 }
 
-
+button:focus{
+  outline: none;
+}
 li{
   text-align: center;
 }

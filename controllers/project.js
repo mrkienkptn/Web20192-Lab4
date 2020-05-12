@@ -16,63 +16,26 @@ exports.getAllProjectsInfo = async(req, res)=>{
 }
 
 exports.searchAllProject = (req, res)=>{
-    // try{
-    //     const project = await Project.find();
-    //     res.status(200).json({
-    //         message:"success",
-    //         data : project
-    //     })
-    // }
-    // catch{
-    //     console.log("err");
-    // }
-
-
     Project.find({}, (err, docs) =>{
     if (!err) { 
 
-        if(req.user){
-            res.render('search_work', {user: req.user, project: docs})
-        }else
-            res.render('search_work', {project: docs})     
+        // if(req.user){
+        //     res.render('search_work', {user: req.user, project: docs})
+        // }else{
+        //     res.render('search_work', {project: docs})     
+        // }
 
-     console.log(docs);
+        res.send(docs);
 
+    console.log(docs);
     }
     else {
         throw err;
     }
     });
-    
-    //  const getUser = async ( req, res ) => {
-    //     let users = () => ( Project.find({}).exec() );
-    //     try {  res.send({"user":await users() });}
-    //     catch(e) { console.log(e) }
-    // } 
-    // console.log(getUser)
-    
-
-
-  
-
-    
-    
 }
+
 exports.addNewProject = (req, res)=>{
-    // var project = await new Project({
-    //     name: req.body.name,
-    //     price: req.body.price
-    // });
-    // try{
-    //     const saveProject = await project.save();
-    //     res.status(200).json({
-    //         message:"success",
-    //         data : saveProject
-    //     });
-    // }
-    // catch{
-    //     res.status(400);
-    // }
     console.log(req.body.email)
     console.log('start hire')
 
@@ -103,7 +66,6 @@ exports.addNewProject = (req, res)=>{
                 }
             }
         )}
- 
     console.log(req.user)
     res.redirect('/profile')
 }

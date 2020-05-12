@@ -19,6 +19,12 @@ const UserSchema = new mongoose.Schema({
             require: true
         },
         other:{
+            about_me:{
+                type: String
+            },
+            country:{
+                type: String
+            },
             email: {
                 type: String
             },
@@ -26,7 +32,7 @@ const UserSchema = new mongoose.Schema({
                 type: Number
             },
             skill:{
-                type: String
+                type: [String]
             },
             education_level:{
                 type: String
@@ -34,10 +40,13 @@ const UserSchema = new mongoose.Schema({
             experience:{
                 type: Number
             },
-            back_account:{
+            bank_account:{
                 type: String
             },
-            deal:{
+            completed_projects:{
+                type: [String]
+            },
+            rating:{
                 type: Number
             }
         }

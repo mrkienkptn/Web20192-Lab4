@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <title>Divuvila</title>
+    <script src="javascript/jquery-3.4.1.min.js"></script>
+    <!-- <script type='text/javascript'>
+        $(document).ready(() =>{
+            console.log("this is AJAX");
+        })
+    </script> -->
 </head>
 
 <body>
@@ -20,10 +26,12 @@
                 </div>
 
                 <div class="search-div no-search">
-                    <a href="/search_work"><i class="fas fa-search " id="search-icon"></i></a>
-                    <input class="search-input " type="text" placeholder="Search..">
+                    <button id="btn-search">
+                        <a href="/search_work"><i class="fas fa-search " id="search-icon"></i> </a>
+                    </button>
+                    <input class="search-input" type="text" placeholder="Search..">
                     <!--search-active-->
-
+                    
                 </div>
                 <div class="menu-toggle" id="mobile-menu">
                     <span class="bar"></span>
@@ -32,7 +40,7 @@
                 </div>
                 <ul class="nav no-search">
                     <!--search/ no-search-->
-
+                    
                     <li class="nav-item"><a href="#">Home</a></li>
                     <li class="nav-item"><a href="#">About</a></li>
                     <li class="nav-item"><a href="#">Work</a></li>
@@ -44,7 +52,7 @@
             </nav>
             
         </div>
-
+        
     </div>
-    <script src="javascript/jquery-3.4.1.min.js"></script>
     <script src="javascript/header.js"></script>
+    <script src="javascript/search.js"></script>

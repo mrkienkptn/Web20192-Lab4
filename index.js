@@ -11,14 +11,16 @@ var   bodyParser   = require("body-parser")
 var   session      = require("express-session")
 const employee     = require ('./routes/employee')
 const project      = require ('./routes/project')
-const auth      = require ('./routes/auth')
+const auth         = require ('./routes/auth')
 var   db           = require("./config/database").URI
-
+var favicon        = require('serve-favicon')
 
 
 mongoose.connect(db, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true})
 .then(()=>console.log("Database is connected"))
 .catch(err=>console.log(err))
+
+app.use(favicon(path.join(__dirname, 'public/images/Capture.ico')))
 
 app.use(morgan('dev'))
 app.use(cookieParser())
