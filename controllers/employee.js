@@ -1,7 +1,8 @@
-const Employee = require('../app/models/employee');
-const User      = require("../app/models/user")
 
-exports.getProfileEmployee = (req, res)=>{
+const Employee = require('../app/models/employee');
+const User     = require("../app/models/user")
+
+exports.getProfileUser = (req, res)=>{
 
     User.findOne({_id : req.session.passport.user}, (err, obj) =>{
 
@@ -17,35 +18,21 @@ exports.getProfileEmployee = (req, res)=>{
                 console.log('oke your infor is fill, you have email')
             
             }else{
-                // if(req.user.Type == 'Freelancer'){
-                   res.render('fill_info')
-                // }else if(req.user.Type == 'Client'){
+                if(req.user.Type == 'Freelancer'){
+                    // console.log(user)
+                   res.render('fill_info',{user:obj})
+                }else if(req.user.Type == 'Client'){
                 //    res.render('fill_info_client')
-                // }
-                console.log('fill infor before next')
+                console.log("render fill info client");
+                }
+               
             }
         }
         
-    })
-    
-    
+    })  
 }
-
-exports.getEmployeeInfobyId = async(req, res)=>{
-    // try{
-    //     const employee = await Employee.findById(req.params.id);
-    //     res.status(200).json({
-    //         message:"success",
-    //         data : employee
-    //     })
-    // }
-    // catch{
-    //     console.log("err");
-    // }
-    
-    
-
-exports.changeProfile = async(req, res)=>{
+// thay đổi thông tin cá nhân cho nhân viên
+exports.changeUserProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")
     let skills = u.other.skill
@@ -76,82 +63,88 @@ exports.changeProfile = async(req, res)=>{
         {new : true},
         (err, user) => res.send(user)      
     )
-    res.send("OK")
-
-}
-
-exports.postEmployeeInfo = async (req, res)=>{
-
-    const u = await User.findOne({_id: req.session.passport.user})
-    let skills = u.other.skill
-    let completed_projects = u.other.completed_projects
-    let about_me = u.other.about_me
-    await User.findByIdAndUpdate({_id : req.session.passport.user},
-        {
-            other: {
-                country        : req.body.country,
-                email          : req.body.email,
-                education_level: req.body.edu_level,
-                experience    : req.body.exp,
-                bank_account   : req.body.bank_acc,
-                price          : req.body.price,
-                completed_projects : completed_projects,
-                skill : skills,
-                about_me : about_me
-            }
-
-        }
-    )
-    // console.log(req.user)
     res.redirect('/profile')
-}
 
+    }
+
+exports.showUserInfo = async (req, res)=>{
+    const user = await User.findOne({_id: req.session.passport.user})
+    // let skills = u.other.skill
+    // let completed_projects = u.other.completed_projects
+    // let about_me = u.other.about_me
+    // await User.findByIdAndUpdate({_id : req.session.passport.user},
+    //     {
+    //         other: {
+    //             country        : req.body.country,
+    //             email          : req.body.email,
+    //             education_level: req.body.edu_level,
+    //             experience    : req.body.exp,
+    //             bank_account   : req.body.bank_acc,
+    //             price          : req.body.price,
+    //             completed_projects : completed_projects,
+    //             skill : skills,
+    //             about_me : about_me
+    //         }
+
+    //     }
+    // )
+    // console.log(req.user)
+    res.render('profile',{user:user})
+}
+// lấy thông tin tất cả các nhân viên
 exports.getAllEmployees = async(req, res)=>{
     try {
-        const listUser = await User.find({"Type": "Freelancer"})
-        res.render('display-employee', {listuser:listUser})
+        const listEmployee = await User.find({"Type": "Freelancer"})
+        res.render('employee-list', {listemployee:listEmployee})
     }
     catch{
         console.log("err")
     }
 }
+
+// bộ lọc tìm kiếm nhân viên
 exports.searchEmployeeByFilter = async(req, res)=>{
     const plow = req.body.plow;
     const phigh = req.body.phigh;
     const ylow = req.body.ylow;
     const yhigh = req.body.yhigh;
 
-    var listUser = {};
+    var listEmployee = {};
     console.log(req.body);
     try{
         if(req.body.skill){
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            listEmployee = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
             { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
         }
         else{
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            listEmployee = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
             { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
         }
-        res.render('employee-list',{listuser:listUser});
+        res.render('employee-list',{listemployee:listEmployee});
+    }
+    // console.log(req.body);
+    // try{
+    //     const listEmployee = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+    //     { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
+    //     res.render('display-employee',{listuser:listEmployee});
 
-    console.log(req.body);
-    try{
-        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        res.render('display-employee',{listuser:listUser});
-
-        console.log(listUser)
-    } 
+    //     console.log(listEmployee)
+    // } 
     catch{
         console.log("err");
     }
 
 }
-exports.getDetailProfile = async(req, res) => {
-    // console.log(req.params);
-    const profile = await User.findById(req.params.id);
-    
-    res.render('detail-employee-profile', {profile: profile})
 
+// lấy thông tin chi tiết của nhân viên theo id
+exports.getDetailEmployeeProfile = async(req, res) => {
+    console.log(req.params.id);
+    try{
+    const employeeProfile = await User.findById(req.params.id);
+    res.render('detail-employee-profile', {profile: employeeProfile})
+    }
+    catch{
+        console.log("err");
+    }
 
 }
