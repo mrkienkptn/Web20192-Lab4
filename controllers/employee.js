@@ -6,9 +6,7 @@ exports.getProfileEmployee = (req, res)=>{
     User.findOne({_id : req.session.passport.user}, (err, obj) =>{
 
         console.log("hello")
-        console.log(req.user.Type)
-        
-        
+        console.log(req.user.Type)   
         if (err) 
             return done(err)
         if (obj) {
@@ -24,26 +22,9 @@ exports.getProfileEmployee = (req, res)=>{
                 // }
                 console.log('fill infor before next')
             }
-        }
-        
-    })
-    
-    
+        }        
+    }) 
 }
-
-exports.getEmployeeInfobyId = async(req, res)=>{
-    // try{
-    //     const employee = await Employee.findById(req.params.id);
-    //     res.status(200).json({
-    //         message:"success",
-    //         data : employee
-    //     })
-    // }
-    // catch{
-    //     console.log("err");
-    // }
-    
-    
 
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
@@ -62,21 +43,20 @@ exports.changeProfile = async(req, res)=>{
     await User.findByIdAndUpdate({_id: req.session.passport.user},
         {
             other:{
-                country     : u.other.country,
-                email       : u.other.email,
-                education_level : u.other.education_level,
-                experience : u.other.experience,
-                bank_acccont: u.other.bank_account,
-                price : u.other.price,
-                skill : skills,
-                completed_projects : projects,
-                about_me : about_me
+                country             : u.other.country,
+                email               : u.other.email,
+                education_level     : u.other.education_level,
+                experience          : u.other.experience,
+                bank_acccont        : u.other.bank_account,
+                price               : u.other.price,
+                skill               : skills,
+                completed_projects  : projects,
+                about_me            : about_me
             }
         },
         {new : true},
         (err, user) => res.send(user)      
     )
-    res.send("OK")
 
 }
 
@@ -89,15 +69,15 @@ exports.postEmployeeInfo = async (req, res)=>{
     await User.findByIdAndUpdate({_id : req.session.passport.user},
         {
             other: {
-                country        : req.body.country,
-                email          : req.body.email,
-                education_level: req.body.edu_level,
-                experience    : req.body.exp,
-                bank_account   : req.body.bank_acc,
-                price          : req.body.price,
-                completed_projects : completed_projects,
-                skill : skills,
-                about_me : about_me
+                country             : req.body.country,
+                email               : req.body.email,
+                education_level     : req.body.edu_level,
+                experience          : req.body.exp,
+                bank_account        : req.body.bank_acc,
+                price               : req.body.price,
+                completed_projects  : completed_projects,
+                skill               : skills,
+                about_me            : about_me
             }
 
         }
@@ -133,7 +113,10 @@ exports.searchEmployeeByFilter = async(req, res)=>{
             { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
         }
         res.render('employee-list',{listuser:listUser});
-
+    }
+    catch{
+        console.log("err")
+    }
     console.log(req.body);
     try{
         const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
@@ -148,10 +131,9 @@ exports.searchEmployeeByFilter = async(req, res)=>{
 
 }
 exports.getDetailProfile = async(req, res) => {
-    // console.log(req.params);
+
     const profile = await User.findById(req.params.id);
     
     res.render('detail-employee-profile', {profile: profile})
-
 
 }

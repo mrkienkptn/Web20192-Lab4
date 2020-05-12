@@ -13,18 +13,13 @@ const Employee =  require("../controllers/employee");
 
 // lấy danh sách theo bộ lọc tìm kiếm
     router.post('/filter', Employee.searchEmployeeByFilter)
+
 // xem thông tin chi tiết mỗi nhân viên
     router.get('/detail-profile/:id', Employee.getDetailProfile)
-
-
-
+    
+// sửa đổi skill, com_project, about_me
     router.post('/change_profile', Employee.changeProfile)
 
-    router.post('/profile' ,Employee.postEmployeeInfo)
-    router.get('/search', Employee.getAllEmployees)
-    router.post('/filter', Employee.searchEmployeeByFilter)
-
-    
 module.exports = router;
 
 
