@@ -2,7 +2,6 @@
 
 
 
-
 <% if (user.Type=="client") { %>
 
 <p>you are Client</p>
@@ -20,27 +19,55 @@ your email: <%=user.other.email%><br>
   </div>
 
   <div class="change-profile">
-    <p>Some thing</p>
-
+    <p class="about-me"><%=user.other.about_me%></p>
+    <button id="change_intro">Change</button>
+    <form action="/change_profile" method="POST" class="change_intro">
+      <input type="text" rows="10" cols="20" name="about_me" >
+      <input class="submit-change" type="submit" value="Apply">
+    </form>
   </div>
+
   <div class="wrap">
     <div class=" column-info">
 
       <div class="col-1 name">
         <p class="name"><%=user.name%></p>
+        <p style="color: red;"><%=user.other.country%></p>
         <p class=""><%=user.other.email%></p>
+        
       </div>
 
       <div class="col-1 skills">
         <p class="h">Your Skills</p>
+        <form action="/change_profile" method="POST" class="add-skill">
+          <input type="text" name="skill"  >
+          <input type="submit" value="Add">
+        </form>
         <div class="skill">
-          <!-- 
-        <% for (var i=0; i<=user.other.skill.length; i++){%>
-          <p><%=user.other.skill[i]%></p>
-        <%}%>
-         -->
-          <p><%=user.other.skill%></p>
+          <% if (user.other.skill != []){%>
+          <% user.other.skill.forEach(function(sk){%>
+              <p><%=sk%></p>
+            <%});%>
+          <%}%>
         </div>
+        
+      </div>
+
+      <div class="col-1 complete_projects">
+        <p class="h">Completed Projects</p>
+        <form action="/change_profile" method="POST" class="add-project">
+          <input type="text" name="project"  >
+          <input type="submit" value="Add">
+        </form>
+        <div class="projects">
+        <% if (user.other.completed_projects != []){%>
+          <% user.other.completed_projects.forEach(function(pr){%>
+            <p><%=pr%></p>
+          <%});%>
+          <%}%>
+        </div>
+        
+        
       </div>
 
       <div class="col-1 edu-level">
@@ -56,17 +83,17 @@ your email: <%=user.other.email%><br>
 
       <div class="col-2 bank">
         <p class="h1">Bank Account</p>
-        <p class="bank-num"><%=user.other.back_account%></p>
+        <p class="bank-num"><%=user.other.bank_account%></p>
       </div>
 
       <div class="col-2 exp">
         <p class="h1">Experience</p>
-        <p><%=user.other.expericene%></p>
+        <p><%=user.other.experience%></p>
       </div>
 
       <div class="col-2 deal">
-        <p class="h1">Deal</p>
-        <p style="color: rgb(255, 81, 0);"><%=user.other.deal%> $/h</p>
+        <p class="h1">Price</p>
+        <p style="color: rgb(255, 81, 0);"><%=user.other.price%> $/h</p>
       </div>
 
       <div class="col-2 change-prof">
@@ -95,17 +122,19 @@ your email: <%=user.other.email%><br>
 
     <div class="change-form">
       <div class="f">
+        Country:
+      </div>
+      <div>
+        <input type="text" name='country' placeholder="Your country" value='<%=user.other.country%>'>
+      </div>
+
+      <div class="f">
         Email:
       </div>
       <div>
         <input type="email" name='email' placeholder="Enter your email" value='<%=user.other.email%>'>
       </div>
-      <div class="f">
-        Skills:
-      </div>
-      <div>
-        <input type="text" name='skill' placeholder="Enter your skill" value='<%=user.other.skill%>'>
-      </div>
+      
       <div class="f">
         Education Level:
       </div>
@@ -113,24 +142,28 @@ your email: <%=user.other.email%><br>
         <input type="text" name='edu_level' placeholder="Enter your education level"
           value='<%=user.other.education_level%>'>
       </div>
+
       <div class="f">
         Experiences:
       </div>
       <div>
-        <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.expericene%>'>
+        <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.experience%>'>
       </div>
+
       <div class="f">
         Bank Account:
       </div>
       <div>
-        <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.back_account%>'>
+        <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.bank_account%>'>
       </div>
+
       <div class="f">
-        Deal:
+        Price:
       </div>
       <div>
-        <input type="text" name='deal' placeholder="Enter your Deal" value='<%=user.other.deal%>'>
+        <input type="text" name='price' placeholder="Enter your Deal" value='<%=user.other.price%>'>
       </div>
+
     </div>
     <div class="submit">
       <input type="submit" value="Apply Changes">
