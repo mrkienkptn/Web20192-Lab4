@@ -31,6 +31,20 @@ exports.getProfileEmployee = (req, res)=>{
     
 }
 
+exports.getEmployeeInfobyId = async(req, res)=>{
+    // try{
+    //     const employee = await Employee.findById(req.params.id);
+    //     res.status(200).json({
+    //         message:"success",
+    //         data : employee
+    //     })
+    // }
+    // catch{
+    //     console.log("err");
+    // }
+    
+    
+
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")
@@ -63,6 +77,7 @@ exports.changeProfile = async(req, res)=>{
         (err, user) => res.send(user)      
     )
     res.send("OK")
+
 }
 
 exports.postEmployeeInfo = async (req, res)=>{
@@ -105,14 +120,38 @@ exports.searchEmployeeByFilter = async(req, res)=>{
     const phigh = req.body.phigh;
     const ylow = req.body.ylow;
     const yhigh = req.body.yhigh;
+
+    var listUser = {};
+    console.log(req.body);
+    try{
+        if(req.body.skill){
+            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
+        }
+        else{
+            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
+        }
+        res.render('employee-list',{listuser:listUser});
+
     console.log(req.body);
     try{
         const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
         { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
         res.render('display-employee',{listuser:listUser});
+
         console.log(listUser)
     } 
     catch{
         console.log("err");
     }
+
+}
+exports.getDetailProfile = async(req, res) => {
+    // console.log(req.params);
+    const profile = await User.findById(req.params.id);
+    
+    res.render('detail-employee-profile', {profile: profile})
+
+
 }
