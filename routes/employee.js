@@ -16,5 +16,3 @@ const Employee =  require("../controllers/employee");
 //  Chuyển về trang home ( Job feed )
     router.get('/job-feed', Employee.jobFeed)
 module.exports = router;
-
-

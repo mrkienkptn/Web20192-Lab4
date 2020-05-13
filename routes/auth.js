@@ -1,6 +1,6 @@
 
 const needLogin = require("../config/authenticate").forwardAuthenticated
-// const isLogedin = require("../config/authenticate").ensureAuthenticated
+const isLogedin = require("../config/authenticate").ensureAuthenticated
 // const User      = require("../app/models/user")
 
 module.exports = (app, passport)=>{

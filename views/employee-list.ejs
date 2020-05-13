@@ -21,16 +21,20 @@
   <input type="submit" value="Search">
   </form>
 <div>Infomation of all employees: </div><br>
-<% if(listuser){%>
+<% if(listemployee){%>
 
-<% for (let i = 0; i < listuser.length; i++ ){ %>
-    <form method="GET" action="/detail-profile/:id">
-    <input type = "submit">View profile</input>
+<% for (let i = 0; i < listemployee.length; i++ ){ %>
+// <% let id = listemployee[i]._id %>
+    <form method="GET" action="detail-profile/<%= listemployee[i]._id%>">
+    <input type = "submit" value ="View profile"></input>
     </form>
-    <p>Name   : <%= listuser[i].name%> </p>
-    <p>price  : <%= listuser[i].other.price%></p>
-    <p>rating : <%= listuser[i].other.rating%></p>
-    <p>skills : <%= listuser[i].other.skill%></p>
+    
+    <p>Name   : <%= listemployee[i].name%> </p>
+    <p>price  : <%= listemployee[i].other.price%></p>
+    <p>rating : <%= listemployee[i].other.rating%></p>
+    <p>skills : <%= listemployee[i].other.skill%></p>
     <br>
-<%}}%> 
+<%}}else{%> 
+<p> Không tìm thấy nhân viên thỏa mãn</p> 
+<% }%>
 <%- include ('footer') %>

@@ -23,9 +23,8 @@ li{
 
 .nav-wrapper {
   width: 100%;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
+   /* Safari */
+
   background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -281,6 +280,7 @@ input {
     transform: translate(-101%);
     text-align: center;
     overflow: hidden;
+    z-index: 1;
   }
   
   .navbar li {

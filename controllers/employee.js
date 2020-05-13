@@ -76,4 +76,3 @@ exports.postEmployeeInfo = async (req, res)=>{
     // console.log(req.user)
     res.redirect('/profile')
 }
-

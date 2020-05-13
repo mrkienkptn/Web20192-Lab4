@@ -17,7 +17,7 @@ exports.postJob = async (req, res)=>{
 
 exports.getAllEmployees = async(req, res)=>{
     try {
-        const listUser = await User.find({"Type": "Freelancer"})
+        const listUser = await User.find({"Type": "freelancer"})
         res.render('display-employee', {listuser:listUser, user: req.user})
     }
     catch{
@@ -45,17 +45,6 @@ exports.searchEmployeeByFilter = async(req, res)=>{
     }
     catch{
         console.log("err")
-    }
-    console.log(req.body);
-    try{
-        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        res.render('display-employee',{listuser:listUser});
-
-        console.log(listUser)
-    } 
-    catch{
-        console.log("err");
     }
 
 }
