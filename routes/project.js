@@ -14,6 +14,10 @@ const Project =  require("../controllers/project");
     
     router.get('/search_work', Project.searchAllProject)
 
+    router.get('/search', Project.getFirstAllWork)
+
+    router.get('/detail_work/:id_work', Project.getDetailWork)
+
 
     router.post('/hire_info' ,Project.addNewProject)
 module.exports = router;

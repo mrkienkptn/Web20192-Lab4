@@ -1,14 +1,60 @@
-<%- include ('header') %>
+<%- include ('header-index') %>
 
-<div>Here is seach work</div><br>
-<% if(project){%>
+<!-- <div>Here is seach work</div><br> -->
+<div class="container-search">
 
-<% for (let i = 0; i < project.length; i++ ){ %>
-    <p>work <%=i %> :  <%=project[i].name%> </p>
-    <p>price: <%= project[i].price%></p>
-    <p>candidates: <%= project[i].candidates%></p>
-    <p>requirements: <%= project[i].requirements%></p>
-    <br>
+    <div class="search_div">
+        <input id="search-input-work" type="text" placeholder="Search A Job...">
+    <button id="btn-search-work">
+        <a href="#"><i class="fas fa-search " id="search-icon"></i> </a>
+    </button>
+    <button id="btn-filter">
+        <i class="fas fa-filter " id="filter-icon">Lọc</i>
+    </button>
+    <!--search-active-->
+    
+</div>
 
-<%}}%> 
-<%- include ('footer') %>
+<div id='filter_res'>
+
+
+    filter by language: <select name="filter_select_language" id="filter_ln">
+        <option value="c">C</option>
+        <option value="cplusplus">C++</option>
+        <option value="cshap">C#</option>
+        <option value="JS">JavaScript</option>
+        <option value="Java">Java</option>
+        <option value="php">PHP</option>
+        <option value="python">Python</option>
+
+    </select>
+
+    filter by price : <select name="filter_select_language" id="filter_ln">
+        <option value="decrement_price">low to high</option>
+        <option value="increment_price">high to low</option>
+    </select>
+
+    filter by date : <select name="filter_select_language" id="filter_ln">
+        <option value="old_to_new">Oldest</option>
+        <option value="new_to_old">Newest</option>
+    </select>
+
+</div>
+<div id='search_res'>
+
+<% if(data) %> 
+<%for(let i = 0; i < data.length; i++){ %>
+            
+        <div class="job_each" id='job_<%=i %>'><br>
+        <div class='job_name'><a href='/detail_work/ <%=data[i]._id %> '> <%=data[i].name%></a></div>  
+        <div class='job_price'>Price:  <%=data[i].price %> </div>  
+        <div class='job_candidate'>Candidate:  <%=data[i].candidates %></div>
+        <div class='job_require'>Requirement:  <%=data[i].requirements %></div>
+        <div class='job_require'>Post by :  <%=data[i].userNamePost %></div>
+        </div>
+    <% }%>
+
+
+</div>
+
+<!-- <%- include ('footer') %> -->

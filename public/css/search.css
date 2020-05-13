@@ -1,0 +1,51 @@
+#search_res {
+  border: 1px solid rgb(230, 180, 180);
+  padding:5%;
+  margin: 10px 15%;
+  background-color: rgb(236, 236, 236)
+}
+#filter_res{
+
+  margin: 10px 15%;
+  display: none;
+}
+
+.container-search{
+  border: 1px solid rgb(190, 161, 161);
+  margin: 3% 5%;
+  padding: 2% 0;
+}
+.container-search .search_div{
+  border: 1px solid rgb(211, 209, 209);
+  width: 50%;
+  display: flex;
+  margin: 0 25%;
+  justify-content: center;
+  padding: 0 4%;
+
+  
+}
+
+.container-search .search_div input {
+
+  width: 80%;
+
+}
+
+/* #search_res .job_each{
+  border: 1px solid rgb(180, 61, 61);
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+}
+#search_res .job_each .job_name {
+  border: 1px solid rgb(180, 61, 61);
+  background-color: rgb(255, 255, 255);
+}
+#search_res .job_each .job_candidate{
+  border: 1px solid rgb(180, 61, 61);
+  background-color: rgb(255, 255, 255);
+}
+#search_res .job_each .job_require{
+  border: 1px solid rgb(180, 61, 61);
+  background-color: rgb(255, 255, 255);
+} */

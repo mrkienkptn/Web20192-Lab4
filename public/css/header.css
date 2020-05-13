@@ -42,7 +42,7 @@ li{
 }
 
 /* NAVIGATION */
-.page-name{
+.page-name a{
   font-size: 25px;
   padding-left: 20px;
   color: rgb(238, 107, 20);
@@ -268,7 +268,7 @@ input {
   }
   
   /* MOBILE NAVIGATION */
-     
+
   .navbar ul {
     display: flex;
     flex-direction: column;
@@ -294,7 +294,7 @@ input {
   .navbar li a {
     font-size: 1rem;
   }
-   
+
   .menu-toggle, .bar {
     display: block;
     cursor: pointer;
