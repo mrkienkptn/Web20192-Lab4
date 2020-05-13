@@ -8,7 +8,7 @@ const Project =  require("../controllers/project");
     // router.post('/', Project.addNewProject)
 
     router.get('/hire_info' ,(req, res) => {
-        res.render('hire_info')
+        res.render('hire_info', {user: req.user})
     })
 
     

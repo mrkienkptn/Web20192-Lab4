@@ -1,30 +1,21 @@
-const Employee = require('../app/models/employee');
 const User      = require("../app/models/user")
+
+exports.jobFeed = (req, res)=>{
+    res.render('job-feed',{user: req.user} )
+}
 
 exports.getProfileEmployee = (req, res)=>{
 
-    User.findOne({_id : req.session.passport.user}, (err, obj) =>{
 
-        console.log("hello")
-        console.log(req.user.Type)   
+    User.findOne({_id : req.session.passport.user}, (err, obj) =>{
         if (err) 
             return done(err)
         if (obj) {
-            if(obj.other.email !== ''){
-                res.render('profile', {user: req.user })
-                console.log('oke your infor is fill, you have email')
-            
-            }else{
-                // if(req.user.Type == 'Freelancer'){
-                   res.render('fill_info')
-                // }else if(req.user.Type == 'Client'){
-                //    res.render('fill_info_client')
-                // }
-                console.log('fill infor before next')
-            }
-        }        
-    }) 
-}
+                res.render('profile', {user: req.user })             
+        }
+    })
+}              
+ 
 
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
@@ -86,54 +77,3 @@ exports.postEmployeeInfo = async (req, res)=>{
     res.redirect('/profile')
 }
 
-exports.getAllEmployees = async(req, res)=>{
-    try {
-        const listUser = await User.find({"Type": "Freelancer"})
-        res.render('display-employee', {listuser:listUser})
-    }
-    catch{
-        console.log("err")
-    }
-}
-exports.searchEmployeeByFilter = async(req, res)=>{
-    const plow = req.body.plow;
-    const phigh = req.body.phigh;
-    const ylow = req.body.ylow;
-    const yhigh = req.body.yhigh;
-
-    var listUser = {};
-    console.log(req.body);
-    try{
-        if(req.body.skill){
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        }
-        else{
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
-        }
-        res.render('employee-list',{listuser:listUser});
-    }
-    catch{
-        console.log("err")
-    }
-    console.log(req.body);
-    try{
-        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        res.render('display-employee',{listuser:listUser});
-
-        console.log(listUser)
-    } 
-    catch{
-        console.log("err");
-    }
-
-}
-exports.getDetailProfile = async(req, res) => {
-
-    const profile = await User.findById(req.params.id);
-    
-    res.render('detail-employee-profile', {profile: profile})
-
-}

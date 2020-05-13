@@ -11,6 +11,7 @@ var   bodyParser   = require("body-parser")
 var   session      = require("express-session")
 const employee     = require ('./routes/employee')
 const project      = require ('./routes/project')
+const client       = require ('./routes/client')
 const auth         = require ('./routes/auth')
 var   db           = require("./config/database").URI
 var favicon        = require('serve-favicon')
@@ -42,8 +43,9 @@ app.use(flash())
 require('./routes/auth')(app, passport)
 require('./config/passport')(passport)
 
-app.use('/',employee);
-app.use('/',project);
+app.use('/', employee);
+app.use('/', project);
+app.use('/', client)
 // app.use('/auth',auth);
 
 app.listen(port, console.log("Server is running on port 7000") )

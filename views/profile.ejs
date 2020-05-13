@@ -1,15 +1,29 @@
-<%- include ('header') %>
-
-
-
 <% if (user.Type=="client") { %>
 
-<p>you are Client</p>
-your email: <%=user.other.email%><br>
-<button><a href="/change_profile">Change profile</a></button><br>
-<button><a href="/hire_info">Hire A Job</a></button>
+<%- include('header-client') %>
+<div class="client-profile">
+  <%=user.Type %> 
+  <p>Your email: <%=user.other.email  %>  </p>
+</div>
+<form action="/change-profile-client" method="post">
+  <input type="text" name="email" placeholder="New email">
+  <input type="submit" value="Change">
+</form>
+<br/>
+<br/>
+<br/>
+
+
+
+
+<!-- for Employee =================================================== -->
+
+
+
 
 <%}else{ %>
+<%- include ('header-employee') %>
+
 <div class="profile">
   <!-- thanks -->
   <div class="thanks">
