@@ -16,7 +16,11 @@ const ProjectSchema = new mongoose.Schema({
     requirements:{
         type: String, 
         require: true,
-    }
+    },
+    userPostId:{
+        type: String, 
+        require: true,
+    },
 })
 var Project=mongoose.model('project_model',ProjectSchema, 'project');
 module.exports = Project;

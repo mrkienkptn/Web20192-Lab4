@@ -41,7 +41,7 @@ li{
 }
 
 /* NAVIGATION */
-.page-name{
+.page-name a{
   font-size: 25px;
   padding-left: 20px;
   color: rgb(238, 107, 20);
@@ -64,7 +64,7 @@ li{
 .navbar-index ul{
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(6,1fr);
   justify-content: space-between;
 }
 .nav {
@@ -267,7 +267,7 @@ input {
   }
   
   /* MOBILE NAVIGATION */
-     
+
   .navbar ul {
     display: flex;
     flex-direction: column;
@@ -294,7 +294,7 @@ input {
   .navbar li a {
     font-size: 1rem;
   }
-   
+
   .menu-toggle, .bar {
     display: block;
     cursor: pointer;

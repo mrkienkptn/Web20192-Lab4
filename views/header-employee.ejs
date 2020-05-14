@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/fill-info.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
@@ -20,14 +21,16 @@
             <div class="grad-bar"></div>
             <nav class="navbar">
                 <div class="page-name">
-                    Divuvila
+                    <a href="/">Divuvila</a>
                 </div>
 
-                <div class="search-div">
-                    <a href="/search_work"><i class="fas fa-search " id="search-icon"></i></a>
-                    <input class="search-input " type="text" placeholder="Search..">
+                <div class="search-div no-search">
+                    <input class="search-input" type="text" placeholder="Search A Job...">
+                    <button id="btn-search">
+                        <a href="#"><i class="fas fa-search " id="search-icon"></i> </a>
+                    </button>
                     <!--search-active-->
-
+                    
                 </div>
                 <div class="menu-toggle" id="mobile-menu">
                     <span class="bar"></span>
@@ -35,7 +38,7 @@
                     <span class="bar"></span>
                 </div>
                 <ul class="nav no-search">                  
-                    <li class="nav-item"><a href="/search_work">JOB FEED</a></li>
+                    <li class="nav-item"><a href="/search">JOB FEED</a></li>
                     
                     <li class="nav-item"><a href="#">MY JOBS</a></li>
                     <li class="nav-item"><a href="#">MESSAGES</a></li>
