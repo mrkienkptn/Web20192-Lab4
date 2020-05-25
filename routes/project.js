@@ -11,13 +11,14 @@ const Project =  require("../controllers/project");
         res.render('hire_info', {user: req.user})
     })
 
-    
     router.get('/search_work', Project.searchAllProject)
 
     router.get('/search', Project.getFirstAllWork)
 
     router.get('/detail_work/:id_work', Project.getDetailWork)
 
-
     router.post('/hire_info' ,Project.addNewProject)
+    
+    router.post('/send_proposal' ,Project.addNewProposal)
+
 module.exports = router;

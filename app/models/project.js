@@ -21,6 +21,25 @@ const ProjectSchema = new mongoose.Schema({
         type: String, 
         require: true,
     },
+    jobCategory:{
+        type: String,
+        require :true,
+    },
+    dateUpLoad:{
+        type: Date,
+        require: true,
+    },
+    description:{
+        type: String,
+        require: true,
+    },
+    maxLimitTime:{
+        type: Number, //month
+        require: true,
+    }
+
+
+
 })
 var Project=mongoose.model('project_model',ProjectSchema, 'project');
 module.exports = Project;

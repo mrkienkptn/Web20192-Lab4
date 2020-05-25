@@ -1,4 +1,6 @@
-const User      = require("../app/models/user")
+const User    = require("../app/models/user")
+const Project = require("../app/models/project")
+const Proposal = require("../app/models/proposal")
 
 exports.changeProfile = async (req, res)=>{
     await User.findByIdAndUpdate({_id: req.session.passport.user},
@@ -9,6 +11,27 @@ exports.changeProfile = async (req, res)=>{
         }
     )
     res.redirect('/profile')
+}
+
+exports.getMyPost = async (req, res)=>{
+    let id = req.session.passport.user
+    await Project.find({userPostId : id}, (err, docs) =>{
+    if (!err)
+        res.render('display-client-post', {post : docs, user: req.user})
+    else 
+        throw err;
+    });
+}
+
+exports.getPostById = async (req, res)=>{
+
+    let id = req.params.id
+    await Proposal.find({projectId : id}, (err, docs) =>{
+    if (!err)
+        res.render('display-post-detail', {post_detail : docs, user: req.user})
+    else 
+        throw err;
+    });
 }
 
 exports.postJob = async (req, res)=>{

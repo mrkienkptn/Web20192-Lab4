@@ -1,25 +1,38 @@
 <%- include('header-client')  %> 
-<div>
-
+<div class="post_work">
   <div> You want to hire a job </div><br>
-  
-  <form method="POST" action='/hire_info'>
 
+    <form method="POST" action='/hire_info'>
+      
       <label>Name Job:</label>
       <input type="text" name='name_project' placeholder="Enter Name projet:"  ><br><br>
-
+      
+      <label>Choose category:</label>
+      
+      <select name='job_category'>
+        <option value="web Design Pattern">Web Design Pattern</option>
+        <option value="Back-End Development">Back-End Development</option>
+        <option value="Front-End Development">Back-End Development</option>
+        <option value="Photoshop Design">Photoshop Design</option>
+        <option value="Edit Video">Edit Video</option>
+        <option value="Business Marketing">Business Marketing</option>
+      </select><br><br>
+      
+      <label>Description:</label><br>
+      <textarea name='description'style='resize:none; width: 400px; height: 100px' placeholder="Enter description:"></textarea><br><br>
+      
       <label>Price:</label>
       <input type="text" name='price' placeholder="Enter price:"  ><br><br>
-
+      
       <label>Candidates:</label>
       <input type="text" name='candidates' placeholder="Enter candidate:"  ><br><br>
-
+      
       <label>Requirements:</label>
       <input type="text" name='requirements' placeholder="Enter requirement:"  ><br><br>
-
+      
       <input type="submit" value="post to newfeed">
-  </form>
-
+    </form>
+    
 </div>
-
-<%- include('footer')  %>
+  
+  <%- include('footer')  %>

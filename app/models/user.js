@@ -49,6 +49,7 @@ const UserSchema = new mongoose.Schema({
             rating:{
                 type: Number
             }
+            
         }
         
     

@@ -1,4 +1,5 @@
 const Project = require('../app/models/project');
+const Proposal = require('../app/models/proposal');
 const User    = require("../app/models/user")
 exports.getAllProjectsInfo = async(req, res)=>{
     try{
@@ -25,6 +26,7 @@ exports.searchAllProject = async (req, res)=>{
         throw err;
     });
 }
+
 exports.getFirstAllWork = (req, res)=>{
 
     Project.find({}, (err, docs) =>{
@@ -63,9 +65,15 @@ exports.getDetailWork = async (req, res)=>{
     console.log(work_id)
     await Project.findById(x, (err, docs) =>{
     if (!err){
-        console.log(docs)
+        //console.log(docs)
         // res.send(docs)
-        res.render('detail_work', {work : docs})
+        var workY = docs.dateUpLoad.getFullYear()
+        var workM = docs.dateUpLoad.getMonth()
+        var workD = docs.dateUpLoad.getDate()
+        var workH = docs.dateUpLoad.getHours()
+        console.log(typeof workY)
+
+        res.render('detail_work', {work_y : workY, work : docs, work_m : workM, work_d : workD, work_h : workH, work_ID : work_id })
     }
     else 
         throw err;
@@ -98,6 +106,9 @@ exports.addNewProject = async (req, res)=>{
                         newProject.price        = req.body.price
                         newProject.candidates   = req.body.candidates
                         newProject.requirements = req.body.requirements
+                        newProject.description  = req.body.description
+                        newProject.dateUpLoad  = new Date()
+                        newProject.jobCategory = req.body.job_category
                         newProject.userPostId   = req.session.passport.user
                     newProject.save(err => {
                         if (err) console.log("err")
@@ -117,3 +128,46 @@ exports.addNewProject = async (req, res)=>{
     
     }
     
+
+
+exports.addNewProposal = async (req, res)=>{
+    console.log('start proposal')
+
+    let work_id = req.body.work_id
+    console.log(work_id)
+    let obID = new Object(work_id)
+
+    try{
+    if(req.body.text_proposal){
+            await Proposal.findOne({'projectId': obID, 'workerId' : req.session.passport.user},(err, prj)=>{
+                if (err) 
+                    return done(err)
+                if (prj) 
+                    return done(null, false, req.flash('message',"You have create a proposal in this project"))
+                else {
+                    console.log("here is main proposal process")
+                    console.log(req.body.text_proposal)
+                    console.log(req.body.deal_price)
+
+                    let newProposal                = new Proposal()
+                        newProposal.projectId       = work_id 
+                        newProposal.priceDeal       = req.body.deal_price
+                        newProposal.workerId        = req.session.passport.user
+                        newProposal.proposalContent = req.body.text_proposal
+
+                    newProposal.save(err => {
+                        if (err) console.log("err")
+                        else{
+                            console.log("New proposal is saved in database")
+                        }
+                    })
+                }
+            })
+        }
+    }catch(err){
+        console.log(err)
+    }
+    console.log(req.user)
+    res.redirect('/profile')
+    
+    }

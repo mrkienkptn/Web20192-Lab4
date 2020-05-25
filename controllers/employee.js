@@ -6,16 +6,15 @@ exports.jobFeed = (req, res)=>{
 
 exports.getProfileEmployee = (req, res)=>{
 
-
     User.findOne({_id : req.session.passport.user}, (err, obj) =>{
         if (err) 
             return done(err)
         if (obj) {
-                res.render('profile', {user: req.user })             
+            res.render('profile', {user: req.user })
         }
     })
-}              
- 
+}
+
 
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
@@ -46,7 +45,7 @@ exports.changeProfile = async(req, res)=>{
             }
         },
         {new : true},
-        (err, user) => res.send(user)      
+        (err, user) => res.send(user)
     )
 
 }

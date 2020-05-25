@@ -7,6 +7,9 @@ router.get('/all-employee', Client.getAllEmployees)
 // lấy danh sách theo bộ lọc tìm kiếm
 router.post('/filter', Client.searchEmployeeByFilter)
 
+router.get('/ownPost', Client.getMyPost)
+router.get('/getOwnPost/:id', Client.getPostById)
+
 // xem thông tin chi tiết mỗi nhân viên
 router.get('/detail-profile/:id', Client.getDetailProfile)
 

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/fill-info.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/post-work.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
@@ -39,9 +40,13 @@
                 <ul class="nav no-search">                  
                     <li class="nav-item"><a href="/hire_info">POST JOB</a></li>
                     <li class="nav-item"><a href="/all-employee">HIRES</a></li>
-                    <li class="nav-item"><a href="#">MESSAGE</a></li>
+                    <li class="nav-item">
+                        <a href="#">MESSAGE</a>
+                    </li>
                     <li class="nav-item " id="username">
-                        <p><%=user.name%> </p>
+                        <p>
+                            <%=user.name%> 
+                        </p>
                         <ul class="nav-dropdown">
                             <li><a href="/profile">Profile</a></li>
                             <li><a href="/logout">Log out</a></li>

@@ -1,0 +1,13 @@
+<%- include('header-client')  %> 
+
+<div>
+
+  <% post.forEach((postT) =>{ %>
+
+    <a href="/getOwnPost/<%=postT._id %>"><%=postT.name %></a><br>
+
+  <% }) %>  
+
+</div>
+
+<%- include('footer')  %> 
