@@ -2,22 +2,23 @@ const mongoose = require("mongoose")
 const ProposalSchema = new mongoose.Schema({
     projectId: {
         type: String,
-        require: true,
+        require: true
     },
     workerId: {
         type: String,
-        require: true,
+        require: true
     },
     priceDeal:{
         type:Number,
-        required: true,
+        require: true
     },
     proposalContent:{
         type:String,
-        require: true,
+        require: true
     },
     isAccept:{
         type: Boolean,
+        require: true
     }
 
 

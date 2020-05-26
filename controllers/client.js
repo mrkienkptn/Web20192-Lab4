@@ -17,7 +17,10 @@ exports.getMyPost = async (req, res)=>{
     let id = req.session.passport.user
     await Project.find({userPostId : id}, (err, docs) =>{
     if (!err)
+        {
+            console.log(docs)
         res.render('display-client-post', {post : docs, user: req.user})
+        }
     else 
         throw err;
     });
@@ -26,9 +29,17 @@ exports.getMyPost = async (req, res)=>{
 exports.getPostById = async (req, res)=>{
 
     let id = req.params.id
-    await Proposal.find({projectId : id}, (err, docs) =>{
+    let obID = new Object(id)
+    let x = obID.toString()
+    x = x.trim()
+    console.log(x)
+    await Proposal.find({projectId : x}, (err, docs) =>{
     if (!err)
-        res.render('display-post-detail', {post_detail : docs, user: req.user})
+        {   console.log(docs)
+            res.render('display-post-detail', {post_detail : docs, user: req.user})
+
+        }
+        
     else 
         throw err;
     });

@@ -73,7 +73,7 @@ exports.getDetailWork = async (req, res)=>{
         var workH = docs.dateUpLoad.getHours()
         console.log(typeof workY)
 
-        res.render('detail_work', {work_y : workY, work : docs, work_m : workM, work_d : workD, work_h : workH, work_ID : work_id })
+        res.render('detail_work', {work_y : workY, work : docs, work_m : workM, work_d : workD, work_h : workH, work_ID : work_id, user:req.user })
     }
     else 
         throw err;
@@ -139,11 +139,17 @@ exports.addNewProposal = async (req, res)=>{
 
     try{
     if(req.body.text_proposal){
-            await Proposal.findOne({'projectId': obID, 'workerId' : req.session.passport.user},(err, prj)=>{
+            await Proposal.findOne({'projectId': obID, 'workerId' : req.session.passport.user},async (err, prj)=>{
                 if (err) 
                     return done(err)
-                if (prj) 
-                    return done(null, false, req.flash('message',"You have create a proposal in this project"))
+                if (prj){
+                    let id = prj._id
+                    await Proposal.findByIdAndUpdate(id, {
+                        proposalContent: req.body.text_proposal,
+                        priceDeal      : req.body.priceDeal
+                    })
+                }
+                    
                 else {
                     console.log("here is main proposal process")
                     console.log(req.body.text_proposal)
