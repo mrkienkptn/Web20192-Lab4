@@ -136,10 +136,12 @@ exports.addNewProposal = async (req, res)=>{
     let work_id = req.body.work_id
     console.log(work_id)
     let obID = new Object(work_id)
-
+    let x = obID.toString()
+    x = x.trim()
+    // console.log(work_id)
     try{
     if(req.body.text_proposal){
-            await Proposal.findOne({'projectId': obID, 'workerId' : req.session.passport.user},(err, prj)=>{
+            await Proposal.findOne({'projectId': x, 'workerId' : req.session.passport.user},(err, prj)=>{
                 if (err) 
                     return done(err)
                 if (prj) 
@@ -150,7 +152,7 @@ exports.addNewProposal = async (req, res)=>{
                     console.log(req.body.deal_price)
 
                     let newProposal                = new Proposal()
-                        newProposal.projectId       = work_id 
+                        newProposal.projectId       = x
                         newProposal.priceDeal       = req.body.deal_price
                         newProposal.workerId        = req.session.passport.user
                         newProposal.proposalContent = req.body.text_proposal
