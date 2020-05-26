@@ -2,11 +2,17 @@
 
 <div>
 
-  <% post_detail.forEach((postT) =>{ %>
-
-    <%=postT.workerId %><br>
-
-  <% }) %>  
+  <% for(let i=0; i<post_proposal.length; i++) {%>
+    <a href="../freelancer/<%=post_detail[i].id %>"><%= post_detail[i].name  %> </a><br/><br/>
+    <div>
+      <%=post_proposal[i].proposalContent%>
+      
+    </div>
+    <div>
+      <button>Hire</button>
+      <button>Message</button>
+    </div>
+  <%}%>
 
 </div>
 
