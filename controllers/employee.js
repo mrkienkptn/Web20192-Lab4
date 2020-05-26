@@ -75,3 +75,32 @@ exports.postEmployeeInfo = async (req, res)=>{
     // console.log(req.user)
     res.redirect('/profile')
 }
+
+exports.addToFavorite = async (req, res)=>{
+    const u = await User.findById(req.session.passport.user)
+    let favorite = u.favorite_job
+    if (favorite == undefined)
+        favorite = []
+
+    if (!favorite.includes(req.body.id)){
+        favorite.push(req.body.id)
+        await User.findByIdAndUpdate(req.session.passport.user,{
+            favorite_job: favorite
+        },
+        {new: true},
+        (err, user)=> {
+            if (user) res.send(u)
+        }
+        
+        )
+    }
+    else res.send({status: false, user:u})
+        
+    
+}
+exports.getFavorite = async (req, res)=>{
+    const u = await User.findById(req.session.passport.user)
+    let favorite = u.favorite
+    if (favorite==undefined || favorite==[]) res.send({status:false, user:u})
+    else res.send(u)
+}

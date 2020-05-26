@@ -1,55 +1,58 @@
-<h1>
-  <%=work.name  %> 
-  <button>add to favorite</button>
-</h1>
+<%- include('header-employee')  %> 
 
-  <% if(work_ID){ %> 
-    <%=work_ID %> 
-    
-    <% } %> 
-
-
-<h3>
-  <% if(work.jobCategory){ %> 
-    <%=work.jobCategory %> 
-    
-    <% } %> 
-</h3>
+<div class="detail-work">
+  <h1>
+    <%=work.name  %>
+   
+  </h1>
+  <% if (user.favorite_job.includes(work_ID)) { %> 
+    <button id="remove-from-favorite">Un favorite</button>
+  <% }else{ %> 
+    <button id="add-to-favorite">add to favorite</button> 
+  <% } %> 
+  <h3>
+    <% if(work.jobCategory){ %>
+    <%=work.jobCategory %>
   
-
-<% if(work_y){%> 
-
-<%=work_h%> hours ago
-<%=work_d%> th,
-<%=work_m%> ,
-<%=work_y%> 
-
-<% } %> 
-
-
-
-<hr>
-<h3>Description:</h3>
-<% if(work.description){ %> 
-  <%=work.description %> 
-<% } %> 
-
-<h3>Skill an expertise</h3>
-
-<%=work.requirements  %> 
-<h3>Price</h3>
-<%=work.price  %> 
-
-<h3>Candidate</h3>
-<%=work.candidates  %> 
-
-<hr>
-<h3>Send Proposal</h3>
-<form method="POST" action='/send_proposal'>
-  <textarea name='text_proposal' style="width: 400px; height: 150px; resize: none;">
-  </textarea><br><br>
-  <label for="deal_price">Deal Price:</label>
-  <input id='deal_price' name='deal_price' type="number" max="100000" min="10" value="10"><br><br>
-  <input type="hidden" name='work_id' value="<%=work_ID %> " >
-  <input type="submit" value="send proposal" >
-</form>
+    <% } %>
+  </h3>
+  
+  
+  <% if(work_y){%>
+  
+  <%=work_h%> hours ago
+  <%=work_d%> th,
+  <%=work_m%> ,
+  <%=work_y%>
+  
+  <% } %>
+  
+  
+  
+  <hr>
+  <h3>Description:</h3>
+  <% if(work.description){ %>
+  <%=work.description %>
+  <% } %>
+  
+  <h3>Skill an expertise</h3>
+  
+  <%=work.requirements  %>
+  <h3>Price</h3>
+  <%=work.price  %>
+  
+  <h3>Candidate</h3>
+  <%=work.candidates  %>
+  
+  <hr>
+  <h3>Send Proposal</h3>
+  <form method="POST" action='/send_proposal'>
+    <textarea name='text_proposal' style="width: 400px; height: 150px; resize: none;">
+    </textarea><br><br>
+    <label for="deal_price">Deal Price:</label>
+    <input id='deal_price' name='deal_price' type="number" max="100000" min="10" value="10"><br><br>
+    <input id="project-id" type="hidden" name='work_id' value="<%=work_ID %> ">
+    <input type="submit" value="send proposal">
+  </form>
+</div>
+<%- include('footer') %> 
