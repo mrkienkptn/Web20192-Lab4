@@ -3,17 +3,27 @@
 <div>
 
   <% for(let i=0; i<post_proposal.length; i++) {%>
-    <a href="../freelancer/<%=post_detail[i].id %>"><%= post_detail[i].name  %> </a><br/><br/>
+    <a href="../freelancer/<%=list_worker[i].id %>" id="worker-name-<%= i%>" ><%= list_worker[i].name  %> </a><br/><br/>
     <div>
       <%=post_proposal[i].proposalContent%>
       
     </div>
     <div>
       <button>Hire</button>
-      <button>Message</button>
+      <button id="message" class="<%= i%>"  value="<%=list_worker[i].id%>">Message</button>
+
+      <div id="chat-tab-<%=i  %>">
+        <h3 id="chat-tab-name-<%=i %>"></h3>
+        <div id="all-message-<%=i  %>"></div>
+        <form id="chat-form-<%=i  %>" action="" method="post">
+          <input type="text" id="message-input-<%=i  %>" placeholder="Message...">
+          <input type="submit" value="Send">
+        </form>
+      </div>
+      
     </div>
   <%}%>
-
+    
 </div>
 
 <%- include('footer')  %> 

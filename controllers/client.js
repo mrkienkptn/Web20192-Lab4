@@ -43,7 +43,7 @@ exports.getPostById = async (req, res)=>{
                 if (!err2 && docs2!=null){
                     list_worker.push(docs2)
                     if (list_worker.length == docs.length)
-                    res.render('display-post-detail', { post_proposal: docs, post_detail : list_worker, user: req.user})
+                    res.render('display-post-detail', { post_proposal: docs, list_worker : list_worker, user: req.user})
                 }
             })
         });

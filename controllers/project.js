@@ -136,9 +136,9 @@ exports.addNewProposal = async (req, res)=>{
     let work_id = req.body.work_id
     console.log(work_id)
     let obID = new Object(work_id)
-    let x = obID.toString()
+    let x= obID.toString()
     x = x.trim()
-    // console.log(work_id)
+
     try{
     if(req.body.text_proposal){
             await Proposal.findOne({'projectId': x, 'workerId' : req.session.passport.user},async (err, prj)=>{
