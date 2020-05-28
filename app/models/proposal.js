@@ -4,6 +4,10 @@ const ProposalSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    clientId:{
+        type: String,
+        require: true
+    },
     workerId: {
         type: String,
         require: true

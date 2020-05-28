@@ -31,7 +31,7 @@ $(document).ready(() => {
 
               $('#search_res').append("<div class='job_each' id='job_" + i + "'><br>")  
               $(id_job).append("<div class='job_name'><a href='/detail_work/"+data[i]._id.toString() +"'>"+data[i].name +"</a></div>") 
-              $(id_job).append("<button id='message' class='1' value='"+ data[i].userPostId +"'"+">Clickhehre</button>") 
+      
               $(id_job).append("<div class='job_price'>Price:  "+data[i].price +"</div>")  
               $(id_job).append("<div class='job_candidate'>Candidate:  "+data[i].candidates +"</div>")  
               $(id_job).append("<div class='job_require'>Requirement:  "+data[i].requirements +"</div>")  
@@ -71,6 +71,7 @@ $(document).ready(() => {
               $(id_job).append("<div class='job_candidate'>Candidate:  "+data[i].candidates +"</div>")  
               $(id_job).append("<div class='job_require'>Requirement:  "+data[i].requirements +"</div>")  
               $(id_job).append("<div class='name_user_post'>Post by:  "+data[i].userNamePost +"</div>")  
+             
               $('#search_res').append("</div>")  
             }
 

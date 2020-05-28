@@ -1,5 +1,6 @@
 const User      = require("../app/models/user")
-
+const Message   = require("../app/models/message")
+const Proposal  = require("../app/models/proposal")
 exports.jobFeed = (req, res)=>{
     res.render('job-feed',{user: req.user} )
 }
@@ -70,10 +71,16 @@ exports.postEmployeeInfo = async (req, res)=>{
                 about_me            : about_me
             }
 
+        },
+        {
+            new: true
         }
+        
     )
-    // console.log(req.user)
+    
     res.redirect('/profile')
+    // console.log(req.user)
+    
 }
 
 exports.addToFavorite = async (req, res)=>{
@@ -103,4 +110,46 @@ exports.getFavorite = async (req, res)=>{
     let favorite = u.favorite
     if (favorite==undefined || favorite==[]) res.send({status:false, user:u})
     else res.send(u)
+}
+
+exports.getClientListInChat = async (req, res) => { 
+    // return client list to whom employee send proposal
+    // and sended & received message in the last
+    
+    await Proposal.find({workerId : req.session.passport.user}, (err, docs) =>{
+        if (err) throw err
+        else {
+            let clientList = []
+            docs.forEach(doc =>{
+                let clientId = new Object(doc.clientId)
+                let clId = clientId.toString()
+                User.findById(clId, (err1, doc1)=>{
+                    if (!err){
+                        let client = {id: doc1.id, name: doc1.name}
+                        clientList.push(client)
+                        if (clientList.length == docs.length){
+                            
+                            let uniqueClientList = []
+                            const map = new Map()
+                            for (const item of clientList){
+                                if (!map.has(item.id)){
+                                    map.set(item.id, true)
+                                    uniqueClientList.push({
+                                        id: item.id,
+                                        name: item.name
+                                    })
+                                }
+                            }
+
+
+                            console.log(uniqueClientList)
+                            res.render("employee-chat", {clientList: uniqueClientList, user: req.user})
+                        }
+                    }
+                })
+            })
+        }
+    })
+    console.log(req.session.passport.user)
+    
 }

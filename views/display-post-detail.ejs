@@ -1,16 +1,21 @@
-<%- include('header-client')  %> 
+<%- include('header-client')  %>
 
 <div>
 
   <% for(let i=0; i<post_proposal.length; i++) {%>
-    <a href="../freelancer/<%=list_worker[i].id %>" id="worker-name-<%= i%>" ><%= list_worker[i].name  %> </a><br/><br/>
+  <div class="proposal-detail">
+
+
+    <a href="../freelancer/<%=list_worker[i].id %>" class="worker-name"
+      id="worker-name-<%= i%>"><%= list_worker[i].name  %> </a><br /><br />
     <div>
+      <p>Proposal content</p>
       <%=post_proposal[i].proposalContent%>
-      
+
     </div>
     <div>
       <button>Hire</button>
-      <button id="message" class="<%= i%>"  value="<%=list_worker[i].id%>">Message</button>
+      <button id="message" class="<%= i%>" value="<%=list_worker[i].id%>">Message</button>
 
       <div id="chat-tab-<%=i  %>">
         <h3 id="chat-tab-name-<%=i %>"></h3>
@@ -20,10 +25,13 @@
           <input type="submit" value="Send">
         </form>
       </div>
-      
+
     </div>
+  </div>
   <%}%>
+
+    
     
 </div>
 
-<%- include('footer')  %> 
+<%- include('footer')  %>

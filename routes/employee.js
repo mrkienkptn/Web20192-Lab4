@@ -17,4 +17,6 @@ const Employee =  require("../controllers/employee");
     router.get('/job-feed', Employee.jobFeed)
 
     router.post('/add_to_favorite', Employee.addToFavorite)
+
+    router.get('/message-employee', Employee.getClientListInChat)
 module.exports = router;

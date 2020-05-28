@@ -1,60 +1,84 @@
-const socketio = require("socket.io")
-const app = require("express")()
-const server = require("http").Server(app)
-const io = socketio(server)
-
 const{
-    userJoin,
-    getCurrentUser,
-    userLeave,
-    getRoomUsers
+    joinOnline,
+    getReceiverSocket,
+    userLeave
 } = require("../utils/chat-utils")
+const moment = require("moment")
 
-module.exports=(ioo, sserver)=>{
-    io.on("connection", socket=>{
+const Message = require("../app/models/message")
 
+module.exports = (server)=>{
+    const io = require("socket.io")(server)
 
-        socket.on("joinChat", ({username, room}) =>{
+    io.on("connection",socket=>{
+        socket.on("disconnect",() => {
+            userLeave(socket.id)
+            console.log(" exit")
+        })
+        console.log("Connect to socke: " + socket.id)
+        sender = "aaa"
 
-            // Send a notify when a user join in the chat
-
-            const user = userJoin(socket.id, username, room)
-            socket.join(user.room)
-            socket.broadcast
-                .to(user.room)
-                .emit('message', `${user.username} is in chat`)
+        socket.on('join-online', async requestUser => {
             
-            // 
-
-        } )
-
-        //Listen for chat msg
-
-        socket.on('chatMessage', msg => {
-            const user = getCurrentUser(socket.id)
-
-            io.to(user.room)
-            .emit('message', msg)
+            joinOnline(socket.id, requestUser.id) // return {socketId, userId}
+            // console.log(user.userId + "join to chat")
+            sender = requestUser.id
         })
+       
+            
+            socket.on('message', async ( {receiver , message}) => {
+                console.log(message)
+                //save to database
+                let receiverId = receiver.receiver_id
+                console.log("receive id: "+ receiverId)
+        
+                //get receiver from online user list
+                let receiverSocketId = getReceiverSocket(receiverId)
+                await Message.findOne({sender: sender, receiver: receiverId}, async (err, doc) =>{
+                    if (err) throw err
+                    if (!doc){
+                        // console.log("dialog not exist")
+                        let dialog = new Message()
+                        dialog.sender = sender
+                        dialog.receiver = receiverId
+                        dialog.messages = {time: [].push(Date.now()), content: [].push(message)}
+                        dialog.save(err =>{
+                            if (err) console.log("Save err "+err)
+                            // else console.log("save done "+message)
+                        })
+                        
+                    }
+                    else{
+                        // console.log(doc)
+                        // console.log("dialog exist")
+                        let currentContent = doc.messages.content
+                        let currentTime = doc.messages.time
+                        if (currentContent!=undefined){
+                            currentContent.push(message)
+                        }
+                        if (currentTime!=undefined){
+                            currentTime.push(Date.now())
+                        }
+                        await Message.findOneAndUpdate({sender: sender, receiver: receiverId},
+                            {
+                                messages:{
+                                    time   : currentTime,
+                                    content: currentContent
+                                }
+                            })
+                        
+                    }
+                })
 
-        socket.on("disconnect", ()=>{
-            const user = userLeave(socket.id)
-            if (user){
-                io.to(user.room)
-                .emit('message', `${user.username} has left the chat`)
-
-                io.to(user.room)
-                .emit('roomUsers')
-            }
-
-
-        })
-
-
-
-
-
-
-
+                if (receiverSocketId){
+                    console.log("senmmesage  "+message+" to "+ receiverSocketId)
+                    io.to(receiverSocketId).emit('message', message)
+                }
+            })
+            
+      
+    
+        
+        
     })
 }

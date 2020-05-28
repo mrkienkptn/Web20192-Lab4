@@ -12,7 +12,7 @@
     width: 90%;
     padding: 25px;
     margin: auto;
-    border-radius: 10px;
+
 }
 .change-profile{
     -webkit-box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
@@ -23,7 +23,7 @@
     padding: 25px;
     margin: auto;
     margin-top: 15px;
-    border-radius: 10px;
+
     position: relative;
 }
 
@@ -45,7 +45,7 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     padding-bottom: 15px;
     margin-bottom: 20px;
     background-color: #fff;
-    border-radius: 10px;
+
 }
 .col-1 .h{
     border-bottom: 1px solid rgb(29, 116, 150);
@@ -60,7 +60,7 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     -webkit-box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     -moz-box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
-    border-radius: 10px;
+
     background-color: #fff;
     margin-bottom: 20px;
 }
@@ -98,13 +98,12 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     margin: auto;
 
     color: aliceblue;
-    border-radius: 5px;
     padding: 10px;
     width: auto;
 }
 #change_intro{
     padding: 3px;
-    border-radius: 10px;
+
     margin-top:20px;
 }
 .change-prof button:hover, #change_intro:hover{
@@ -122,7 +121,6 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     margin-left: 10px;
     margin-bottom: 5px;
     padding: 4px; 
-    border-radius: 2px;
     color: white;
 }
 .col-1{
@@ -136,7 +134,7 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
 
 }
 .col-1 form input[type="text"]{
-    border-radius: 10px;
+
     border: 1px green solid;
     padding: 3px;
 }
@@ -146,7 +144,7 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
     background-color: green;
     margin: auto;
     color: aliceblue;
-    border-radius: 10px;
+
     padding: 3px;
     width: auto;
 }
@@ -168,7 +166,7 @@ box-shadow: -1px 0px 7px 1px rgba(212,212,212,1);
 .change_intro input[type="text"]{
     height: 100%;   
     border: 1px solid green;
-    border-radius: 10px;
+
     width: 200px;
     
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);

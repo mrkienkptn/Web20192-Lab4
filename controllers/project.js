@@ -134,13 +134,23 @@ exports.addNewProposal = async (req, res)=>{
     console.log('start proposal')
 
     let work_id = req.body.work_id
+
     console.log(work_id)
+    clientId = ""
+    
+    
     let obID = new Object(work_id)
     let x= obID.toString()
     x = x.trim()
 
+    await Project.findById(x, (err, doc)=>{
+        if (err) throw err
+        else clientId = doc.userPostId
+    })
+
     try{
     if(req.body.text_proposal){
+        console.log(clientId)
             await Proposal.findOne({'projectId': x, 'workerId' : req.session.passport.user},async (err, prj)=>{
                 if (err) 
                     return done(err)
@@ -162,7 +172,7 @@ exports.addNewProposal = async (req, res)=>{
                         newProposal.priceDeal       = req.body.deal_price
                         newProposal.workerId        = req.session.passport.user
                         newProposal.proposalContent = req.body.text_proposal
-
+                        newProposal.clientId        = clientId
                     newProposal.save(err => {
                         if (err) console.log("err")
                         else{

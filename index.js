@@ -47,40 +47,7 @@ app.use('/', employee);
 app.use('/', project);
 app.use('/', client)
 // app.use('/auth',auth);
-const {
-    joinOnline,
-    getCurrentUser,
-    userLeave,
-    getRoomUsers
-  } = require("./utils/chat-utils")
+
 var server = require("http").Server(app)
-var io = require("socket.io")(server)
-
-io.on("connection",socket=>{
-    console.log("Connect to socket: " + socket.id)
-
-    socket.on('join-online', requestUser => {
-        let user = joinOnline(socket.id, requestUser.id) // return {socketId, userId}
-        console.log(user.userId + "join to chat")
-    })
-
-    socket.on('chat-with', receiver => {
-        let receiverId = receiver.receiver_id
-        console.log("receive id: "+ receiverId)
-        let receiverObject = getCurrentUser(receiverId)
-        let receiverSocketId = receiverObject.socketId
-        console.log("receiver id: "+ receiverId)
-        socket.on('message', message => {
-            console.log(message)
-            io.to(receiverSocketId).emit('message', message)
-        })
-        
-    })
-
-    socket.on("disconnect", () => {
-        const user = userLeave(socket.id)
-
-    })
-    
-})
+require("./controllers/message")(server)
 server.listen(port, console.log("Server is running on port 7000") )
