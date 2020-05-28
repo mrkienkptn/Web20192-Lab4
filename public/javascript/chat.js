@@ -1,54 +1,50 @@
-
-
 const socket = io()
-console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
 let me ={ id: $("#username p").attr("id").trim()}
 socket.emit("join-online", me )
 console.log(me.id)
-for (let order=0; order<=5; order++){
-    $('.'+order).click(function() {
-        $(".chat-tab-right .message").html("")
-        let receiver_id =   ($(this).attr('value'))
-        let receiver = {receiver_id: receiver_id}
-        
-        // join to chat 
-        // set tab chat name to receiver name
-        let worker_name = $("#worker-name-"+order).html()
-        $("#chat-tab-name-"+order).html(worker_name)
 
-        let client_name = $("#client-name-"+order).html()
 
-        $(".client-name-right").html(client_name)
-        // 
-        // socket.emit('chat-with', receiver)
+// employee to client
 
-        // listen to message from server
-        socket.on('message', message => {
-            // $("#all-message-"+order).append("<p class='message-left' >"+ message +"</p>")
-            $(".chat-tab-right .message").append("<p>"+message+"</p>")
-            console.log(message)
-            $("#all-message-"+order).append("<p class='message-right' >"+ message +"</p><br/>")
-            $(".chat-tab-right .message").scrollTop = $(".chat-tab-right .message").scrollHeight
-        })
-        $(".chat-tab-right form").submit(e=>{
-            e.preventDefault()
-            let message = $("#msg").val()
-            console.log(message)
-            socket.emit('message', {receiver ,message})
-            $("#msg").val("")
-            $(".chat-tab-right .message").append("<p class='message-right' >"+ message +"</p><br/>")
-        })
-        $("#chat-form-"+order).submit(e=> {
 
-            e.preventDefault()
-            let message = $("#message-input-"+order).val()
-            console.log(message)
-            socket.emit('message', {receiver ,message})
-            $("#message-input-"+order).val("")
-            $("#all-message-"+order).append("<p class='message-right' >"+ message +"</p><br/>")
-        })
-
-        
+for (let i=0; i<=10; i++){
+    let cl_id = $(".client-"+i).attr("value")  
+    $("#chat-tab-right-"+i+ " form").submit(e=>{
+        e.preventDefault()
+        let message = $("#msg-"+i).val()
+        console.log(message)
+        socket.emit('send-message', {receiver: cl_id ,message: message})
+        $("#msg-"+i).val("")
+        $("#all-message-"+cl_id).append("<p class='message-right' >"+ message +"</p>")
     })
 }
+
+//client to employee
+
+
+
+for (let i=0; i<=10; i++){
+    let employee_id = $(".employee-"+i).attr("value")  
+   
+        $("#chat-form-"+i).submit(e=> {
+            e.preventDefault()
+            let message = $("#message-input-"+i).val()
+            console.log(message)
+            //send message to server
+            socket.emit('send-message', {receiver: employee_id, message: message})
+            // input to empty
+            $("#message-input-"+i).val("")
+            // append just sent message to dialog box
+            $("#all-message-"+employee_id).append("<p class='message-right' >"+ message +"</p>")
+            
+        })
+}
+
+socket.on('listen-message', ({sender, message}) => {
+    console.log(message+"okokok")
+    console.log(sender)
+    $("#all-message-"+sender).append("<p class='message-right' >"+ message +"</p")
+
+}) 
 

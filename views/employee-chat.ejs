@@ -6,24 +6,28 @@
                 <% clientList.forEach(function(client, index){%> 
                     <div class="item-client">
                         <div id="client-name-<%=index %>" class="client-name">
-                            <%=client.name  %> 
+                            <p><%=client.name  %></p> 
                         </div>
                         <div class="btn-chat">
                             
-                            <button  class="<%=index%>" value="<%=client.id %>">Chat</button>
+                            <button  class="client-<%=index%>" value="<%=client.id %>">Chat</button>
                         </div>
                     </div>
                     <%}) %> 
             </div>
-            <div class="chat-tab-right">
-                <div class="client-name-right"></div>
-                <div class="message"></div>
-                <div class="form">
-                    <form action="">
-                        <input type="text" class="msg" id="msg">
-                        <input type="submit" value="Send">
-                    </form>
-                </div>
+            <div class="chat-tab-right-bound">
+                <% clientList.forEach(function(client, index){%>
+                    <div class="chat-tab-right" id="chat-tab-right-<%=index %>">
+                        <div class="cl_name client-name-right<%=index %>"><p><%=client.name  %></p>  </div>
+                        <div class="message" id="all-message-<%=client.id %>"></div>
+                        <div class="form-<%=index %>">
+                            <form action="">
+                                <input type="text" class="msg" id="msg-<%=index %>">
+                                <input type="submit" value="Send">
+                            </form>
+                        </div>
+                    </div>
+               <% }) %> 
             </div>
         </div>
     

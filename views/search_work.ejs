@@ -9,16 +9,16 @@
             <a href="#"><i class="fas fa-search " id="search-icon"></i> </a>
         </button>
         <button id="btn-filter">
-            <i class="fas fa-filter " id="filter-icon">Lọc</i>
+            <i class="fas fa-filter " id="filter-icon">Filter</i>
         </button>
         <!--search-active-->
 
     </div>
 
-    <div id='filter_res'>
+    <div class="filter_res" id='filter_res'>
 
 
-        filter by language: <select name="filter_select_language" id="filter_ln">
+        Language <select name="filter_select_language" id="filter_ln">
             <option value="c">C</option>
             <option value="cplusplus">C++</option>
             <option value="cshap">C#</option>
@@ -29,12 +29,12 @@
 
         </select>
 
-        filter by price : <select name="filter_select_language" id="filter_ln">
-            <option value="decrement_price">low to high</option>
-            <option value="increment_price">high to low</option>
+        Price <select name="filter_select_language" id="filter_ln">
+            <option value="decrement_price">Low to high</option>
+            <option value="increment_price">High to low</option>
         </select>
 
-        filter by date : <select name="filter_select_language" id="filter_ln">
+        Time <select name="filter_select_language" id="filter_ln">
             <option value="old_to_new">Oldest</option>
             <option value="new_to_old">Newest</option>
         </select>
@@ -45,20 +45,27 @@
         <% if(data) %>
         <%for(let i = 0; i < data.length; i++){ %>
 
-        <div class="job_each" id='job_<%=i %>'><br>
-            <div class='job_name'><a href='/detail_work/ <%=data[i]._id %> '> <%=data[i].name%></a></div>
-            <div class='job_price'>Price: <%=data[i].price %> </div>
-            <div class='job_candidate'>Candidate: <%=data[i].candidates %></div>
-            <div class='job_require'>Requirement: <%=data[i].requirements %></div>
-            <div class='job_require'>Post by : <%=userNamePost[i] %></div>
+        <div class="job_each" id='job_<%=i %>'>
+            <div class='job_name'><a href='/detail_work/ <%=data[i]._id %> '> <%=data[i].name%></a> <button title="Add to favorite" id="add-to-favorite"><i class="far fa-bookmark"></i></button> </div>
+
+            <div class="xxxx">
+                <input id="project-id" type="hidden" name='work_id' value="<%=data[i]._id %>">
+                <div class='job_price'>     Price  -    &nbsp;  <%=data[i].price %> <span style="color: rgb(255, 91, 41);">$</span></div>
+                <div class='job_candidate'> Candidate -   &nbsp;  <%=data[i].candidates %></div>
+                <div class='job_user_post'>   Post by -   &nbsp; <p style="color: green; font-weight: bolder; display: inline;"><%=userNamePost[i] %></p></div>
+            </div>
+            <div class="job_descrip">
+                <div class="job_descrip_head">Description</div>
+                <div class="job_descrip_detail">
+                    <%=data[i].description%> 
+                </div>
+            </div>
+            <div class='job_require'>   Requirement - &nbsp; <%=data[i].requirements %></div>
         </div>
         <% }%>
 
 
     </div>
-</div>
-<div id="test123">
-    <button id="message" class="3" value="5ecbfa59f9b68178f48f982b">BBBB</button>
 </div>
 
     <%- include ('footer') %>

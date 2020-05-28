@@ -1,25 +1,27 @@
 <%- include('header-client')  %>
 
 <div>
-
+  <h2>All Proposals </h2>
   <% for(let i=0; i<post_proposal.length; i++) {%>
   <div class="proposal-detail">
-
-
     <a href="../freelancer/<%=list_worker[i].id %>" class="worker-name"
       id="worker-name-<%= i%>"><%= list_worker[i].name  %> </a><br /><br />
     <div>
       <p>Proposal content</p>
       <%=post_proposal[i].proposalContent%>
+    </div>
+    <div>
+      price dev want: <%=post_proposal[i].priceDeal%><br>
 
     </div>
     <div>
-      <button>Hire</button>
-      <button id="message" class="<%= i%>" value="<%=list_worker[i].id%>">Message</button>
+      <button><a href="../Hire/<%=list_worker[i].id%>/<%=post_proposal[i].projectId%> ">Hire</a></button>
+      <button id="message" class="employee-<%= i%>" value="<%=list_worker[i].id%>">Message</button>
+
 
       <div id="chat-tab-<%=i  %>">
-        <h3 id="chat-tab-name-<%=i %>"></h3>
-        <div id="all-message-<%=i  %>"></div>
+        <h3 id="chat-tab-name-<%=i %>"><%= list_worker[i].name  %></h3>
+        <div id="all-message-<%=list_worker[i].id%>"></div>
         <form id="chat-form-<%=i  %>" action="" method="post">
           <input type="text" id="message-input-<%=i  %>" placeholder="Message...">
           <input type="submit" value="Send">

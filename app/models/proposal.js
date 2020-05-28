@@ -21,8 +21,13 @@ const ProposalSchema = new mongoose.Schema({
         require: true
     },
     isAccept:{
-        type: Boolean,
-        require: true
+        type: String,
+    },
+    priceFinal:{
+        type:Number,
+    },
+    dealReason :{
+        type: String,
     }
 
 

@@ -1,6 +1,6 @@
 const moment = require('moment')
 var online = []
-// Join user to chat
+
 function joinOnline(socketId, userId) {
   const user = { socketId: socketId, userId: userId};
   let index = online.findIndex(userr=> userr.userId == userId)
@@ -19,7 +19,7 @@ function joinOnline(socketId, userId) {
   })
 }
 
-// Get current user
+
 function getReceiverSocket(id) {
   let index = online.findIndex(o => o.userId==id)
   if (index>=0)
@@ -27,7 +27,7 @@ function getReceiverSocket(id) {
   else return false
 }
 
-// User leaves chat
+
 function userLeave(id) {
   const index = online.findIndex(o => o.socketId === id);
 

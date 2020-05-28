@@ -1,51 +1,113 @@
-#search_res {
-  border: 1px solid rgb(230, 180, 180);
-  padding:5%;
-  margin: 10px 15%;
-  background-color: rgb(236, 236, 236)
-}
+
 #filter_res{
 
-  margin: 10px 15%;
+ 
   display: none;
+
 }
 
 .container-search{
-  border: 1px solid rgb(190, 161, 161);
-  margin: 3% 5%;
-  padding: 2% 0;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .container-search .search_div{
-  border: 1px solid rgb(211, 209, 209);
-  width: 50%;
+  
+  width: 100%;
   display: flex;
-  margin: 0 25%;
+  margin: auto;
+  margin-top: 30px;
   justify-content: center;
   padding: 0 4%;
 
+}
+.container-search .search_div input{
+  border: 1.5px solid gray;
+  border-right: none;
+  width: 100%;
+  height: 40px;
+}
+.container-search .search_div button{
+  border: none;
+  background-color: rgb(238, 110, 27);
+  color: white;
+  margin-right: 5px;
+  border-radius: 2px;
+  padding: 3px;
+  height: 40px;
+}
+
+.job_each div{
+  padding: 10px;
+  font-size: 14px;
+}
+.job_name{
+  border-bottom: 2px solid rgb(128, 73, 0);
+  margin-bottom: 10px;
+  position: relative;
+  grid-area: name;
+}
+.job_name button{
+  position: absolute;
+  right: 10px;
+  top : 5px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(87, 87, 87, 0.2), 0 2px 10px 0 rgba(114, 114, 114, 0.19);
+  width: 30px;
+  height: 30px;
+  background-color: rgb(238, 110, 27);
+  color: white;
+}
+.job_name a{
+  text-decoration: none;
+  color: rgb(238, 110, 27);
+  font-size: 18px;
+}
+.job_require{
+  background-color: rgba(207, 179, 18, 0.555);
+  grid-area: a;
+  border-radius: 2px;
+}
+.job_descrip{
+  grid-area: b;
+}
+.xxxx{
+  grid-area: c;
+}
+
+.job_each{
   
+  margin-top: 15px;
+  box-shadow: 0 2px 5px 0 rgba(87, 87, 87, 0.2), 0 2px 10px 0 rgba(114, 114, 114, 0.19);
+  border-radius: 2px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-areas:
+   "name name name"
+   "c b b"
+   "a a a";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.job_descrip_head{
+  background-color: rgba(207, 179, 18, 0.555);
+  border-radius: 2px;
+  padding: 2px 5px !important; 
+  width: fit-content;
 }
 
-.container-search .search_div input {
-
-  width: 80%;
-
+.filter_res{
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.filter_res select{
+border: 1.3px solid gray;
+width: 100px;
+height: 30px;
 }
 
-/* #search_res .job_each{
-  border: 1px solid rgb(180, 61, 61);
-  background-color: rgb(255, 255, 255);
-  margin: 5px;
-}
-#search_res .job_each .job_name {
-  border: 1px solid rgb(180, 61, 61);
-  background-color: rgb(255, 255, 255);
-}
-#search_res .job_each .job_candidate{
-  border: 1px solid rgb(180, 61, 61);
-  background-color: rgb(255, 255, 255);
-}
-#search_res .job_each .job_require{
-  border: 1px solid rgb(180, 61, 61);
-  background-color: rgb(255, 255, 255);
-} */
+
+

@@ -1,9 +1,10 @@
 $(function(){
-    $("#add-to-favorite").click((e)=>{
+    $("#add-to-favorite").click(function(e){
         let projectId = $("#project-id").val()
         let posting = $.post('/add_to_favorite', {id: projectId})
         posting.done((status)=>{
-            if (status.status) $("#add-to-favorite").css({
+            console.log(status)
+            if (status.status) $(this).css({
                 "background-color":"green"
             })
         })

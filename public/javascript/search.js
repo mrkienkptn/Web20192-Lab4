@@ -87,7 +87,7 @@ $(document).ready(() => {
       //   $('#filter_res').append("<div class='filter-menu'>This is filter menu</div>")
       // else
       //   $('#filter_res').html('')
-      $('#filter_res').fadeToggle()
+      $('#filter_res').slideToggle()
 
 
 

@@ -129,6 +129,22 @@ exports.addNewProject = async (req, res)=>{
     }
     
 
+exports.hireDealToFreelancer = async (req, res)=>{
+
+    console.log(req.params.id_dev)
+    console.log(req.params.id_project)
+    await Proposal.findOneAndUpdate({workerId: req.params.id_dev, projectId : req.params.id_project},
+        {
+            // other: {
+            //     email : req.body.email
+            // }
+
+            priceFinal : req.body.price_final,
+            dealReason : req.body.reason_change
+        }
+    )
+    res.redirect('/profile')
+}
 
 exports.addNewProposal = async (req, res)=>{
     console.log('start proposal')
