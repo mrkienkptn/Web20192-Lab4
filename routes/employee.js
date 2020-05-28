@@ -16,5 +16,10 @@ const Employee =  require("../controllers/employee");
 //  Chuyển về trang home ( Job feed )
     router.get('/job-feed', Employee.jobFeed)
 
+    router.get('/my-proposal', Employee.getMyProposal)
+
+    router.post('/hire-deal-from-dev/:id_worker/:id_project', Employee.devAcceptDealFromClient)
+
     router.post('/add_to_favorite', Employee.addToFavorite)
+
 module.exports = router;

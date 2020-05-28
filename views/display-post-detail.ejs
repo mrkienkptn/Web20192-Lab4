@@ -5,11 +5,12 @@
   <% for(let i=0; i<post_proposal.length; i++) {%>
     <a href="../freelancer/<%=list_worker[i].id %>" id="worker-name-<%= i%>" ><%= list_worker[i].name  %> </a><br/><br/>
     <div>
-      <%=post_proposal[i].proposalContent%>
+      price dev want: <%=post_proposal[i].priceDeal%><br>
+      proposal content: <%=post_proposal[i].proposalContent%>
       
     </div>
     <div>
-      <button>Hire</button>
+      <button><a href="../Hire/<%=list_worker[i].id%>/<%=post_proposal[i].projectId%> ">Hire</a></button>
       <button id="message" class="<%= i%>"  value="<%=list_worker[i].id%>">Message</button>
 
       <div id="chat-tab-<%=i  %>">

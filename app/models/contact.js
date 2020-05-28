@@ -8,18 +8,11 @@ const ContactSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    FileFromClient:{
-        type:Number,
-        required: true,
-    },
-    startTime:{
-        type: Date,  
-        required: true,
-    },
-    expectFinishTime:{
-        type: Date,  
-        required: true,
+    clientId:{
+        type: String,
+        require: true,
     }
+
 })
 var Contact=mongoose.model('contact_model',ContactSchema, 'contact');
 module.exports = Contact;

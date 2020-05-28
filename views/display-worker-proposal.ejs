@@ -1,0 +1,42 @@
+<%- include('header-employee')  %> 
+
+<% if(myProposal){ %> 
+  <div>
+
+  <% for(let i=0; i<myProposal.length; i++) {%>
+
+    <a href="#" ><%=myProposal[i].projectId  %> </a><br/><br/>
+    <a href="#" ><%=myProposal[i].workerId  %> </a><br/><br/>
+    Price i want: <%=myProposal[i].priceDeal  %> <br/><br/>
+    Content i sent: <%=myProposal[i].proposalContent  %> <br/><br/>
+
+    <% if(myProposal[i].priceFinal && myProposal[i].isAccept == null) {%> 
+      client care about you: <br>
+      final price client send to you: <%=myProposal[i].priceFinal %> <br>
+      reason they change : <%=myProposal[i].dealReason %> <br>
+
+      <form method="POST" action="../hire-deal-from-dev/<%=myProposal[i].workerId %>/<%=myProposal[i].projectId %>  ">
+        <label>Do you want to take this work:</label><br>
+        Agree : <input type="radio" name="accept_client" value="true">
+        Decline: <input type="radio" name="accept_client" value="false"><br>
+  
+        <input type="submit" value="submit">
+      </form>
+
+    <% }else if(myProposal[i].isAccept == 'true'){ %> 
+      <h3>You are took this work</h3>
+    <% }else{ %> 
+      <h3>You are decline this work</h3>
+    <% } %> 
+
+
+
+    <% } %> 
+
+
+
+    
+</div>
+<% } %> 
+
+<%- include('footer')  %> 

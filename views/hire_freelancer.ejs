@@ -1,0 +1,19 @@
+<%- include('header-client')  %> 
+
+<div>
+  <% if(id_dev){ %> 
+    send to dev id: <%=id_dev %><br>   
+    send to project id: <%=id_project %>   
+  <% } %> 
+
+  <form method="POST" action="/hire_deal/<%=id_dev %>/<%=id_project %> ">
+    <label>Final price:</label>
+    <input type="number" name="price_final" value="100" max="10000" min="10"><br>
+    <label>Reason deal:</label><br>
+    <textarea  name="reason_change"></textarea><br>
+    <input type="submit" value='send deal'>
+  </form>
+    
+</div>
+
+<%- include('footer')  %> 

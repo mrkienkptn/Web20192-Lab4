@@ -1,4 +1,5 @@
 const User      = require("../app/models/user")
+const Proposal      = require("../app/models/proposal")
 
 exports.jobFeed = (req, res)=>{
     res.render('job-feed',{user: req.user} )
@@ -15,7 +16,29 @@ exports.getProfileEmployee = (req, res)=>{
     })
 }
 
+exports.getMyProposal = async(req, res)=>{
 
+    await Proposal.find({workerId : req.session.passport.user}, (err, obj) =>{
+        if (!err){
+            res.render('display-worker-proposal', {myProposal : obj, user: req.user })
+        }
+    })
+}
+
+exports.devAcceptDealFromClient = async(req, res)=>{
+
+
+    console.log(req.params.id_worker)
+    console.log(req.params.id_project)
+    console.log(req.body.accept_client)
+
+    await Proposal.findOneAndUpdate({workerId: req.params.id_worker, projectId : req.params.id_project},
+        {
+            isAccept : req.body.accept_client
+        }
+    )
+    res.redirect('/my-proposal')
+}
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")
