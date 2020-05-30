@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema({
         require: true,
     },
     requirements:{
-        type: String, 
+        type: [String], 
         require: true,
     },
     userPostId:{

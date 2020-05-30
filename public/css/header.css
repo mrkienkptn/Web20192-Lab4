@@ -5,7 +5,9 @@
   font-family: 'Nunito', sans-serif;
 
 }
-
+body{
+  background-color: rgb(245, 245, 245);
+}
 button:focus{
   outline: none;
 }
@@ -25,7 +27,7 @@ li{
    /* Safari */
 
   background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 3px 0 rgba(150, 150, 150, 0.2), 0 3px 3px 0 rgba(175, 175, 175, 0.19);
 
 }
 
@@ -252,7 +254,9 @@ input {
 @media only screen and (max-width: 720px) { 
   
   /* MOBILE HEADINGS */
-  
+  label{
+    font-size: 1rem;
+  }
   h1 {
     font-size: 1.9rem;
   }
@@ -262,7 +266,7 @@ input {
   }
   
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   
   /* MOBILE NAVIGATION */

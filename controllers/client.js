@@ -33,34 +33,35 @@ exports.getPostById = async (req, res)=>{
     x = x.trim()
     
     console.log("id = " + x)
-    await Proposal.find({projectId : x}, (err, docs) =>{
-    if (!err){
-
-        let list_worker = []
-        docs.forEach( function(element, index) {
-            let id = element.workerId
-            User.findById(id, (err2, docs2)=>{
-                if (!err2 && docs2!=null){
-                    list_worker.push(docs2)
-                    if (list_worker.length == docs.length)
-                    res.render('display-post-detail', { post_proposal: docs, list_worker : list_worker, user: req.user})
+    
+    await Proposal.exists({projectId: x}, async (error, result)=>{
+        if (!result){
+            res.render('display-post-detail',{ post_proposal: [], list_worker : [], user: req.user})
+        }
+        else{
+            await Proposal.find({projectId : x}, (err, docs) =>{    
+                if (!err ){
+                    
+                    let list_worker = []
+                    docs.forEach( function(element) {
+                        let id = element.workerId
+                        User.findById(id, (err2, docs2)=>{
+                            if (!err2 && docs2!=null){
+                                list_worker.push(docs2)
+                                if (list_worker.length == docs.length)
+                                res.render('display-post-detail', { post_proposal: docs, list_worker : list_worker, user: req.user})
+                            }
+                        })
+                    });
+        
                 }
-            })
-        });
-
-        // User.findById(docs.workerId, (err2, docs2) =>{
-        //     if(!err2){
-        //         res.render('display-post-detail', {post_user : docs2,post_detail : docs, user: req.user})
-        //         console.log(docs2);
-        //     }
-        //     else 
-        //         throw err2;
-
-        // })
-    }
-    else 
-        throw err;
-    });
+                else 
+                    throw err;
+            });
+        }
+    })
+    
+    
 }
 
 exports.postJob = async (req, res)=>{

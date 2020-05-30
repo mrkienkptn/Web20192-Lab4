@@ -50,8 +50,8 @@
 
             <div class="xxxx">
                 <input id="project-id" type="hidden" name='work_id' value="<%=data[i]._id %>">
-                <div class='job_price'>     Price  -    &nbsp;  <%=data[i].price %> <span style="color: rgb(255, 91, 41);">$</span></div>
-                <div class='job_candidate'> Candidate -   &nbsp;  <%=data[i].candidates %></div>
+                <div class='job_price'>     <i class="fas fa-donate"></i>   &nbsp;  <%=data[i].price %> <span style="color: rgb(255, 91, 41);">$</span></div>
+                <div class='job_candidate'> <i class="far fa-poll-people"></i> -   &nbsp;   <%=data[i].candidates %>&nbsp; candidates</div>
                 <div class='job_user_post'>   Post by -   &nbsp; <p style="color: green; font-weight: bolder; display: inline;"><%=userNamePost[i] %></p></div>
             </div>
             <div class="job_descrip">
@@ -60,7 +60,9 @@
                     <%=data[i].description%> 
                 </div>
             </div>
-            <div class='job_require'>   Requirement - &nbsp; <%=data[i].requirements %></div>
+            <div class='job_require'>   Requirement - &nbsp; <%data[i].requirements.forEach(function(item){%>
+                <label for=""><%=item %></label>
+            <%}) %></div>
         </div>
         <% }%>
 
