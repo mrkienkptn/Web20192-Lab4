@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/fill-info.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/fill-info.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/message.css">
+    <link rel="stylesheet" href="/css/send-proposal.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
@@ -20,14 +23,16 @@
             <div class="grad-bar"></div>
             <nav class="navbar">
                 <div class="page-name">
-                    Divuvila
+                    <a href="/">Divuvila</a>
                 </div>
 
-                <div class="search-div">
-                    <a href="/search_work"><i class="fas fa-search " id="search-icon"></i></a>
-                    <input class="search-input " type="text" placeholder="Search..">
+                <div class="search-div no-search">
+                    <input class="search-input" type="text" placeholder="Search A Job...">
+                    <button id="btn-search">
+                        <a href="#"><i class="fas fa-search " id="search-icon"></i> </a>
+                    </button>
                     <!--search-active-->
-
+                    
                 </div>
                 <div class="menu-toggle" id="mobile-menu">
                     <span class="bar"></span>
@@ -35,13 +40,21 @@
                     <span class="bar"></span>
                 </div>
                 <ul class="nav no-search">                  
-                    <li class="nav-item"><a href="/">Home</a></li>
-                    <li class="nav-item"><a href="#">About</a></li>
-                    <li class="nav-item"><a href="#">Work</a></li>
-                    <li class="nav-item"><a href="#">Careers</a></li>
-                    <li class="nav-item"><a href="#">Contact Us</a></li>
+                    <li class="nav-item"><a href="/search">JOB FEED</a></li>
+                    
+
+                    <li class="nav-item"><a href="/my-proposal">MY JOBS</a></li>
+                    <li class="nav-item"><a href="/message-employee">MESSAGES</a></li>
+
+                    
+                    
+
                     <li class="nav-item " id="username">
-                        <p><% if(locals.user){%> <%=user.name%> <% } %> </p>
+                        <p id="<%=user.id  %>">
+                            <% if(user){ %> 
+                                <%=user.name%>
+                            <% } %> 
+                        </p>
                         <ul class="nav-dropdown">
                             <li><a href="/profile">Profile</a></li>
                             <li><a href="/logout">Log out</a></li>

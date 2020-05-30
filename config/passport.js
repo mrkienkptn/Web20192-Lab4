@@ -8,7 +8,6 @@ module.exports=(passport)=>{
     passport.serializeUser((user, done)=>{
         done(null, user.id) //* set user.id to session.passport.user
     })
-
     //!when user autheticated passport call this function
     //!user have cookie and browser send it too
     //!this function take this cookie 

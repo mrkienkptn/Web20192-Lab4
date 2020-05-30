@@ -1,22 +1,99 @@
-<div>
+<%- include('header-client')  %>
+<div class="post_job">
+  <div class="head">
+    <h2>Fill Information For New Job </h2>
+  </div>
 
-  <div> You want to hire a job </div><br>
-  
-  <form method="POST" action='/project/hire_info'>
+  <form method="POST" action='/hire_info'>
 
-      <label>Name Job:</label>
-      <input type="text" name='name_project' placeholder="Enter Name projet:"  ><br><br>
+    <div class="post-job-top">
+      <div class="job-name">
+        <label for="job-name">Job Name</label>
+        <input id="job-name" type="text" name='name_project' placeholder="Enter Name projet:">
+      </div>
 
-      <label>Price:</label>
-      <input type="text" name='price' placeholder="Enter price:"  ><br><br>
 
-      <label>Candidates:</label>
-      <input type="text" name='candidates' placeholder="Enter candidate:"  ><br><br>
+      <div class="job-cate">
+        <label>Choose category </label>
+        <select name='job_category'>
+          <option value="Web Design Pattern">Web Design & Analysis</option>
+          <option value="Back-End Development">Back-End Development</option>
+          <option value="Front-End Development">Front-End Development</option>
+          <option value="Photoshop Design">Photoshop</option>
+          <option value="Edit Video">Edit Video</option>
+          <option value="Business Marketing">Business Marketing</option>
+          <option value="Data Science" selected>Data Science</option>
+          <option value="AI">AI</option>
+        </select>
+      </div>
 
-      <label>Requirements:</label>
-      <input type="text" name='requirements' placeholder="Enter requirement:"  ><br><br>
 
-      <input type="submit" value="post to newfeed">
+
+      <div class="job-price">
+        <label for="job-price">Price    <i class="fas fa-donate"></i></label>
+        <input id="job-price" type="number" name='price' placeholder="Enter price.."> 
+      </div>
+
+
+      <div class="input-candidate">
+        <label for="candidates">Candidates</label>
+        <input id="candidates" type="text" name='candidates' placeholder="Enter candidate..">
+      </div>
+
+    </div>
+    <label>Requirements:</label>
+
+    <div class="requirement">
+
+      <div class="requirement-1">
+        <input type="checkbox" name="rqment1" id="rqment1" name="rqment1" value="Java">
+        <label for="rqment1">Java</label>
+        <input type="checkbox" name="rqment2" id="rqment2" name="rqment2" value="HTML/CSS">
+        <label for="rqment2">HTML / CSS</label>
+        <input type="checkbox" name="rqment3" id="rqment3" name="rqment3" value="Python">
+        <label for="rqment3">Python</label>
+        <input type="checkbox" name="rqment4" id="rqment4" name="rqment4" value="C/C++">
+        <label for="rqment4">C / C++</label>
+        <input type="checkbox" name="rqment5" id="rqment5" name="rqment5" value=" Javascript">
+        <label for="rqment5">JavaScript</label>
+      </div>
+
+      <div class="requirement-2">
+        <input type="checkbox" name="rqment6" id="rqment6" name="rqment6" value="System Analysis">
+        <label for="rqment6">System Analysis</label>
+        <input type="checkbox" name="rqment7" id="rqment7" name="rqment7" value="SQL">
+        <label for="rqment7">SQL</label>
+        <input type="checkbox" name="rqment8" id="rqment8" name="rqment8" value="Machine Learning">
+        <label for="rqment8">Machine Learning</label>
+        <input type="checkbox" name="rqment9" id="rqment9" name="rqment9" value="Deep Learning">
+        <label for="rqment9">Deep Learning</label>
+        <input type="checkbox" name="rqment10" id="rqment10" name="rqment10" value=" IOS">
+        <label for="rqment10">IOS</label>
+      </div>
+
+      <div class="requirement-3">
+        <input type="checkbox" name="rqment11" id="rqment11" name="rqment11" value="UI/UX Design">
+        <label for="rqment11">UI/UX Design</label>
+        <input type="checkbox" name="rqment12" id="rqment12" name="rqment12" value="Edit video">
+        <label for="rqment12">Edit Video</label>
+        <input type="checkbox" name="rqment13" id="rqment13" name="rqment13" value="Photoshop">
+        <label for="rqment13">Photoshop</label>
+        <input type="checkbox" name="rqment14" id="rqment14" name="rqment14" value="Android">
+        <label for="rqment14">Android</label>
+        <input type="checkbox" name="rqment15" id="rqment15" name="rqment15" value="Unity 3D">
+        <label for="rqment15">Unity 3D</label>
+
+      </div>
+    </div>
+    <div class="descript">
+      <label>Description:</label><br>
+      <textarea name='description' style='resize:none;' placeholder="Enter description..."></textarea>
+    </div>
+    <div class="submit-job">
+      <input type="submit" value="Post Now">
+    </div>
   </form>
 
 </div>
+
+<%- include('footer')  %>

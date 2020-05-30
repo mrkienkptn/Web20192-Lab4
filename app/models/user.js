@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
             type: String,
             require: true
         },
+        favorite_job:{
+            type:[String]
+        },
         other:{
             about_me:{
                 type: String
@@ -49,6 +52,8 @@ const UserSchema = new mongoose.Schema({
             rating:{
                 type: Number
             }
+            
+            
         }
         
     

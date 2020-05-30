@@ -3,10 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
-  font-size: small;
 
 }
-
+body{
+  background-color: rgb(245, 245, 245);
+}
 button:focus{
   outline: none;
 }
@@ -23,11 +24,10 @@ li{
 
 .nav-wrapper {
   width: 100%;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
+   /* Safari */
+
   background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 3px 0 rgba(150, 150, 150, 0.2), 0 3px 3px 0 rgba(175, 175, 175, 0.19);
 
 }
 
@@ -42,7 +42,7 @@ li{
 }
 
 /* NAVIGATION */
-.page-name{
+.page-name a{
   font-size: 25px;
   padding-left: 20px;
   color: rgb(238, 107, 20);
@@ -58,14 +58,14 @@ li{
 .navbar ul {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(4,1fr);
   justify-content: space-between;
 
 }
 .navbar-index ul{
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(6,1fr);
   justify-content: space-between;
 }
 .nav {
@@ -254,7 +254,9 @@ input {
 @media only screen and (max-width: 720px) { 
   
   /* MOBILE HEADINGS */
-  
+  label{
+    font-size: 1rem;
+  }
   h1 {
     font-size: 1.9rem;
   }
@@ -264,11 +266,11 @@ input {
   }
   
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   
   /* MOBILE NAVIGATION */
-     
+
   .navbar ul {
     display: flex;
     flex-direction: column;
@@ -281,6 +283,7 @@ input {
     transform: translate(-101%);
     text-align: center;
     overflow: hidden;
+    z-index: 1;
   }
   
   .navbar li {
@@ -294,7 +297,7 @@ input {
   .navbar li a {
     font-size: 1rem;
   }
-   
+
   .menu-toggle, .bar {
     display: block;
     cursor: pointer;

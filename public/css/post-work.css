@@ -1,0 +1,117 @@
+
+.post_job{
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 2px;
+
+}
+.post_job .post-job-top{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+
+.post_job .post-job-top div{
+  justify-self: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.post_job form{
+  padding: 0px 10px;
+}
+.post_job div{
+  margin-bottom: 20px;
+}
+.post_job input{
+  border: 1.5px gray solid;
+  padding: 5px;
+  width: 100%;
+}
+.post_job label{
+  font-size: 1rem;
+}
+.post_job .head{
+  font-size: 20px;
+  background-color: rgba(207, 179, 18, 0.555);
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+}
+.job-name{
+ 
+}
+.job-name label{
+  display: block;
+
+}
+.job-cate label{
+  display: block;
+}
+.job-cate select{
+  border: 1.5px solid gray;
+  padding: 5px;
+  width: 100%;
+}
+.job-price label{
+  display: block;
+}
+.input-candidate label{
+  display: block;
+}
+.requirement{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+}
+.requirement div{
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+
+}
+.requirement label{
+
+}
+.requirement input[type="checkbox"]{
+  margin: auto auto;
+  
+  border-radius: 50%;
+}
+.descript textarea{
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  height: 70px;
+  padding: 5px;
+}
+.submit-job input{
+  background-color: rgb(238, 110, 27);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+.submit-job input:hover{
+  background-color: rgb(247, 95, 7);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+@media (max-width: 720px){
+  .requirement{
+    display: block;
+    
+  }
+  .post_job .head{
+    padding: 5px;
+  }
+  .post_job .post-job-top{
+    display: block;
+  }
+}

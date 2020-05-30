@@ -1,31 +1,46 @@
-const Employee = require('../app/models/employee');
 const User      = require("../app/models/user")
+
+const Message   = require("../app/models/message")
+const Proposal  = require("../app/models/proposal")
+
+exports.jobFeed = (req, res)=>{
+    res.render('job-feed',{user: req.user} )
+}
 
 exports.getProfileEmployee = (req, res)=>{
 
     User.findOne({_id : req.session.passport.user}, (err, obj) =>{
-
-        console.log("hello")
-        console.log(req.user.Type)   
         if (err) 
             return done(err)
         if (obj) {
-            if(obj.other.email !== ''){
-                res.render('profile', {user: req.user })
-                console.log('oke your infor is fill, you have email')
-            
-            }else{
-                // if(req.user.Type == 'Freelancer'){
-                   res.render('fill_info')
-                // }else if(req.user.Type == 'Client'){
-                //    res.render('fill_info_client')
-                // }
-                console.log('fill infor before next')
-            }
-        }        
-    }) 
+            res.render('profile', {user: req.user })
+        }
+    })
 }
 
+exports.getMyProposal = async(req, res)=>{
+
+    await Proposal.find({workerId : req.session.passport.user}, (err, obj) =>{
+        if (!err){
+            res.render('display-worker-proposal', {myProposal : obj, user: req.user })
+        }
+    })
+}
+
+exports.devAcceptDealFromClient = async(req, res)=>{
+
+
+    console.log(req.params.id_worker)
+    console.log(req.params.id_project)
+    console.log(req.body.accept_client)
+
+    await Proposal.findOneAndUpdate({workerId: req.params.id_worker, projectId : req.params.id_project},
+        {
+            isAccept : req.body.accept_client
+        }
+    )
+    res.redirect('/my-proposal')
+}
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")
@@ -55,7 +70,7 @@ exports.changeProfile = async(req, res)=>{
             }
         },
         {new : true},
-        (err, user) => res.send(user)      
+        (err, user) => res.send(user)
     )
 
 }
@@ -80,60 +95,85 @@ exports.postEmployeeInfo = async (req, res)=>{
                 about_me            : about_me
             }
 
+        },
+        {
+            new: true
         }
+        
     )
-    // console.log(req.user)
-    res.redirect('/profile')
-}
-
-exports.getAllEmployees = async(req, res)=>{
-    try {
-        const listUser = await User.find({"Type": "Freelancer"})
-        res.render('display-employee', {listuser:listUser})
-    }
-    catch{
-        console.log("err")
-    }
-}
-exports.searchEmployeeByFilter = async(req, res)=>{
-    const plow = req.body.plow;
-    const phigh = req.body.phigh;
-    const ylow = req.body.ylow;
-    const yhigh = req.body.yhigh;
-
-    var listUser = {};
-    console.log(req.body);
-    try{
-        if(req.body.skill){
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        }
-        else{
-            listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
-        }
-        res.render('employee-list',{listuser:listUser});
-    }
-    catch{
-        console.log("err")
-    }
-    console.log(req.body);
-    try{
-        const listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-        { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
-        res.render('display-employee',{listuser:listUser});
-
-        console.log(listUser)
-    } 
-    catch{
-        console.log("err");
-    }
-
-}
-exports.getDetailProfile = async(req, res) => {
-
-    const profile = await User.findById(req.params.id);
     
-    res.render('detail-employee-profile', {profile: profile})
+    res.redirect('/profile')
+    // console.log(req.user)
+    
+}
 
+exports.addToFavorite = async (req, res)=>{
+    const u = await User.findById(req.session.passport.user)
+    let favorite = u.favorite_job
+    if (favorite == undefined)
+        favorite = []
+
+    if (!favorite.includes(req.body.id)){
+        favorite.push(req.body.id)
+        await User.findByIdAndUpdate(req.session.passport.user,{
+            favorite_job: favorite
+        },
+        {new: true},
+        (err, user)=> {
+            if (user) res.send(u)
+        }
+        
+        )
+    }
+    else res.send({status: false, user:u})
+        
+    
+}
+exports.getFavorite = async (req, res)=>{
+    const u = await User.findById(req.session.passport.user)
+    let favorite = u.favorite
+    if (favorite==undefined || favorite==[]) res.send({status:false, user:u})
+    else res.send(u)
+}
+
+exports.getClientListInChat = async (req, res) => { 
+    // return client list to whom employee send proposal
+    // and sended & received message in the last
+    
+    await Proposal.find({workerId : req.session.passport.user}, (err, docs) =>{
+        if (err) throw err
+        else {
+            let clientList = []
+            docs.forEach(doc =>{
+                let clientId = new Object(doc.clientId)
+                let clId = clientId.toString()
+                User.findById(clId, (err1, doc1)=>{
+                    if (!err){
+                        let client = {id: doc1.id, name: doc1.name}
+                        clientList.push(client)
+                        if (clientList.length == docs.length){
+                            
+                            let uniqueClientList = []
+                            const map = new Map()
+                            for (const item of clientList){
+                                if (!map.has(item.id)){
+                                    map.set(item.id, true)
+                                    uniqueClientList.push({
+                                        id: item.id,
+                                        name: item.name
+                                    })
+                                }
+                            }
+
+
+                            console.log(uniqueClientList)
+                            res.render("employee-chat", {clientList: uniqueClientList, user: req.user})
+                        }
+                    }
+                })
+            })
+        }
+    })
+    console.log(req.session.passport.user)
+    
 }

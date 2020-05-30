@@ -1,14 +1,73 @@
-<%- include ('header') %>
+<%- include ('header-employee') %>
 
-<div>Here is seach work</div><br>
-<% if(project){%>
+<!-- <div>Here is seach work</div><br> -->
+<div class="container-search">
 
-<% for (let i = 0; i < project.length; i++ ){ %>
-    <p>work <%=i %> :  <%=project[i].name%> </p>
-    <p>price: <%= project[i].price%></p>
-    <p>candidates: <%= project[i].candidates%></p>
-    <p>requirements: <%= project[i].requirements%></p>
-    <br>
+    <div class="search_div">
+        <input id="search-input-work" type="text" placeholder="Search A Job...">
+        <button id="btn-search-work">
+            <a href="#"><i class="fas fa-search " id="search-icon"></i> </a>
+        </button>
+        <button id="btn-filter">
+            <i class="fas fa-filter " id="filter-icon">Filter</i>
+        </button>
+        <!--search-active-->
 
-<%}}%> 
-<%- include ('footer') %>
+    </div>
+
+    <div class="filter_res" id='filter_res'>
+
+
+        Language <select name="filter_select_language" id="filter_ln">
+            <option value="c">C</option>
+            <option value="cplusplus">C++</option>
+            <option value="cshap">C#</option>
+            <option value="JS">JavaScript</option>
+            <option value="Java">Java</option>
+            <option value="php">PHP</option>
+            <option value="python">Python</option>
+
+        </select>
+
+        Price <select name="filter_select_language" id="filter_ln">
+            <option value="decrement_price">Low to high</option>
+            <option value="increment_price">High to low</option>
+        </select>
+
+        Time <select name="filter_select_language" id="filter_ln">
+            <option value="old_to_new">Oldest</option>
+            <option value="new_to_old">Newest</option>
+        </select>
+
+    </div>
+    <div id='search_res'>
+
+        <% if(data) %>
+        <%for(let i = 0; i < data.length; i++){ %>
+
+        <div class="job_each" id='job_<%=i %>'>
+            <div class='job_name'><a href='/detail_work/ <%=data[i]._id %> '> <%=data[i].name%></a> <button title="Add to favorite" id="add-to-favorite"><i class="far fa-bookmark"></i></button> </div>
+
+            <div class="xxxx">
+                <input id="project-id" type="hidden" name='work_id' value="<%=data[i]._id %>">
+                <div class='job_price'>     <i class="fas fa-donate"></i>   &nbsp;  <%=data[i].price %> <span style="color: rgb(255, 91, 41);">$</span></div>
+                <div class='job_candidate'> <i class="far fa-poll-people"></i> -   &nbsp;   <%=data[i].candidates %>&nbsp; candidates</div>
+                <div class='job_user_post'>   Post by -   &nbsp; <p style="color: green; font-weight: bolder; display: inline;"><%=userNamePost[i] %></p></div>
+            </div>
+            <div class="job_descrip">
+                <div class="job_descrip_head">Description</div>
+                <div class="job_descrip_detail">
+                    <%=data[i].description%> 
+                </div>
+            </div>
+            <div class='job_require'>   Requirement - &nbsp; <%data[i].requirements.forEach(function(item){%>
+                <label for=""><%=item %></label>
+            <%}) %></div>
+        </div>
+        <% }%>
+
+
+    </div>
+</div>
+
+    <%- include ('footer') %>

@@ -1,0 +1,79 @@
+.container-chat{
+    display: grid;
+    grid-template-columns: 3fr 8fr;
+    
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.head-chat{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    background-color: rgba(207, 179, 18, 0.555);
+    padding: 10px;
+    color: white;
+    margin-top: 30px;
+    grid-area: head;
+}
+.chat-tab-left{
+    color:green;
+    font-size: 20px;
+    
+}
+.chat-tab-left >div{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+    
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+.item-client .client-name{
+    margin: 15px 20px;
+}
+.item-client .btn-chat button{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 102, 0);
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+.chat-tab-right{
+    
+    
+    border: 1.5px solid gray;
+
+    position: relative;
+}
+.chat-tab-right .form{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+.chat-tab-right-bound{
+    height: 80vh;
+}
+.chat-tab-right-bound form .msg{
+    width: calc(100% - 55px);
+    border: 1px solid;
+}
+.chat-tab-right-bound form input[type="submit"]{
+    width: 50px;
+}
+.cl_name{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background-color: rgba(207, 179, 18, 0.555);
+}
+.chat-tab-right .message{
+    margin-top: 50px;
+}
+.chat-tab-right-bound .message{
+    overflow-wrap: break-word;
+}

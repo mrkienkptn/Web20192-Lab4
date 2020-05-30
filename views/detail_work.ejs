@@ -1,0 +1,80 @@
+<%- include('header-employee')  %>
+
+<div class="detail-work">
+
+  <div class="work-name">
+    <h2>
+      <%=work.name  %>
+    </h2>
+    <% if (user.favorite_job.includes(work_ID)) { %>
+      <button title="Remove from favorite" class="un-favorite" id="remove-from-favorite"><i class="far fa-bookmark"></i></button>
+    <% }else{ %>
+      <button title="Add to favorite"  class="favorite" id="add-to-favorite"><i class="far fa-bookmark"></i></button>
+    <% } %>
+  </div>
+
+  <div class="work-cate">
+    <label for="">
+      <% if(work.jobCategory){ %>
+        <%=work.jobCategory %>
+      <% } %>
+    </label>
+  </div>
+
+  <div class="up-time">
+    <label><i class="far fa-clock"></i></label>
+    <label>
+      <% if(work_y){%>
+
+        <%=work_h%> hours ago
+        <%=work_d%> of,
+        <%=work_m%> ,
+        <%=work_y%>
+      
+        <% } %>
+    </label>
+  </div>
+
+  <div class="work-requirement">
+    <p>Requirement</p>
+    <% work.requirements.forEach(function(item){%>
+      <label class="req"><%=item%></label>
+    <%})%> 
+  </div>
+
+  <div class="price">
+    <label><i class="fas fa-donate"></i>  </label>
+    <label><%=work.price  %></label>  $
+  </div>
+
+  <div class="candidate">
+    <label>Candidate:  </label>
+    <label><%=work.candidates  %></label>
+  </div>
+
+  
+
+  <div class="work-description">
+    <label for="">Description</label>
+    <% if(work.description){ %>
+      <%=work.description %>
+    <% }else{%>
+      No description  
+    <%} %>
+  </div>
+  <hr>
+  <div class="proposal">
+    <p>Your Proposal</p>
+
+    <form method="POST" action='/send_proposal'>
+      <textarea name='text_proposal' style="resize: none;"></textarea>
+      
+      <label for="deal_price">Deal Price  </label>
+      <input class="deal" id='deal_price' name='deal_price' type="number" max="100000" min="10" value="10"><br><br>
+      <input  id="project-id" type="hidden" name='work_id' value="<%=work_ID %>">
+      <input class="submit" type="submit" value="Send Proposal">
+    </form>
+  </div>
+  
+</div>
+<%- include('footer') %>
