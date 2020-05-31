@@ -1,7 +1,7 @@
  <%- include ('header') %>
 
   <form method="POST" action='/filter'><p>Enter:</p>
-  <div>Price per hour:</div>
+  <div>Price:</div>
   <div>From</div>
   <input type="number" id="op1" name="plow" value="0">
   <div>To</div>
@@ -24,7 +24,7 @@
 <% if(listemployee){%>
 
 <% for (let i = 0; i < listemployee.length; i++ ){ %>
-// <% let id = listemployee[i]._id %>
+ <% let id = listemployee[i]._id %>
     <form method="GET" action="detail-profile/<%= listemployee[i]._id%>">
     <input type = "submit" value ="View profile"></input>
     </form>

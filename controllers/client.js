@@ -72,7 +72,7 @@ exports.getAllEmployees = async(req, res)=>{
     try {
         const listUser = await User.find({"Type": "freelancer"})
         res.render('display-employee', {listuser:listUser, user: req.user})
-    }
+        }
     catch{
         console.log("err")
     }
@@ -94,7 +94,7 @@ exports.searchEmployeeByFilter = async(req, res)=>{
             listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
             { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
         }
-        res.render('employee-list',{listuser:listUser});
+        res.render('display-employee',{listuser:listUser});
     }
     catch{
         console.log("err")
@@ -108,4 +108,16 @@ exports.getDetailProfile = async(req, res) => {
     res.render('detail-employee-profile', {profile: profile})
 
 }
+// danh gia 
+exports.evaluateOther = async(req, res) => {
+    try{const rating = await User.findOneAndUpdate(
+        {"id":req.body.userId},
+        {$push:{"other.rating" : req.body.rating}}
+        );
+    }
+    catch{
+        console.log("error")
+    }
+}
+
 
