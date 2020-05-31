@@ -28,7 +28,7 @@ module.exports = (server)=>{
             sender = requestUser.id
         })
        
-            
+        
         socket.on('send-message', async ( {receiver , message}) => {
             console.log("message from client: " + message)
             //save to database
@@ -78,7 +78,22 @@ module.exports = (server)=>{
             }
         })
             
-      
+        socket.on('hand-shake1', data => {
+            // console.log(data)
+            let receiver = data.remoteId
+            let signal = data.signal
+            
+            let receiverSkId = getReceiverSocket(receiver)
+            console.log("hand shake with "+ receiverSkId)
+            io.to(receiverSkId).emit('hand-shake2', {signal: signal, sender: sender})
+        })
+        socket.on('hand-shake3', data => {
+            let receiver = data.remoteId
+            let signal = data.signal
+
+            let receiverSkId = getReceiverSocket(receiver)
+            io.to(receiverSkId).emit('done-handshake', signal)
+        })
     
         
         

@@ -1,5 +1,5 @@
 const User      = require("../app/models/user")
-
+const Project   = require("../app/models/project")
 const Message   = require("../app/models/message")
 const Proposal  = require("../app/models/proposal")
 
@@ -19,12 +19,40 @@ exports.getProfileEmployee = (req, res)=>{
 }
 
 exports.getMyProposal = async(req, res)=>{
+    await Proposal.find({workerId: req.session.passport.user})
+    .then(obj =>{
+        //obj is array of proposal
+        let client = []
+        let project = []
+        obj.forEach(async ob =>{
 
-    await Proposal.find({workerId : req.session.passport.user}, (err, obj) =>{
-        if (!err){
-            res.render('display-worker-proposal', {myProposal : obj, user: req.user })
-        }
+            await User.findById(ob.clientId)
+            .then(cli=> client.push(cli) )
+            .catch(err => console.log(err))
+
+            await Project.findById(ob.projectId)
+            .then(prj => project.push(prj))
+            .catch(err => console.log(err))
+
+            if (client.length === obj.length && project.length === obj.length){
+                res.render('display-worker-proposal',{
+                    myProposals: obj,
+                    user: req.user,
+                    clients: client,
+                    projects: project
+                })
+            }
+            else console.log(client.length, project.length)
+        })
     })
+    .catch(err=>console.log(err))
+
+    // await Proposal.find({workerId : req.session.passport.user}, (err, obj) =>{
+    //     if (!err){
+    //         res.render('display-worker-proposal', {myProposal : obj, user: req.user })
+    //     }
+    // })
+    
 }
 
 exports.devAcceptDealFromClient = async(req, res)=>{
