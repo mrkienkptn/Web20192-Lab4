@@ -13,7 +13,7 @@ $(".done button").click(function (e) {
         },
         audio: false
     }).then(stream => {
-        peer1 = new SimplePeer({ initiator: true, trickle:false, stream: stream })
+        peer1 = new SimplePeer({ initiator: true, stream: stream })
         //receive object from signaling server
         peer1.on('signal', data => {
             console.log(" step1: remote id: " + remoteId)
@@ -78,7 +78,7 @@ socket.on('hand-shake2', dataaa => {
             video.setAttribute('controls', 'true')
             video.srcObject = stream
             video.play()
-            // document.getElementById('receive-sc-share').appendChild(video)
+            document.getElementById('receive-sc-share').appendChild(video)
             videoDiv.appendChild(video)
             
 
