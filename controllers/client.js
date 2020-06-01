@@ -78,21 +78,21 @@ exports.getAllEmployees = async(req, res)=>{
     }
 }
 exports.searchEmployeeByFilter = async(req, res)=>{
-    const plow = req.body.plow;
-    const phigh = req.body.phigh;
-    const ylow = req.body.ylow;
-    const yhigh = req.body.yhigh;
+    const plow = parseInt(req.body.plow);
+    const phigh = parseInt(req.body.phigh);
+    const ylow = parseInt(req.body.ylow);
+    const yhigh = parseInt(req.body.yhigh);
 
     var listUser = {};
     console.log(req.body);
     try{
-        if(req.body.skill){
+        if(req.body.skill=="all"){
             listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
         }
         else{
             listUser = await User.find( { $and: [ { "other.price": { $lte: phigh } }, { "other.price": { $gte: plow }},
-            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }} ] } )
+            { "other.experience": { $gt: ylow } },{ "other.experience": { $lte: yhigh }},{"other.skill":req.body.skill} ] } )
         }
         res.render('display-employee',{listuser:listUser});
     }
