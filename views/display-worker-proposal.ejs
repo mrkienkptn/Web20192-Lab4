@@ -76,7 +76,7 @@
       <% } else if(myProposals[i].isAccept == 'true') {%>
       <div class="done">
         <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
-        <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
+        <!-- <button title="The clock will run after you click" value="">Start Now</button> -->
         <input type="hidden" value="<%=projects[i].name%>" >
       </div>
       <% } else { %>
@@ -97,8 +97,7 @@
 
   <script>
     $("#accept").click(e => {
-      $(".statusfalse").hide()
-      $(".statustrue").show()
+      let newWindow = window.open('http://localhost:7000/accepted-job', '', 'width:800, height:600')
     })
     $("#decline").click(e => {
       $(".statusfalse").show()
