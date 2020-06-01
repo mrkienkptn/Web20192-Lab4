@@ -20,4 +20,6 @@ router.post('/change-profile-client', Client.changeProfile)
 router.post('/evaluate', Client.evaluateOther)
 
 router.get('/post-job', Client.postJob)
+
+router.get('/manage-job', Client.manageMyJob)
 module.exports = router;

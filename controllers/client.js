@@ -121,3 +121,8 @@ exports.evaluateOther = async(req, res) => {
 }
 
 
+exports.manageMyJob = (req, res)=>{
+    res.render('client-manage-job',{
+        user: req.user
+    })
+}

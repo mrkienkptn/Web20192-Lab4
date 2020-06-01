@@ -13,7 +13,7 @@ $(".done button").click(function (e) {
         },
         audio: false
     }).then(stream => {
-        peer1 = new SimplePeer({ initiator: true, trickle:false, stream: stream })
+        peer1 = new SimplePeer({ initiator: true, stream: stream })
         //receive object from signaling server
         peer1.on('signal', data => {
             console.log(" step1: remote id: " + remoteId)
@@ -77,7 +77,7 @@ socket.on('hand-shake2', dataaa => {
 
             video.setAttribute('controls', 'true')
             video.srcObject = stream
-            video.play()
+            
             // document.getElementById('receive-sc-share').appendChild(video)
             videoDiv.appendChild(video)
             
@@ -85,10 +85,12 @@ socket.on('hand-shake2', dataaa => {
             
             newWindow.document.body.append(videoDiv)
             newWindow.document.title = 'Job'
-            
+            video.play()
         }
     })
-   
+    peerX.on('close', ()=>{
+        console.log("Closessssed")
+    })
 
 })
 
