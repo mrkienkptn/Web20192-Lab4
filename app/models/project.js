@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose")
+const User = require("./user")
 const ProjectSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -36,11 +37,12 @@ const ProjectSchema = new mongoose.Schema({
     maxLimitTime:{
         type: Number, //month
         require: true,
+    },
+    
+    isEnd:{   // đánh dấu công việc đã hoàn thành chưa
+        type: Boolean,
+        default: false
     }
-
-
-
-
 })
 var Project=mongoose.model('project_model',ProjectSchema, 'project');
 module.exports = Project;

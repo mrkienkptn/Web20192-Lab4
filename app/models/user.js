@@ -49,9 +49,11 @@ const UserSchema = new mongoose.Schema({
             completed_projects:{
                 type: [String]
             },
-            rating:{
-                type: Number
-            }
+            rating:{ // điểm client đánh giá sau mỗi lần thuê từ 0-5
+                type: [Number],
+                require: true
+            },
+           
             
             
         }
