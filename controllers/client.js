@@ -3,11 +3,14 @@ const Project = require("../app/models/project")
 const Proposal = require("../app/models/proposal")
 
 exports.changeProfile = async (req, res)=>{
+    console.log(req.body)
     await User.findByIdAndUpdate({_id: req.session.passport.user},
         {
             other: {
                 email : req.body.email
-            }
+            },
+            money : req.body.money
+            
         }
     )
     res.redirect('/profile')
@@ -112,7 +115,7 @@ exports.getDetailProfile = async(req, res) => {
 exports.evaluateOther = async(req, res) => {
     try{const rating = await User.findOneAndUpdate(
         {"id":req.body.userId},
-        {$push:{"other.rating" : req.body.rating}}
+        {$push:{"rating" : req.body.rating}}
         );
     }
     catch{

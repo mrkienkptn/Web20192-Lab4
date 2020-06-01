@@ -9,10 +9,12 @@ exports.jobFeed = (req, res)=>{
 
 exports.getProfileEmployee = (req, res)=>{
 
+
     User.findOne({_id : req.session.passport.user}, (err, obj) =>{
         if (err) 
             return done(err)
         if (obj) {
+            console.log(req.user)
             res.render('profile', {user: req.user })
         }
     })
@@ -67,13 +69,21 @@ exports.devAcceptDealFromClient = async(req, res)=>{
             isAccept : req.body.accept_client
         }
     )
+    
+    
+    await Project.findByIdAndUpdate(req.params.id_project},
+        {
+            acceptTime : Date.now()
+        }
+    )
+
     res.redirect('/my-proposal')
 }
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")
     let skills = u.other.skill
-    let projects = u.other.completed_projects
+    let projects = u.completed_projects
     let about_me = u.other.about_me
 
     if (req.body.skill !=undefined)
@@ -106,8 +116,6 @@ exports.changeProfile = async(req, res)=>{
 exports.postEmployeeInfo = async (req, res)=>{
 
     const u = await User.findOne({_id: req.session.passport.user})
-    let skills = u.other.skill
-    let completed_projects = u.other.completed_projects
     let about_me = u.other.about_me
     await User.findByIdAndUpdate({_id : req.session.passport.user},
         {

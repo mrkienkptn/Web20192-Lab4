@@ -124,7 +124,8 @@ exports.addNewProject = async (req, res) => {
                             newProject.dateUpLoad = new Date()
                             newProject.jobCategory = req.body.job_category
                             newProject.userPostId = req.session.passport.user
-
+                            newProject.maxLimitTime= req.body.limit_time * 30 *24 * 60 * 60
+                            
                             newProject.save(err => {
                                 if (err) console.log("err")
                                 else {

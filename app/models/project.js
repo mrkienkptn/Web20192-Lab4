@@ -34,6 +34,9 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    acceptTime: {
+        type: Number
+    },
     maxLimitTime:{
         type: Number, //month
         require: true,

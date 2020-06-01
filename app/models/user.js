@@ -42,21 +42,20 @@ const UserSchema = new mongoose.Schema({
             },
             experience:{
                 type: Number
-            },
-            bank_account:{
-                type: String
-            },
-            completed_projects:{
-                type: [String]
-            },
-            rating:{ // điểm client đánh giá sau mỗi lần thuê từ 0-5
-                type: [Number],
-                require: true
-            },
-           
+            }
             
-            
-        }
+        },
+        completed_projects:{
+            type: [Object]
+        },
+        money : {
+            type: Number,
+            require: true
+        },
+        rating:{ // điểm client đánh giá sau mỗi lần thuê từ 0-5
+            type: [Number],
+            require: true
+        },
         
     
 })
