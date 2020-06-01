@@ -26,7 +26,7 @@ for (let i=0; i<=10; i++){
 
 for (let i=0; i<=10; i++){
     let employee_id = $(".employee-"+i).attr("value")  
-   
+
         $("#chat-form-"+i).submit(e=> {
             e.preventDefault()
             let message = $("#message-input-"+i).val()

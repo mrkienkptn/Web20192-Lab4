@@ -27,7 +27,7 @@ module.exports = (server)=>{
             // console.log(user.userId + "join to chat")
             sender = requestUser.id
         })
-       
+    
         
         socket.on('send-message', async ( {receiver , message}) => {
             console.log("message from client: " + message)
