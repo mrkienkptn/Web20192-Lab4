@@ -1,11 +1,11 @@
 <%-include('header-employee')  %>
-<div class="sent-proposal" >
+<div class="sent-proposal">
 
   <div class="filter-btn">
     <button id="accept">Accepted Works</button>
     <button id="decline">Decliened Works</button>
   </div>
-  
+
   <% for (let i=0; i<myProposals.length; i++) {%>
 
 
@@ -53,30 +53,31 @@
     </div>
 
 
-   
 
 
-      <% if(myProposals[i].priceFinal && myProposals[i].isAccept == null) {%>
-        <div class="final-price">
-      <label>Final price <label style="color: green;"><%=clients[i].name %></label> hope :  </label><label><%=myProposals[i].priceFinal  %>&nbsp;<i style="color: red;" class="fas fa-donate"></i> </label>
+
+    <% if(myProposals[i].priceFinal && myProposals[i].isAccept == null) {%>
+    <div class="final-price">
+      <label>Final price <label style="color: green;"><%=clients[i].name %></label> hope :
+      </label><label><%=myProposals[i].priceFinal  %>&nbsp;<i style="color: red;" class="fas fa-donate"></i> </label>
       <br>
       <hr style="border: 0.2px solid; width: 100%; height: 0.5px; margin-bottom: 4px;">
-      <p>Reason  </p>
+      <p>Reason </p>
       <p style="font-size: 13px;"><%=myProposals[i].dealReason%></p>
 
-      <form method="POST"
-        action="../hire-deal-from-dev/<%=myProposals[i].workerId %>/<%=myProposals[i].projectId %>">
+      <form method="POST" action="../hire-deal-from-dev/<%=myProposals[i].workerId %>/<%=myProposals[i].projectId %>">
         <br>
         <p style="border-top:1px solid; width: fit-content">Do you want to take this work ?</p>
-        <input  type="radio" name="accept_client" value="true"> &NonBreakingSpace; Agree &nbsp;
+        <input type="radio" name="accept_client" value="true"> &NonBreakingSpace; Agree &nbsp;
         <input type="radio" name="accept_client" value="false">&NonBreakingSpace; Decline &nbsp;
 
         <input type="submit" value="Submit">
       </form>
       <% } else if(myProposals[i].isAccept == 'true') {%>
       <div class="done">
-        <label  style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
-        <button  title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
+        <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
+        <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
+        <input type="hidden" value="<%=projects[i].name%>" >
       </div>
       <% } else { %>
       <div class="done">
@@ -84,26 +85,26 @@
       </div>
       <% } %>
 
-      
 
 
+
+    </div>
+    <% } %>
+    <div class="screen-share">
+      <video width="350" height="300" controls id="employee-screen"></video>
+    </div>
   </div>
-  <% } %>
-  <div class="screen-share">
-    <video width="350" height = "300" controls id="employee-screen"></video>
-  </div>
-</div>
 
-<script>
-  $("#accept").click(e=>{
-    $(".statusfalse").hide()
-    $(".statustrue").show()
-  })
-  $("#decline").click(e=>{
-    $(".statusfalse").show()
-    $(".statustrue").hide()
-  })
+  <script>
+    $("#accept").click(e => {
+      $(".statusfalse").hide()
+      $(".statustrue").show()
+    })
+    $("#decline").click(e => {
+      $(".statusfalse").show()
+      $(".statustrue").hide()
+    })
 
-</script>
+  </script>
 
-<%- include('footer')  %>
+  <%- include('footer')  %>

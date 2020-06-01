@@ -82,10 +82,16 @@ module.exports = (server)=>{
             // console.log(data)
             let receiver = data.remoteId
             let signal = data.signal
-            
+            let jobName = data.jobName
+            let workerName = data.workerName
             let receiverSkId = getReceiverSocket(receiver)
             console.log("hand shake with "+ receiverSkId)
-            io.to(receiverSkId).emit('hand-shake2', {signal: signal, sender: sender})
+            io.to(receiverSkId).emit('hand-shake2', {
+                signal: signal,
+                sender: sender,
+                jobName: jobName,
+                workerName: workerName
+            })
         })
         socket.on('hand-shake3', data => {
             let receiver = data.remoteId
