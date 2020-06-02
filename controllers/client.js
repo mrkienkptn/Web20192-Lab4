@@ -39,28 +39,32 @@ exports.getPostById = async (req, res)=>{
     
     await Proposal.exists({projectId: x}, async (error, result)=>{
         if (!result){
-            res.render('display-post-detail',{ post_proposal: [], list_worker : [], user: req.user})
+            res.render('display-post-detail',{project: [], post_proposal: [], list_worker : [], user: req.user})
         }
         else{
-            await Proposal.find({projectId : x}, (err, docs) =>{    
-                if (!err ){
+            let list_worker = []
+            let prj = await Project.findById(x)
+            
+            await Proposal.find({projectId : x})
+            .then(docs => {            
                     
-                    let list_worker = []
-                    docs.forEach( function(element) {
-                        let id = element.workerId
-                        User.findById(id, (err2, docs2)=>{
-                            if (!err2 && docs2!=null){
-                                list_worker.push(docs2)
-                                if (list_worker.length == docs.length)
-                                res.render('display-post-detail', { post_proposal: docs, list_worker : list_worker, user: req.user})
-                            }
-                        })
-                    });
+                console.log(prj)
+                docs.forEach( function(element) {
+                    let id = element.workerId
+                    User.findById(id, (err2, docs2)=>{
+                        if (!err2 && docs2!=null){
+                            list_worker.push(docs2)
+                            if (list_worker.length == docs.length)
+                            res.render('display-post-detail', {project: prj ,  post_proposal: docs, list_worker : list_worker, user: req.user})
+                        }
+                    })
+                });
         
-                }
-                else 
-                    throw err;
-            });
+            })
+            .catch(err=> console.log(err))
+
+            
+            
         }
     })
     

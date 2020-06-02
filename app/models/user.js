@@ -50,7 +50,8 @@ const UserSchema = new mongoose.Schema({
         },
         money : {
             type: Number,
-            require: true
+            require: true,
+            default: 0
         },
         rating:{ // điểm client đánh giá sau mỗi lần thuê từ 0-5
             type: [Number],

@@ -42,7 +42,7 @@ const ProjectSchema = new mongoose.Schema({
         require: true,
     },
     
-    isEnd:{   // đánh dấu công việc đã hoàn thành chưa
+    isCompleted:{   // đánh dấu công việc đã hoàn thành chưa
         type: Boolean,
         default: false
     }

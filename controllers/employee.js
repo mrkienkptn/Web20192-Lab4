@@ -71,7 +71,7 @@ exports.devAcceptDealFromClient = async(req, res)=>{
     )
     
     
-    await Project.findByIdAndUpdate(req.params.id_project},
+    await Project.findByIdAndUpdate(req.params.id_project,
         {
             acceptTime : Date.now()
         }

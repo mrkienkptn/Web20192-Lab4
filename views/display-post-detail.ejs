@@ -1,21 +1,60 @@
 <%- include('header-client')  %>
 
 <div>
+  
   <h2>All Proposals </h2>
+  <% if (project.isCompleted) {%> 
+    This work is completed 
+     <%}%> 
   <% for(let i=0; i<post_proposal.length; i++) {%>
+
+  <% if (post_proposal.length == 0) {%>
+  <p>No Proposal for this work</p>
+  <%} %>
+
   <div class="proposal-detail">
+
     <a href="../freelancer/<%=list_worker[i].id %>" class="worker-name"
       id="worker-name-<%= i%>"><%= list_worker[i].name  %> </a><br /><br />
+
     <div>
-      <p>Proposal content</p>
+      <p>Proposal Content</p>
       <%=post_proposal[i].proposalContent%>
     </div>
+
     <div>
-      price dev want: <%=post_proposal[i].priceDeal%><br>
+      Price <%=list_worker[i].name%> order: <%=post_proposal[i].priceDeal%><br>
 
     </div>
+
     <div>
+      <% if(post_proposal[i].isAccept == 'true'){%>
+      <%= list_worker[i].name %> is accept to do this work
+      <% if(project.isCompleted==false) {%>
+        <button value="<%=list_worker[i].id%>,<%=post_proposal[i].projectId%>" class="mark-completed">Mark Completed</button>  
+      <%}%> 
+      <% if(project.isCompleted==true) {%>
+        <div class="work-status">
+          Pay done
+        </div>
+      <%}else{%>
+        <div class="work-status">
+          
+        </div>
+        <% } %>  
+      
+      <form class="bill" action="" method="post">
+        <h2>Pay for <%= list_worker[i].name  %> </h2>
+        <label for="bill-money">Input how much you want to pay</label>
+        <input type="number" name="bill-money" id="bill-money">
+        <input type="submit" value="Pay">
+      </form>
+      
+
+      <% } else { %>
       <button><a href="../Hire/<%=list_worker[i].id%>/<%=post_proposal[i].projectId%> ">Hire</a></button>
+      <% } %>
+      
       <button id="message" class="employee-<%= i%>" value="<%=list_worker[i].id%>">Message</button>
 
 

@@ -222,3 +222,37 @@ exports.addNewProposal = async (req, res) => {
     res.redirect('/profile')
 
 }
+
+exports.comPletedJob =async (req, res)=>{
+    let jobId = req.params.id
+    let price = parseInt(req.body.price)
+    let workerId = req.body.workerId
+    let projectCompleteId = req.body.projectCompleteId
+    
+    await Project.findByIdAndUpdate(jobId, {
+        isCompleted: true
+    })
+    await User.findById(req.session.passport.user)
+    .then(async user => {
+        let curAcc = user.money
+        if (curAcc < price){
+            res.send({ valid: false , status: 'Your bank account is not enough money'})
+        }
+        else{
+            console.log("INNNNNNNNNNNNNNNNNNNNN")
+            await User.findByIdAndUpdate(req.session.passport.user, {money: curAcc - price})
+            await User.findById(workerId)
+            .then(async wk =>{
+                if (!isNaN(wk.money))
+                
+                await User.findByIdAndUpdate(wk.id, {money: wk.money + price})
+                
+            })
+            .catch(err => console.log("ERRRRRR"))
+
+            res.send({valid: true, status: 'Pay successfully!'})
+        }
+    })
+    .catch(err=>console.log(err))
+    
+}
