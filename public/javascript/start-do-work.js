@@ -79,9 +79,13 @@ socket.on('hand-shake2', dataaa => {
 
             video.setAttribute('controls', 'true')
             video.srcObject = stream
+<<<<<<< HEAD
 
             
 
+=======
+            videoDiv.appendChild(video)
+>>>>>>> df2996f21c65b908db5fb354fe456176ab64b9b6
             
 
             

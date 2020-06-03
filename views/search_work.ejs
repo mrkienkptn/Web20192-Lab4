@@ -1,4 +1,9 @@
-<%- include ('header-employee') %>
+<% if (user) { %>
+    <%- include ('header-employee') %>
+<% } else { %>
+    <%- include ('header-index') %>
+    <% } %> 
+ 
 
 <!-- <div>Here is seach work</div><br> -->
 <div class="container-search">
