@@ -69,10 +69,10 @@
     <div class="info">
       <p>Name   : <%= item.name%> </p>
       <p>Price  : <%= item.other.price%></p>
-      <% item.other.rating.forEach(e => { %>
+      <% item.rating.forEach(e => { %>
       <% sum+=e %> 
       <% }) %>
-      <p>rating : <%= sum/item.other.rating.length%></p>
+      <p>rating : <%= sum/item.rating.length%></p>
       <p>skills : <%= item.other.skill%></p>
       </div>
       <a href="/detail-profile/<%=item._id%>" class="view-profile">View profile</a>

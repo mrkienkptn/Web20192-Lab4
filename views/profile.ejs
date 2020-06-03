@@ -6,7 +6,9 @@
   <p>Your email: <%=user.other.email  %>  </p>
 </div>
 <form action="/change-profile-client" method="post">
-  <input type="text" name="email" placeholder="New email">
+  <input type="text" name="email" value="<%=user.other.email  %> " placeholder="New email"><br>
+
+  <input type="number" name="money" value=<%=user.money  %> placeholder="Enter money"><br>
   <input type="submit" value="Change">
 </form>
 <button><a href="/hire_info">up work</a></button>
@@ -77,9 +79,9 @@
           <input type="submit" value="Add">
         </form>
         <div class="projects">
-        <% if (user.other.completed_projects != []){%>
-          <% user.other.completed_projects.forEach(function(pr){%>
-            <p><%=pr%></p>
+        <% if (user.completed_projects != []){%>
+          <% user.completed_projects.forEach(function(pr){%>
+            <p><%=pr.name%></p>
           <%});%>
           <%}%>
         </div>

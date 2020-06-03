@@ -8,7 +8,7 @@ $(document).ready(() =>{
     $('#all_project').slideToggle()
 
     $('#all_project').children('form').submit(function(e){
-      let project_id = $('.each_project').val()
+      let project_id = $('.each_project:checked').val()
       console.log('project id: '+ project_id)
       e.preventDefault()
       $.ajax({
@@ -16,7 +16,7 @@ $(document).ready(() =>{
         url : "/post_invite_dev",
         data : {project_id : project_id, dev_id: dev_id},
         success : (data) => {
-          
+          alert(data.status)
         }
 
       })

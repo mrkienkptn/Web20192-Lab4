@@ -24,6 +24,7 @@ const ProposalSchema = new mongoose.Schema({
     },
     isAccept:{
         type: String,
+        
     },
     priceFinal:{
         type:Number,

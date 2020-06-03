@@ -1,5 +1,6 @@
 <%- include ('header-client') %>
 <% if(profile){%>
+
 <div class="profile">
   <!-- thanks -->
   
@@ -46,7 +47,7 @@
         
         <div class="projects">
         <% if (profile.other.completed_projects != []){%>
-          <% profile.other.completed_projects.forEach(function(pr){%>
+          <% profile.completed_projects.forEach(function(pr){%>
             <p><%=pr%></p>
           <%});%>
           <%}%>
@@ -84,3 +85,4 @@
 <%}%>
 
 <%- include ('footer') %>
+

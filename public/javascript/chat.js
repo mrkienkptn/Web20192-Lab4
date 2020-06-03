@@ -25,8 +25,8 @@ for (let i=0; i<=10; i++){
 
 
 for (let i=0; i<=10; i++){
-    let employee_id = $(".employee-"+i).attr("value")  
-   
+    let employee_id = $("#employee-"+i).attr("value")  
+
         $("#chat-form-"+i).submit(e=> {
             e.preventDefault()
             let message = $("#message-input-"+i).val()
@@ -44,7 +44,7 @@ for (let i=0; i<=10; i++){
 socket.on('listen-message', ({sender, message}) => {
     console.log(message+"okokok")
     console.log(sender)
-    $("#all-message-"+sender).append("<p class='message-right' >"+ message +"</p")
+    $("#all-message-"+sender).append("<p class='message-left' >"+ message +"</p")
 
 }) 
 
