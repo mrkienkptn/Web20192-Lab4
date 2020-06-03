@@ -14,22 +14,6 @@
     <div class=" column-info">
       <!-- <%=project %> -->
       <div class="col-1 name">
-        <button class="invite_dev" value="<%=profile.id %>">Invite</button>
-        <div id='all_project'>
-          <form method="POST" >
-            <% for(let i = 0; i < project.length; i++){ %> 
-              <input style="font-size: 12px;" type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label style="font-size: 12px;"><%=project[i].name %></label><br>
-            <% } %> 
-          
-          </form>
-
-
-          <div class="col-1 name">
-
-          </div>
-          <p class="name"><%=profile.name%></p>
-
-
           <div><img src="/images/faceui0.jpg" alt="User_avt" class="user-avt"></div>
           <div>
             <p class="name" style="color: dodgerblue;"><%=profile.name%></p>
@@ -42,7 +26,20 @@
           <div class="option">
             <% if (user!= undefined) { %>
             <% if (user.Type=="client") { %>
-            <a href="" class="btn-success">Hire</a>
+              <button class="invite_dev btn-success" style="border:none" value="<%=profile.id %>" onclick="openForm()">Invite</button>
+              
+              <div class="form-popup" id="myForm">
+                <form method="POST" class="form-container">
+                  <h3>Choose Projects</h3>
+                  <% for(let i = 0; i < project.length; i++){ %> 
+                    <input style="font-size: 15px;" type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label style="font-size: 12px;"><%=project[i].name %></label><br>
+                  <% } %> 
+              
+                  <button type="submit" class="btn-success" style="border:none" >Choose</button>
+                  <button type="button" class="btn-success" style="background-color: firebrick; border:none;" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+              
             <a href="" class="btn-success">Message</a>
             <% } %>
 
