@@ -1,39 +1,102 @@
 <%- include('header-client')  %>
 
-<div>
+<div class="container-proposal">
+
   <h2>All Proposals </h2>
+  <% if (project.isCompleted) {%>
+  This work is completed
+  <%}%> 
   <% for(let i=0; i<post_proposal.length; i++) {%>
-  <div class="proposal-detail">
-    <a href="../freelancer/<%=list_worker[i].id %>" class="worker-name"
-      id="worker-name-<%= i%>"><%= list_worker[i].name  %> </a><br /><br />
-    <div>
-      <p>Proposal content</p>
-      <%=post_proposal[i].proposalContent%>
-    </div>
-    <div>
-      price dev want: <%=post_proposal[i].priceDeal%><br>
 
-    </div>
-    <div>
-      <button><a href="../Hire/<%=list_worker[i].id%>/<%=post_proposal[i].projectId%> ">Hire</a></button>
-      <button id="message" class="employee-<%= i%>" value="<%=list_worker[i].id%>">Message</button>
+  <% if (post_proposal.length == 0) {%>
+  <p>No Proposal for this work</p>
+  <%} %>
+  <div class="infor-tab-nonmsg-<%=i %>" >
 
+    <div class="proposal-detail">
 
-      <div id="chat-tab-<%=i  %>">
-        <h3 id="chat-tab-name-<%=i %>"><%= list_worker[i].name  %></h3>
-        <div id="all-message-<%=list_worker[i].id%>"></div>
-        <form id="chat-form-<%=i  %>" action="" method="post">
-          <input type="text" id="message-input-<%=i  %>" placeholder="Message...">
-          <input type="submit" value="Send">
+      <div class="wk-name">
+        <a href="../freelancer/<%=list_worker[i].id %>" class="worker-name"
+          id="worker-name-<%= i%>"><%= list_worker[i].name  %> </a><br />
+
+      </div>
+
+      <div class="proposal-cont">
+        <p>Proposal Content :</p>
+        <p style="font-size: 14px;"><%=post_proposal[i].proposalContent%></p>
+      </div>
+
+      <div class="price-want">
+        <p>Price <label style="color: green;"><%=list_worker[i].name%></label> want: <%=post_proposal[i].priceDeal%>
+          &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i></p>
+
+      </div>
+
+      <div class="when-accepted">
+        <% if(post_proposal[i].isAccept == 'true'){%>
+        <p><%= list_worker[i].name %> is accept to do this work</p>
+        <% if(project.isCompleted==false) {%>
+        <button value="<%=list_worker[i].id%>,<%=post_proposal[i].projectId%>" class="mark-completed">Mark
+          Completed</button>
+        <%}%> 
+      <% if(project.isCompleted==true) {%>
+        <div class="work-status">
+          Pay successfully!
+        </div>
+        <%}else{%>
+        <div class="work-status">
+
+        </div>
+        <% } %>
+
+        <form class="bill" action="" method="post">
+          <h3>Pay for <%= list_worker[i].name  %> </h3>
+          <p for="bill-money">Input how much you want to pay</p>
+          <input placeholder="Enter money..." type="number" name="bill-money" id="bill-money">
+          <input class="submit-bill" type="submit" value="Pay">
         </form>
+
+
+        <% } else { %>
+        <a class="hire-btn" href="../Hire/<%=list_worker[i].id%>/<%=post_proposal[i].projectId%> ">Hire</a>
+        <% } %>
+
+        <button class="message-btn" id="employee-<%= i%>" value="<%=list_worker[i].id%>">Message</button>
+
       </div>
 
     </div>
+
+
+    <div id="chat-tab-<%=i  %>" class="chat-tab-proposal">
+      <!-- <h3 id="chat-tab-name-<%=i %>"><%= list_worker[i].name  %></h3> -->
+      <div style="overflow: auto;" id="all-message-<%=list_worker[i].id%>"></div>
+      <form id="chat-form-<%=i  %>" action="" method="post" class="chatform">
+        <input type="text" id="message-input-<%=i  %>" placeholder="Message...">
+        <input type="submit" value="Send">
+      </form>
+    </div>
+
   </div>
+
+
   <%}%>
 
     
+<script>
+  $(".chat-tab-proposal").hide()
+  $(".message-btn").click(function (e) {
+    let index = $(this).attr('id').split("-")[1]
     
+    $(".infor-tab-nonmsg-"+index).toggleClass('infor-tab')
+    // $(".infor-tab-nonmsg").toggleClass("infor-tab-nonmsg")
+    // $(".infor-tab").toggleClass("infor-tab-nonmsg")
+    // $(".infor-tab").toggleClass("infor-tab")
+    
+    $("#chat-tab-" + index).toggle()
+   
+  })
+</script>
 </div>
 
 <%- include('footer')  %>

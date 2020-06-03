@@ -4,6 +4,7 @@
     <%- include ('header-client') %>
   <% } %>
 <% if(profile){%>
+
 <div class="profile">
   <!-- thanks -->
   
@@ -11,8 +12,23 @@
 
   <div class="wrap">
     <div class=" column-info">
+<!-- <%=project %> -->
+    <div class="col-1 name">
+        <button class="invite_dev" value="<%=profile.id %>">Invite</button>
+        <div id='all_project'>
+          <form method="POST" >
+            <% for(let i = 0; i < project.length; i++){ %> 
+              <input type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label><%=project[i].name %></label><br>
+            <% } %> 
+            <input type="submit" value="choose project">
+          </form>
 
+<<<<<<< HEAD
       <div class="col-1 name">
+=======
+        </div>
+        <p class="name"><%=profile.name%></p>
+>>>>>>> bf314429b3db611a88c9553eab4729377a37a005
         
         <div ><img src="/images/faceui0.jpg" alt="User_avt" class="user-avt"></div>
         <div>
@@ -59,9 +75,14 @@
         
         <div class="projects">
         <% if (profile.other.completed_projects != []){%>
+<<<<<<< HEAD
           <% profile.other.completed_projects.forEach(function(pr){%>
             <i class="fas fa-dot-circle" style="font-size: 10px;"></i><p style=" display: inline"><%=pr%></p>
             <br>
+=======
+          <% profile.completed_projects.forEach(function(pr){%>
+            <p><%=pr%></p>
+>>>>>>> bf314429b3db611a88c9553eab4729377a37a005
           <%});%>
           <%}%>
         </div>
@@ -96,3 +117,4 @@
 <%}%>
 
 <%- include ('footer') %>
+

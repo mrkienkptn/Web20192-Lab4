@@ -75,6 +75,7 @@
       <img src="/images/faceui<%=i++%10%>.jpg" alt="User_avt" class="user-avt">
     </div>
     <div class="info">
+<<<<<<< HEAD
       <p style="color:dodgerblue; font-size:20px"> <%= item.name%> </p>
       <p style=" font-size:14px">Price  : <%= item.other.price%> $</p>
       <% item.other.rating.forEach(e => { %>
@@ -85,6 +86,15 @@
       </div>
       <div>
         <a href="/detail-profile/<%=item._id%>" class="btn-success" style="background-color: dodgerblue;">Profile</a>
+=======
+      <p>Name   : <%= item.name%> </p>
+      <p>Price  : <%= item.other.price%></p>
+      <% item.rating.forEach(e => { %>
+      <% sum+=e %> 
+      <% }) %>
+      <p>rating : <%= sum/item.rating.length%></p>
+      <p>skills : <%= item.other.skill%></p>
+>>>>>>> bf314429b3db611a88c9553eab4729377a37a005
       </div>
   </div>
     <br>

@@ -1,14 +1,115 @@
-.proposal-detail{
-    width: 80%;
+
+
+.infor-tab-nonmsg{
+    display: block;
+}
+
+.infor-tab{
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    margin-right: 0px;
+    
+    
+}
+.proposal-detail {
+    width: 90%;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
-    padding: 30px;
+    padding: 20px;
+    background-color: white;
 }
 
 .proposal-detail .worker-name{
     text-decoration: none;
     color: rgb(54, 158, 6);
     font-size: 20px;
+    
+    
+}
+
+.proposal-detail .wk-name{
+    width: 100%;
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+}
+.proposal-detail .proposal-cont p:nth-child(2){
+    font-style: italic;
+}
+
+.proposal-detail .proposal-cont{
+    padding-bottom: 10px;
+    border-bottom: gray 1px solid;
+    margin-bottom: 15px;
+}
+
+.proposal-detail .price-want p{
+    font-size: 14px;
+}
+
+.chat-tab-proposal{
+    border: 1px solid gray;
+    margin: 20px 0px;
+    position: relative;
+    display: flex;
+    margin-right: 10px;
+}
+.chat-tab-proposal input[type="text"]{
+    
+ display: inline-block;
+    border:none
+ 
+}
+.chat-tab-proposal input[type="submit"]{
+    background-color: rgb(236, 95, 0);
+    border: none;
+    border-radius: 2px;
+    padding: 2px 6px;
+    color: white;
+    display: inline-block;
+    width: 45px;
+    margin-right: 5px;
+}
+.chatform{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.hire-btn, .message-btn, .mark-completed, .submit-bill{
+    text-decoration: none;
+    background-color: rgb(236, 95, 0);
+    border: none;
+    border-radius: 2px;
+    padding: 2px 6px;
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+
+.when-accepted{
+    position: relative;
+}
+.mark-completed {
+   position: absolute;
+   right: 0px;
+   top: 0px;
+   margin-top: 0px;
+}
+.bill{
+    border: 2px solid gray;
+    border-radius: 2px;
+    margin: 10px 0px;
+    padding: 10px;
+}
+.bill input[type="number"]{
+    border: 1px solid rgb(236, 95, 0);
+
+    border-radius: 1px;
 }

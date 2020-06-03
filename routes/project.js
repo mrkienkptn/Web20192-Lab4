@@ -28,5 +28,6 @@ const Project =  require("../controllers/project");
     })
     
     router.post('/send_proposal' ,Project.addNewProposal)
+    router.post('/completed-job/:id', Project.comPletedJob)
 
 module.exports = router;
