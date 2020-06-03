@@ -27,7 +27,7 @@ module.exports = (server)=>{
             // console.log(user.userId + "join to chat")
             sender = requestUser.id
         })
-       
+    
         
         socket.on('send-message', async ( {receiver , message}) => {
             console.log("message from client: " + message)
@@ -101,7 +101,14 @@ module.exports = (server)=>{
             io.to(receiverSkId).emit('done-handshake', signal)
         })
     
-        
+        socket.on('invite',async data =>{
+            let receiver = data.receiverId
+            let jobId = data.job_id
+            let job = await Project.findById(jobId)
+            let sendInvite = await User.findById(sender)
+            let receiverSkId = getReceiverSocket(receiver)
+            io.to(receiverSkId).emit('receive-invite', {clientSent: sendInvite, job: job})
+        })
         
     })
 }

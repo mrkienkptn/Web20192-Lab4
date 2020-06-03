@@ -43,7 +43,7 @@ $(function(){
         posting.done((user)=>{
 
             $('.projects').empty()
-            user.other.completed_projects.forEach(pr=>{
+            user.completed_projects.forEach(pr=>{
                 $('.projects').append('<p>'+pr+'</p>')
             })
         })

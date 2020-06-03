@@ -34,12 +34,15 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    acceptTime: {
+        type: Number
+    },
     maxLimitTime:{
         type: Number, //month
         require: true,
     },
     
-    isEnd:{   // đánh dấu công việc đã hoàn thành chưa
+    isCompleted:{   // đánh dấu công việc đã hoàn thành chưa
         type: Boolean,
         default: false
     }

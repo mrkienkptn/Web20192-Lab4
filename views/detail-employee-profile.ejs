@@ -1,17 +1,121 @@
-<!-- hiển thị toàn bộ thông tin của employee-->
+<% if (user === undefined ) { %>
+<%- include ('header-index') %>
+<%} else { %>
+<%- include ('header-client') %>
+<% } %>
 <% if(profile){%>
-    <p><%= profile.name%> </p>
-    <p><%= profile.other.country%></p>
-    <p><%= profile.other.email%></p>
-    <p><%= profile.other.price%></p>
-    <p>Rating: <%= profile.other.rating%></p>
-    <p><%= profile.other.education_level%></p>
-    <p><%= profile.other.experience%></p>
-    <p><%= profile.other.back_account%></p>
-    <p>skills : </p>
-    <%for(let i = 0; i < profile.other.skill.length; i++ ){%> <p><%=profile.other.skill[i]%></p><%}%>
-    
-    <p>Projects : </p>
-    <%for(let i = 0; i < profile.other.completed_projects.length; i++ ){%> <p><%=profile.other.completed_projects[i]%></p><%}%>
-    
-<%}%> 
+
+<div class="profile">
+  <!-- thanks -->
+
+
+
+  <div class="wrap">
+    <div class=" column-info">
+      <!-- <%=project %> -->
+      <div class="col-1 name">
+        <button class="invite_dev" value="<%=profile.id %>">Invite</button>
+        <div id='all_project'>
+          <form method="POST">
+            <% for(let i = 0; i < project.length; i++){ %>
+            <input type="radio" class="each_project" name="each_project"
+              value="<%=project[i].id %>"><label><%=project[i].name %></label><br>
+            <% } %>
+            <input type="submit" value="choose project">
+          </form>
+
+
+          <div class="col-1 name">
+
+          </div>
+          <p class="name"><%=profile.name%></p>
+
+
+          <div><img src="/images/faceui0.jpg" alt="User_avt" class="user-avt"></div>
+          <div>
+            <p class="name" style="color: dodgerblue;"><%=profile.name%></p>
+            <i class="fas fa-map-marker-alt" style="color: red;"></i>
+            <p style="color: red; display: inline"><%=profile.other.country%></p>
+            <br>
+            <i class="far fa-envelope"></i>
+            <p class="" style=" display: inline"><%=profile.other.email%></p>
+          </div>
+          <div class="option">
+            <% if (user!= undefined) { %>
+            <% if (user.Type=="client") { %>
+            <a href="" class="btn-success">Hire</a>
+            <a href="" class="btn-success">Message</a>
+            <% } %>
+
+            <% } %>
+
+          </div>
+
+        </div>
+        <div class="col-1 about-me">
+          <p class="h">About Me</p>
+          <div class="about_me">
+            <%=profile.other.about_me%></p>
+          </div>
+        </div>
+        <div class="col-1 skills">
+          <p class="h">Skills</p>
+
+          <div class="skill">
+            <% if (profile.other.skill != []){%>
+            <% profile.other.skill.forEach(function(sk){%>
+            <p><%=sk%></p>
+            <%});%>
+            <%}%>
+        </div>
+        
+      </div>
+
+      <div class="col-1 complete_projects">
+        <p class="h">Completed Projects</p>
+        
+        <div class="projects">
+        <% if (profile.other.completed_projects != []){%>
+
+            <% profile.completed_projects.forEach(function(pr){%>
+            <i class="fas fa-dot-circle" style="font-size: 10px;"></i>
+            <p style=" display: inline"><%=pr%></p>
+            <br>
+
+            <% profile.completed_projects.forEach(function(pr){%>
+            <p><%=pr%></p>
+
+            <%});%>
+            <%})%>
+        </div>
+        
+        
+      </div>
+
+
+    </div>
+
+    <div class="more-info">
+      <div class="col-2 bank">
+        <p class="h1">Bank Account</p>
+        <p class="bank-num"><%=profile.other.bank_account%></p>
+          </div>
+          <div class="col-2 exp">
+            <p class="h1">Experience</p>
+            <p><%=profile.other.experience%></p>
+          </div>
+          <div class="col-2 edu">
+            <p class="h1">Education</p>
+            <p><%=profile.other.education_level%></p>
+          </div>
+          <div class="col-2 deal">
+            <p class="h1" style=" display: inline">Price</p>
+            <p style="color: rgb(255, 81, 0);"><%=profile.other.price%> $/h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%}%>
+  <% } %>
+<%- include ('footer') %>

@@ -77,3 +77,12 @@
 .chat-tab-right-bound .message{
     overflow-wrap: break-word;
 }
+
+.message-right{
+    background-color: yellow;
+    
+}
+.message-left{
+    background-color: rgb(5, 82, 78);
+    color: white;
+}

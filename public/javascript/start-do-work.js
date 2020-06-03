@@ -79,8 +79,6 @@ socket.on('hand-shake2', dataaa => {
 
             video.setAttribute('controls', 'true')
             video.srcObject = stream
-            
-            document.getElementById('receive-sc-share').appendChild(video)
             videoDiv.appendChild(video)
             
 

@@ -1,0 +1,49 @@
+.all-client-post{
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+.all-client-post h2{
+    margin-bottom: 15px;
+}
+.all-client-post .my-post{
+    text-decoration: none;
+    padding: 20px;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2), 2px 2px 8px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.all-client-post .my-post a{
+    text-decoration: none;
+
+
+}
+.all-client-post .my-post .post-name{
+    color: rgb(0, 136, 0);
+    border-bottom: 2px gray solid;
+    margin-bottom: 15px;
+}
+.all-client-post .my-post .post-detail{
+    color: black;
+    font-size: 14px;
+}
+.all-client-post .my-post .post-detail label{
+    background-color: #4e507b;
+    padding: 2px 6px;
+    margin: 2px 5px;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+}
+.div-in{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.all-client-post .my-post .price{
+    /* font-style: italic; */
+    font-size: 14px;
+}

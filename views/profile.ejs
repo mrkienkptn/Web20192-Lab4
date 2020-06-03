@@ -2,16 +2,20 @@
 
 <%- include('header-client') %>
 <div class="client-profile">
-  <%=user.Type %> 
-  <p>Your email: <%=user.other.email  %>  </p>
+  <div style="font-size: larger;">
+    Hello <span style="color: green; font-weight: bold;">, <%=user.name%></span>
+  </div>
+   <p>Your email: <%=user.other.email  %>  
 </div>
 <form action="/change-profile-client" method="post">
-  <input type="text" name="email" placeholder="New email">
+  <input type="text" name="email" value="<%=user.other.email  %> " placeholder="New email"><br>
+
+  <input type="number" name="money" value=<%=user.money  %> placeholder="Enter money"><br>
   <input type="submit" value="Change">
 </form>
-<button><a href="/hire_info">up work</a></button>
+<!-- <button><a href="/hire_info">up work</a></button> -->
 
-<button><a href="/ownPost">my post</a></button>
+<!-- <button><a href="/ownPost">my post</a></button> -->
 <br/>
 <br/>
 <br/>
@@ -35,18 +39,11 @@
 
   </div>
 
-  <div class="change-profile">
-    <p class="about-me"><%=user.other.about_me%></p>
-    <button id="change_intro">Change</button>
-    <form action="/change_profile" method="POST" class="change_intro">
-      <input type="text" rows="10" cols="20" name="about_me" >
-      <input class="submit-change" type="submit" value="Apply">
-    </form>
-  </div>
 
   <div class="wrap">
     <div class=" column-info">
 
+      
       <div class="col-1 name">
         <p class="name"><%=user.name%></p>
         <p style="color: red;"><%=user.other.country%></p>
@@ -54,6 +51,16 @@
         
       </div>
 
+      <div class="col-1 about">
+          <p class="h">About Me</p>
+          <p class="about-me"><%=user.other.about_me%></p>
+          <button id="change_intro">Change</button>
+          <form action="/change_profile" method="POST" class="change_intro">
+          <input type="text" rows="10" cols="20" name="about_me" >
+          <input class="submit-change" type="submit" value="Apply">
+          </form>
+        </div>
+        
       <div class="col-1 skills">
         <p class="h">Your Skills</p>
         <form action="/change_profile" method="POST" class="add-skill">
@@ -77,9 +84,9 @@
           <input type="submit" value="Add">
         </form>
         <div class="projects">
-        <% if (user.other.completed_projects != []){%>
-          <% user.other.completed_projects.forEach(function(pr){%>
-            <p><%=pr%></p>
+        <% if (user.completed_projects != []){%>
+          <% user.completed_projects.forEach(function(pr){%>
+            <p><%=pr.name%></p>
           <%});%>
           <%}%>
         </div>
