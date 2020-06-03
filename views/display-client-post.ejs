@@ -1,30 +1,39 @@
-<%- include('header-client')  %> 
+<%- include('header-client')  %>
 
-<div>
-  <div class="all-my-post">
-    <h2>My Post</h2>
-  </div>
-  <% post.forEach((postT) =>{ %>
-    
-    <a href="/ownPost/<%=postT._id%>"> 
-      <div class="my-post">
-        <div class="post-name">
-          <h3> <%=postT.name %> </h3>
-        </div>
-        <div class="post-detail">
-          <p class="category"><%= postT.jobCategory %></p>
-          <p class="price">Price: <%= postT.price %> </p>
-          <p class="candidate">Candidate : <%= postT.candidates %> </p>
-          <p class="requirements">Requirements: <%= postT.requirements%></p>
+<div class="all-client-post">
+  <h2>My Posted Jobs</h2>
+  <% for(let i=post.length-1; i>=0; i--){ %>
+
+  <div class="my-post">
+    <a class="post-link" href="/ownPost/<%=post[i]._id%>">
+
+      <div class="post-name">
+        <h3> <%=post[i].name %> </h3>
+      </div>
+      <div class="post-detail">
+        <p class="category"><%= post[i].jobCategory %></p>
+        <div class="div-in">
+          <p class="price">Price: <%= post[i].price %> &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i> </p>
+          <p><%= nProposal[i].length %>  &nbsp;Proposals</p>
           
         </div>
-      </div>
-    </a><br>
-    <div>
+        <p class="candidate">Candidate : <%= post[i].candidates %> </p>
+        <p class="requirements">Requirements: <%post[i].requirements.forEach(function(item){%>
+          <label><%= item %> </label> 
+          <%})%></p>
 
-    </div>
-  <% }) %>  
+      </div>
+
+    </a>
+  </div>
+  <div class="status">
+
+  </div>
+  <div>
+
+  </div>
+  <% } %>
 
 </div>
 
-<%- include('footer')  %> 
+<%- include('footer')  %>

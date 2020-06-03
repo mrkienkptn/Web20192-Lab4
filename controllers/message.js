@@ -6,8 +6,8 @@ const{
 const moment = require("moment")
 
 const Message = require("../app/models/message")
-
-
+const Project = require("../app/models/project")
+const User = require("../app/models/user")
 module.exports = (server)=>{
     const io = require("socket.io")(server)
 
@@ -27,8 +27,8 @@ module.exports = (server)=>{
             // console.log(user.userId + "join to chat")
             sender = requestUser.id
         })
-       
-            
+    
+        
         socket.on('send-message', async ( {receiver , message}) => {
             console.log("message from client: " + message)
             //save to database
@@ -78,8 +78,36 @@ module.exports = (server)=>{
             }
         })
             
-      
-    
+        socket.on('hand-shake1', data => {
+            // console.log(data)
+            let receiver = data.remoteId
+            let signal = data.signal
+            let jobName = data.jobName
+            let workerName = data.workerName
+            let receiverSkId = getReceiverSocket(receiver)
+            console.log("hand shake with "+ receiverSkId)
+            io.to(receiverSkId).emit('hand-shake2', {
+                signal: signal,
+                sender: sender,
+                jobName: jobName,
+                workerName: workerName
+            })
+        })
+        socket.on('hand-shake3', data => {
+            let receiver = data.remoteId
+            let signal = data.signal
+
+            let receiverSkId = getReceiverSocket(receiver)
+            io.to(receiverSkId).emit('done-handshake', signal)
+        })
+        socket.on('invite',async data =>{
+            let receiver = data.receiverId
+            let jobId = data.job_id
+            let job = await Project.findById(jobId)
+            let sendInvite = await User.findById(sender)
+            let receiverSkId = getReceiverSocket(receiver)
+            io.to(receiverSkId).emit('receive-invite', {clientSent: sendInvite, job: job})
+        })
         
         
     })

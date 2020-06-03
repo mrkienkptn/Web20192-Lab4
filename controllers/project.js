@@ -124,7 +124,8 @@ exports.addNewProject = async (req, res) => {
                             newProject.dateUpLoad = new Date()
                             newProject.jobCategory = req.body.job_category
                             newProject.userPostId = req.session.passport.user
-
+                            newProject.maxLimitTime= req.body.limit_time * 30 *24 * 60 * 60
+                            
                             newProject.save(err => {
                                 if (err) console.log("err")
                                 else {
@@ -154,7 +155,7 @@ exports.hireDealToFreelancer = async (req, res) => {
             // other: {
             //     email : req.body.email
             // }
-
+            isAccept : "false",
             priceFinal: req.body.price_final,
             dealReason: req.body.reason_change
         }
@@ -190,7 +191,7 @@ exports.addNewProposal = async (req, res) => {
                     let id = prj._id
                     await Proposal.findByIdAndUpdate(id, {
                         proposalContent: req.body.text_proposal,
-                        priceDeal: req.body.priceDeal
+                        priceDeal: req.body.deal_price
                     })
                 }
 
@@ -220,4 +221,44 @@ exports.addNewProposal = async (req, res) => {
     console.log(req.user)
     res.redirect('/profile')
 
+}
+
+exports.comPletedJob =async (req, res)=>{
+    let jobId = req.params.id
+    let price = parseInt(req.body.price)
+    let workerId = req.body.workerId
+    let projectCompleteId = req.body.projectCompleteId
+    
+ 
+    await User.findById(req.session.passport.user)
+    .then(async user => {
+        let curAcc = user.money
+        if (curAcc < price){
+            res.send({ valid: false , status: 'Your bank account is not enough money'})
+        }
+        else{
+            
+            await User.findByIdAndUpdate(req.session.passport.user, {money: curAcc - price})
+            await User.findById(workerId)
+            await Project.findByIdAndUpdate(jobId, {
+                isCompleted: true
+            })
+            .then(async wk =>{
+                let job = await Project.findById(projectCompleteId)
+                console.log("jobcom "+job)
+                if (!isNaN(wk.money))
+                
+                await User.findByIdAndUpdate(wk.id, {
+                    money: wk.money + price,
+                    completed_projects: wk.completed_projects.push(job)
+                })
+                
+            })
+            .catch(err => console.log("ERRRRRR"))
+
+            res.send({valid: true, status: 'Pay successfully!'})
+        }
+    })
+    .catch(err=>console.log(err))
+    
 }

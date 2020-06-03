@@ -1,33 +1,91 @@
- <%- include ('header-client') %>
+<% if (user = "undefined") { %>
+  <%- include ('header-index') %> 
+ <% } %>
+  <% if (user.Type == "client") { %>
+   <%- include ('header-client') %> 
+  <% } %>
+  <% if (user.Type == "freelancer") { %>
+    <%- include ('header-employee') %> 
+   <% } %>
+   
+  
+<div class="employee-list">
+  <form method="POST" class="employee-filter" action='/filter'>
+    
+  <div class="filter1">
+    <label>Price per hour:</label>
+    <div class="form-inline">
+      <div class="form-group">
+        <label>From:</label>
+        <input type="number" id="op1"class="form-control" name="plow" value="0">
+      </div>
+      <div class="form-group">
+        <label>To:</label>
+        <input type="number" id="op1"class="form-control" name="phigh" value="1000">
+      </div>
+    </div>
+  </div>
+  <div class="filter2">
+    <label>Working experience year:</label>
+    <div class="form-inline">
+      <div class="form-group">
+        <label>From:</label>
+        <input type="number" id="op2"class="form-control" name="ylow" value="0">
+      </div>
+      <div class="form-group">
+        <label>To:</label>
+        <input type="number" id="op2"class="form-control" name="yhigh" value="30">
+      </div>
+    </div>
+  </div>
+  <div class="filter3">
+    <label>Field:</label>
+    <div class="btn">
+    <select id="op3" name = "skill" require = "true">
+    <option value="all">All skills</option>
+    <option value="Code">Code</option>
+    <option value="Marketing">Marketing</option>
+    <option value="Lecture">Lecture</option>
+    </select>
+  </div>
+  </div>
+  
+    
+    <input type="submit" class="btn-success" value="Search">
+ 
+</form>
+</div>
+<div class="main-label">Infomation of all employees: </div><br>
 
-  <form method="POST" action='/filter'><p>Enter:</p>
-  <div>Price per hour:</div>
-  <div>From</div>
-  <input type="number" id="op1" name="plow" value="0">
-  <div>To</div>
-  <input type="number" id="op1" name="phigh" value="999">
-  <div>Working experience year:</div>
-  <div>From</div>
-  <input type="number" id="op2" name="ylow" value="0">
-  <div>to</div>
-  <input type="number" id="op2" name="yhigh" value="99">
-  <div>Field:</div>
-  <!--<input type="text" id="op3" name="skill" value="Coding"> -->
-  <select id="op3" name = "skill" require = "true">
-  <option value="Coding">Coding</option>
-  <option value="Sleep">Sleep</option>
-  <option value="Not doing but eating">Not doing but eating</option>
-</select>
-  <input type="submit" value="Search">
-  </form>
-<div>Infomation of all employees: </div><br>
-<% if(listuser){%>
 
-<% for (let i = 0; i < listuser.length; i++ ){ %>
-    <p>Name   : <%= listuser[i].name%> </p>
-    <p>price  : <%= listuser[i].other.price%></p>
-    <p>rating : <%= listuser[i].other.rating%></p>
-    <p>skills : <%= listuser[i].other.skill%></p>
+
+<% if (listuser.length !== 0) { %>
+ <% listuser.forEach(item => { %>
+  <% 
+    let sum =0;  
+  %> 
+  <div class="employee-info">
+    <img src="../public/images/ai.jpg" alt="User_avt" class="user-avt">
+    <div class="info">
+      <p>Name   : <%= item.name%> </p>
+      <p>Price  : <%= item.other.price%></p>
+      <% item.rating.forEach(e => { %>
+      <% sum+=e %> 
+      <% }) %>
+      <p>rating : <%= sum/item.rating.length%></p>
+      <p>skills : <%= item.other.skill%></p>
+      </div>
+      <a href="/detail-profile/<%=item._id%>" class="view-profile">View profile</a>
+  </div>
     <br>
-<%}}%> 
+    
+  
+ <% }) %>
+
+<% } else { %>
+    <p class="not-found"> Không tìm thấy nhân viên thỏa mãn</p> 
+  <% }%>
+
+</div>
+
 <%- include ('footer') %>

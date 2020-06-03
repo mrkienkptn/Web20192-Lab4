@@ -5,7 +5,12 @@
   display: none;
 
 }
-
+.sent-proposal{
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 .container-search{
   width: 80%;
   margin: auto;
@@ -72,7 +77,7 @@
   border-radius: 2px;
 }
 .job_require label{
-  background-color: #0a8fb2;
+  background-color: #4e507b;
   padding: 2px 6px;
   margin: 0px 5px;
   border-radius: 10px;
@@ -88,6 +93,40 @@
 .xxxx i{
   color: #0a8fb2;
 }
+.proposal-content{
+  grid-area: p;
+}
+.final-price{
+  grid-area: f;
+}
+.final-price input[type="submit"]{
+  background-color: rgb(239, 103, 14);
+  border: none;
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.desire-cost{
+  grid-area: de;
+}
+.done{
+  grid-area: done;
+  position: relative;
+}
+.done button{
+  background-color: rgb(239, 103, 14);
+  border: none;
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 0px;
+}
+
 .job_each{
   
   margin-top: 20px;
@@ -95,9 +134,13 @@
   border-radius: 2px;
   display: grid;
   grid-template-areas:
-   "name name name"
-   "c b b"
-   "a a a";
+   "name name name name"
+   "c b b b"
+   "a a a a"
+   "p p p p"
+   "de de de de"
+   "f f f f"
+   "done done done done";
   grid-template-columns: 1fr 1fr 1fr;
 }
 .job_descrip_head{
@@ -118,6 +161,29 @@ border: 1.3px solid gray;
 width: 100px;
 height: 30px;
 }
-
-
+.filter-btn{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.filter-btn button{
+  width: 99%;
+  margin: auto;
+  background-color: #4e507b;
+  padding: 4px 0px;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.filter-btn button:nth-child(1){
+  background-color: green;
+}
+.screen-share{
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 99;
+}
 
