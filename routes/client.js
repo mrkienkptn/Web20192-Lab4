@@ -16,6 +16,8 @@ router.get('/detail-profile/:id', Client.getDetailProfile)
 
 router.post('/change-profile-client', Client.changeProfile)
 
+router.post('/post_invite_dev', Client.processInviteDev)
+
 // client đánh giá dev hoặc ngược lại
 router.post('/evaluate', Client.evaluateOther)
 

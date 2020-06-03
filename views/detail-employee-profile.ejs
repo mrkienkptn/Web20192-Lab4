@@ -9,9 +9,18 @@
 
   <div class="wrap">
     <div class=" column-info">
+<!-- <%=project %> -->
+    <div class="col-1 name">
+        <button class="invite_dev" value="<%=profile.id %>">Invite</button>
+        <div id='all_project'>
+          <form method="POST" >
+            <% for(let i = 0; i < project.length; i++){ %> 
+              <input type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label><%=project[i].name %></label><br>
+            <% } %> 
+            <input type="submit" value="choose project">
+          </form>
 
-      <div class="col-1 name">
-        <a class="hire">Hire</a>
+        </div>
         <p class="name"><%=profile.name%></p>
         
         <p style="color: red;"><%=profile.other.country%></p>

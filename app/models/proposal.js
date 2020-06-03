@@ -14,11 +14,13 @@ const ProposalSchema = new mongoose.Schema({
     },
     priceDeal:{
         type:Number,
-        require: true
+        require: true,
+        default : 0
     },
     proposalContent:{
         type:String,
-        require: true
+        require: true,
+        default : ""
     },
     isAccept:{
         type: String,

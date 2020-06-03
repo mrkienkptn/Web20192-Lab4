@@ -103,9 +103,47 @@ exports.searchEmployeeByFilter = async(req, res)=>{
 }
 exports.getDetailProfile = async(req, res) => {
 
-    const profile = await User.findById(req.params.id);
+    let profile = await User.findById(req.params.id);
+    let project = await Project.find({userPostId : req.session.passport.user});
     
-    res.render('detail-employee-profile', {profile: profile})
+    // console.log("projectllllllllllllllllll" + project)
+    res.render('detail-employee-profile', {profile: profile, user: req.user, project : project})
+
+}
+
+exports.processInviteDev = async(req, res) => {
+
+    let project_id = req.body.project_id
+    let dev_id     = req.body.dev_id
+    let client_id  = req.session.passport.user
+    
+    console.log("project id:------------>"+ project_id)
+    let out = ''
+    await Proposal.exists({projectId : project_id, clientId : client_id, workerId : dev_id }, (err, isExist) => {
+        if(isExist){
+            console.log("Proposal has exist")
+            out = 'fail'
+        }
+        else{
+
+            let newProposal = new Proposal()
+            
+            newProposal.projectId = project_id
+            newProposal.clientId  = client_id
+            newProposal.workerId  = dev_id
+
+            newProposal.save((err) => {
+                if(err) {
+                    console.log("insert invite err")
+                    out = 'fail'
+                }
+                else
+                    out ='ok'
+            })
+        }
+        res.send(out)
+    });
+    
 
 }
 // danh gia 
