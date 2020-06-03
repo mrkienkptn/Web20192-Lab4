@@ -105,8 +105,7 @@ exports.getDetailProfile = async(req, res) => {
 
     const profile = await User.findById(req.params.id);
     
-    res.render('detail-employee-profile', {profile: profile})
-
+    res.render('detail-employee-profile', {profile: profile, user: req.user})
 }
 // danh gia 
 exports.evaluateOther = async(req, res) => {

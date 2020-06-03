@@ -1,5 +1,4 @@
-
-<% if (user == undefined) { %>
+<% if (user === undefined ) { %>
   <%- include ('header-index') %>
   <%} else { %>
     <%- include ('header-client') %>
@@ -14,12 +13,7 @@
     <div class=" column-info">
 
       <div class="col-1 name">
-        <% if (user!= undefined) { %>
-          <% if (user.Type=="client") { %>
-            <a class="hire">Hire</a>
-          <% } %>
-          
-        <% } %>
+        
         <div ><img src="/images/faceui0.jpg" alt="User_avt" class="user-avt"></div>
         <div>
           <p class="name" style="color: dodgerblue;"><%=profile.name%></p>
@@ -30,8 +24,14 @@
           <p class="" style=" display: inline"><%=profile.other.email%></p>
         </div>
         <div class="option">
-          <a href="" class="btn-success">Hire</a>
-          <a href="" class="btn-success">Message</a>
+          <% if (user!= undefined) { %>
+            <% if (user.Type=="client") { %>
+              <a href="" class="btn-success" >Hire</a>
+              <a href="" class="btn-success" >Message</a>
+            <% } %>
+            
+          <% } %>
+          
         </div>
         
       </div>
