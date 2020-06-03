@@ -11,7 +11,7 @@ $(".bill").submit(function(e){
     let value = $(this).siblings('button').attr('value').split(",")
     let workerId = value[0]
     let projectCompleteId = value[1]
-    let money = $(this).children('#bill-money').val().
+    let money = $(this).children('#bill-money').val()
     console.log(money)
     let posting = $.post('/completed-job/'+projectCompleteId, {
         workerId: workerId,
