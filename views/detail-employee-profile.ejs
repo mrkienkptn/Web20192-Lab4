@@ -16,7 +16,7 @@
         <div id='all_project'>
           <form method="POST" >
             <% for(let i = 0; i < project.length; i++){ %> 
-              <input type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label><%=project[i].name %></label><br>
+              <input style="font-size: 12px;" type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label style="font-size: 12px;"><%=project[i].name %></label><br>
             <% } %> 
             <input type="submit" value="choose project">
           </form>

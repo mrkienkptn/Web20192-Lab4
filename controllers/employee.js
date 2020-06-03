@@ -23,7 +23,7 @@ exports.getProfileEmployee = (req, res)=>{
 exports.getMyProposal = async(req, res)=>{
     await Proposal.exists({workerId: req.session.passport.user})
     .then(async exist => {
-        console.log("ssssssssssssssssssssss "+exist)
+        
         if (exist){
             await Proposal.find({workerId: req.session.passport.user})
             .then(obj =>{
@@ -50,6 +50,7 @@ exports.getMyProposal = async(req, res)=>{
                     }
                     else console.log(client.length, project.length)
                 })
+
             })
             .catch(err=>console.log(err))
         }
@@ -63,12 +64,39 @@ exports.getMyProposal = async(req, res)=>{
         }
     })
     
+          
+    
+}
 
-    // await Proposal.find({workerId : req.session.passport.user}, (err, obj) =>{
-    //     if (!err){
-    //         res.render('display-worker-proposal', {myProposal : obj, user: req.user })
-    //     }
-    // })
+exports.getMyAcceptedJob = async(req, res)=>{
+    await Proposal.find({workerId: req.session.passport.user})
+    .then(obj =>{
+        //obj is array of proposal
+        let client = []
+        let project = []
+        obj.forEach(async ob =>{
+            
+            await User.findById(ob.clientId)
+            .then(cli=> client.push(cli) )
+            .catch(err => console.log(err))
+
+            await Project.findById(ob.projectId)
+            .then(prj => project.push(prj))
+            .catch(err => console.log(err))
+
+
+            if (client.length === obj.length && project.length === obj.length){
+                res.render('display-accepted-job',{
+                    myProposals: obj,
+                    user: req.user,
+                    clients: client,
+                    projects: project
+                })
+            }
+            // else console.log(client.length, project.length)
+        })
+    })
+    .catch(err=>console.log(err))
     
 }
 

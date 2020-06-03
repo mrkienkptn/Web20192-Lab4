@@ -16,6 +16,10 @@ $(document).ready(() =>{
         url : "/post_invite_dev",
         data : {project_id : project_id, dev_id: dev_id},
         success : (data) => {
+          let valid = data.valid
+          if (valid){
+            socket.emit('invite', {receiverId: dev_id, job_id: project_id})
+          }
           alert(data.status)
         }
 

@@ -22,6 +22,7 @@ const Employee =  require("../controllers/employee");
 
     router.post('/add_to_favorite', Employee.addToFavorite)
 
+    router.get('/accepted-job', Employee.getMyAcceptedJob)
 
     router.get('/message-employee', Employee.getClientListInChat)
 

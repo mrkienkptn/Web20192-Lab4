@@ -22,4 +22,6 @@ router.post('/post_invite_dev', Client.processInviteDev)
 router.post('/evaluate', Client.evaluateOther)
 
 router.get('/post-job', Client.postJob)
+
+router.get('/manage-job', Client.manageMyJob)
 module.exports = router;

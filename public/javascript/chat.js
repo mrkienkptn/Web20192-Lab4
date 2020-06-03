@@ -48,3 +48,7 @@ socket.on('listen-message', ({sender, message}) => {
 
 }) 
 
+socket.on('receive-invite', data=>{
+    alert(data.clientSent.name+ " invite you to join their Project, Project name: "+ data.job.name)
+})
+

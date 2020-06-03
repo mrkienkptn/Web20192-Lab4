@@ -3,10 +3,12 @@ let peer1 = new SimplePeer() // for employee share screen
 let remoteId = "00000"
 
 
-$(".done button").click(function (e) {
+$(".done button").click( function (e) {
     remoteId = $(this).attr("value")
     let jobName = $(this).siblings('input').val().trim()
-    let workerName = $("#username p").html().trim()
+    let workerName = $("#username p").html().trim()   
+
+
     navigator.mediaDevices.getDisplayMedia({
         video: {
             frameRate: 100
@@ -70,22 +72,22 @@ socket.on('hand-shake2', dataaa => {
 
             videoDiv.appendChild(titleDiv)
             let video = document.createElement('video')
-            let newWindow = window.open('', '_blank')
+            let newWindow = window.open('','', 'width:800, height: 600')
             
             video.setAttribute('width', '350')
             video.setAttribute('height', '300')
 
             video.setAttribute('controls', 'true')
             video.srcObject = stream
-            video.play()
-            document.getElementById('receive-sc-share').appendChild(video)
-            videoDiv.appendChild(video)
+
+            
+
             
 
             
             newWindow.document.body.append(videoDiv)
             newWindow.document.title = 'Job'
-            
+            video.play()
         }
     })
    

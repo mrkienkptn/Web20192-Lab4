@@ -7,7 +7,7 @@
   </div>
 
   <% for (let i=0; i<myProposals.length; i++) {%>
-
+  <% if(myProposals[i].isAccept == 'true') {%>   
 
   <div class="job_each status<%=myProposals[i].isAccept %>" id='job_<%=i %>'>
     <div class='job_name'><a href='/detail_work/ <%=projects[i]._id %> '> <%=projects[i].name%></a> <button
@@ -20,7 +20,7 @@
       <div class='job_candidate'> <i class="far fa-poll-people"></i> - &nbsp; <%=projects[i].candidates %>&nbsp;
         candidates</div>
       <div class='job_user_post'> Post by - &nbsp; <p style="color: green; font-weight: bolder; display: inline;">
-
+          <%=clients[i].name %></p>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
 
 
 
-    <% if(myProposals[i].priceFinal && myProposals[i].isAccept == "false") {%>
+    <% if(myProposals[i].priceFinal && myProposals[i].isAccept == null) {%>
     <div class="final-price">
       <label>Final price <label style="color: green;"><%=clients[i].name %></label> hope :
       </label><label><%=myProposals[i].priceFinal  %>&nbsp;<i style="color: red;" class="fas fa-donate"></i> </label>
@@ -73,21 +73,13 @@
 
         <input type="submit" value="Submit">
       </form>
-      <% } else if(myProposals[i].isAccept == "true" &&myProposals[i].priceFinal ) {%>
+      <% } else if(myProposals[i].isAccept == 'true') {%>
       <div class="done">
         <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
-
-        <% if (projects[i].isCompleted == false){%> 
-
-          <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
-          <%} else {%>
-            <label for="">Finished</label>
-            <%} %> 
-        
-
+        <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
         <input type="hidden" value="<%=projects[i].name%>" >
       </div>
-      <% } else if(myProposals[i].priceFinal && myProposals[i].isAccept=="false") { %>
+      <% } else { %>
       <div class="done">
         <label style="color: red;">Declined &NonBreakingSpace;<i class="fad fa-do-not-enter"></i></label>
       </div>
@@ -98,6 +90,7 @@
 
     </div>
     <% } %>
+    <% } %>
     <div class="screen-share">
       <video width="350" height="300" controls id="employee-screen"></video>
     </div>
@@ -105,7 +98,8 @@
 
   <script>
     $("#accept").click(e => {
-      let newWindow = window.open('http://localhost:7000/accepted-job', '', 'width:800, height:600')
+      $(".statusfalse").hide()
+      $(".statustrue").show()
     })
     $("#decline").click(e => {
       $(".statusfalse").show()
