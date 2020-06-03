@@ -5,7 +5,7 @@
   <div style="font-size: larger;">
     Hello <span style="color: green; font-weight: bold;">, <%=user.name%></span>
   </div>
-  <p>Your email: <%=user.other.email  %>  </p>
+   <p>Your email: <%=user.other.email  %>  
 </div>
 <form action="/change-profile-client" method="post">
   <input type="text" name="email" placeholder="New email">
@@ -37,18 +37,11 @@
 
   </div>
 
-  <div class="change-profile">
-    <p class="about-me"><%=user.other.about_me%></p>
-    <button id="change_intro">Change</button>
-    <form action="/change_profile" method="POST" class="change_intro">
-      <input type="text" rows="10" cols="20" name="about_me" >
-      <input class="submit-change" type="submit" value="Apply">
-    </form>
-  </div>
 
   <div class="wrap">
     <div class=" column-info">
 
+      
       <div class="col-1 name">
         <p class="name"><%=user.name%></p>
         <p style="color: red;"><%=user.other.country%></p>
@@ -56,6 +49,16 @@
         
       </div>
 
+      <div class="col-1 about">
+          <p class="h">About Me</p>
+          <p class="about-me"><%=user.other.about_me%></p>
+          <button id="change_intro">Change</button>
+          <form action="/change_profile" method="POST" class="change_intro">
+          <input type="text" rows="10" cols="20" name="about_me" >
+          <input class="submit-change" type="submit" value="Apply">
+          </form>
+        </div>
+        
       <div class="col-1 skills">
         <p class="h">Your Skills</p>
         <form action="/change_profile" method="POST" class="add-skill">
