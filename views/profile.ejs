@@ -2,16 +2,18 @@
 
 <%- include('header-client') %>
 <div class="client-profile">
-  <%=user.Type %> 
+  <div style="font-size: larger;">
+    Hello <span style="color: green; font-weight: bold;">, <%=user.name%></span>
+  </div>
   <p>Your email: <%=user.other.email  %>  </p>
 </div>
 <form action="/change-profile-client" method="post">
   <input type="text" name="email" placeholder="New email">
   <input type="submit" value="Change">
 </form>
-<button><a href="/hire_info">up work</a></button>
+<!-- <button><a href="/hire_info">up work</a></button> -->
 
-<button><a href="/ownPost">my post</a></button>
+<!-- <button><a href="/ownPost">my post</a></button> -->
 <br/>
 <br/>
 <br/>

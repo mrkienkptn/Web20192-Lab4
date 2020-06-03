@@ -48,10 +48,15 @@
     <option value="Javascript">Javascript</option>
     <option value="Python">Python</option>
     <option value="Assembly">Assembly</option>
+    <option value="HTML">HTML</option>
+    <option value="MongoDB">MongoDB</option>
     </select>
   </div>
   </div>
+  <div>
     <input type="submit" class="btn-success" value="Search">
+  </div>
+    
 </form>
 </div>
 <div class="main-label">Infomation of all employees: </div><br>
@@ -66,7 +71,9 @@
   %>
   
   <div class="employee-info">
-    <img src="/images/faceui<%=i++%10%>.jpg" alt="User_avt" class="user-avt">
+    <div>
+      <img src="/images/faceui<%=i++%10%>.jpg" alt="User_avt" class="user-avt">
+    </div>
     <div class="info">
       <p style="color:dodgerblue; font-size:20px"> <%= item.name%> </p>
       <p style=" font-size:14px">Price  : <%= item.other.price%> $</p>
@@ -76,7 +83,9 @@
       <p style=" font-size:14px">Rating : <%= sum/item.other.rating.length%></p>
       <p style=" font-size:14px">Skills : <%= item.other.skill%></p>
       </div>
-      <a href="/detail-profile/<%=item._id%>" class="view-profile">View profile</a>
+      <div>
+        <a href="/detail-profile/<%=item._id%>" class="btn-success" style="background-color: dodgerblue;">Profile</a>
+      </div>
   </div>
     <br>
     
