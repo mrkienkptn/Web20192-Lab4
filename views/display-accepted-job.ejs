@@ -1,10 +1,7 @@
 <%-include('header-employee')  %>
 <div class="sent-proposal">
 
-  <div class="filter-btn">
-    <button id="accept">Accepted Works</button>
-    <button id="decline">Decliened Works</button>
-  </div>
+
 
   <% for (let i=0; i<myProposals.length; i++) {%>
   <% if(myProposals[i].isAccept == 'true') {%>   
@@ -77,6 +74,7 @@
       <div class="done">
         <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
         <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
+        <a href="/get-milestone/<%=projects[i].id%>"> View Milestone</a>
         <input type="hidden" value="<%=projects[i].name%>" >
       </div>
       <% } else { %>
@@ -96,16 +94,6 @@
     </div>
   </div>
 
-  <script>
-    $("#accept").click(e => {
-      $(".statusfalse").hide()
-      $(".statustrue").show()
-    })
-    $("#decline").click(e => {
-      $(".statusfalse").show()
-      $(".statustrue").hide()
-    })
 
-  </script>
 
   <%- include('footer')  %>

@@ -38,6 +38,8 @@
         <% if(project.isCompleted==false) {%>
         <button value="<%=list_worker[i].id%>,<%=post_proposal[i].projectId%>" class="mark-completed">Mark
           Completed</button>
+
+          <a class="add-milestone"  href="../add-milestone/<%= project.id  %>" >Add MileStone</a>
         <%}%> 
       <% if(project.isCompleted==true) {%>
         <div class="work-status">

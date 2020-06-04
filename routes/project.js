@@ -23,11 +23,13 @@ const Project =  require("../controllers/project");
 
     router.post('/hire_deal/:id_dev/:id_project' ,Project.hireDealToFreelancer)
 
-    router.get('/hire/:id_dev/:id_project' , (req, res) =>{
-        res.render('hire_freelancer', {id_dev: req.params.id_dev,id_project: req.params.id_project , user: req.user})
-    })
+    router.get('/hire/:id_dev/:id_project' , Project.hireFreelancer)
     
     router.post('/send_proposal' ,Project.addNewProposal)
     router.post('/completed-job/:id', Project.comPletedJob)
+
+    router.get('/get-milestone/:id', Project.getMileStone)
+    router.get('/add-milestone/:id', Project.addMileStone)
+    router.post('/add-new-milestone/:id', Project.addNewMileStone)
 
 module.exports = router;

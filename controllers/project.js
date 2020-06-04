@@ -1,6 +1,7 @@
 const Project = require('../app/models/project');
 const Proposal = require('../app/models/proposal');
 const User = require("../app/models/user")
+const MileStone = require("../app/models/milestone")
 exports.getAllProjectsInfo = async (req, res) => {
     try {
         const project = await Project.find();
@@ -124,8 +125,8 @@ exports.addNewProject = async (req, res) => {
                             newProject.dateUpLoad = new Date()
                             newProject.jobCategory = req.body.job_category
                             newProject.userPostId = req.session.passport.user
-                            newProject.maxLimitTime= req.body.limit_time * 30 *24 * 60 * 60
-                            
+                            newProject.maxLimitTime = req.body.limit_time * 30 * 24 * 60 * 60
+
                             newProject.save(err => {
                                 if (err) console.log("err")
                                 else {
@@ -145,7 +146,18 @@ exports.addNewProject = async (req, res) => {
 
 }
 
+exports.hireFreelancer = async (req, res)=>{
+    let devId = req.params.id_dev.trim()
+    let jobId = req.params.id_project.trim()
 
+    let dev = await User.findById(devId)
+    let job = await Project.findById(jobId)
+    await Proposal.findOne({projectId: jobId, workerId: devId})
+    .then(propo=>{
+        res.render('hire_freelancer', {dev: dev, project: job, proposal: propo, user: req.user})
+    })
+    .catch(err=>console.log(err))
+}
 exports.hireDealToFreelancer = async (req, res) => {
 
     console.log(req.params.id_dev)
@@ -155,7 +167,7 @@ exports.hireDealToFreelancer = async (req, res) => {
             // other: {
             //     email : req.body.email
             // }
-            isAccept : "false",
+            isAccept: "false",
             priceFinal: req.body.price_final,
             dealReason: req.body.reason_change
         }
@@ -223,42 +235,139 @@ exports.addNewProposal = async (req, res) => {
 
 }
 
-exports.comPletedJob =async (req, res)=>{
+exports.comPletedJob = async (req, res) => {
     let jobId = req.params.id
     let price = parseInt(req.body.price)
     let workerId = req.body.workerId
     let projectCompleteId = req.body.projectCompleteId
-    
- 
-    await User.findById(req.session.passport.user)
-    .then(async user => {
-        let curAcc = user.money
-        if (curAcc < price){
-            res.send({ valid: false , status: 'Your bank account is not enough money'})
-        }
-        else{
-            
-            await User.findByIdAndUpdate(req.session.passport.user, {money: curAcc - price})
-            await User.findById(workerId)
-            await Project.findByIdAndUpdate(jobId, {
-                isCompleted: true
-            })
-            .then(async wk =>{
-                let job = await Project.findById(projectCompleteId)
-                console.log("jobcom "+job)
-                if (!isNaN(wk.money))
-                
-                await User.findByIdAndUpdate(wk.id, {
-                    money: wk.money + price,
-                    completed_projects: wk.completed_projects.push(job)
-                })
-                
-            })
-            .catch(err => console.log("ERRRRRR"))
 
-            res.send({valid: true, status: 'Pay successfully!'})
-        }
-    })
-    .catch(err=>console.log(err))
-    
+
+    await User.findById(req.session.passport.user)
+        .then(async user => {
+            let curAcc = user.money
+            if (curAcc < price) {
+                res.send({ valid: false, status: 'Your bank account is not enough money' })
+            }
+            else {
+
+                await User.findByIdAndUpdate(req.session.passport.user, { money: curAcc - price })
+                await User.findById(workerId)
+                await Project.findByIdAndUpdate(jobId, {
+                    isCompleted: true
+                })
+                    .then(async wk => {
+                        let job = await Project.findById(projectCompleteId)
+                        console.log("jobcom " + job)
+                        if (!isNaN(wk.money))
+
+                            await User.findByIdAndUpdate(wk.id, {
+                                money: wk.money + price,
+                                completed_projects: wk.completed_projects.push(job)
+                            })
+
+                    })
+                    .catch(err => console.log("ERRRRRR"))
+
+                res.send({ valid: true, status: 'Pay successfully!' })
+            }
+        })
+        .catch(err => console.log(err))
+
 }
+
+exports.getMileStone = async (req, res) => {
+    let prjId = req.params.id
+    let project = await Project.findById(prjId)
+    let proposal = await Proposal.findOne({projectId: prjId, isAccept: true})
+    await MileStone.exists({ projectId: prjId })
+        .then(async exists => {
+            if (exists == false) {
+                res.render('milestone-employee', { milestone: [], user: req.user, project: project, proposal: proposal })
+            }
+            if (exists == true) {
+
+                await MileStone.findOne({ projectId: prjId })
+                    .then(resu => {
+                        res.render('milestone-employee', { milestone: resu, user: req.user, project: project, proposal: proposal })
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+        .catch(err => console.log(err))
+
+}
+
+exports.addMileStone = async (req, res) => {
+    let prjId = req.params.id
+    let project = await Project.findById(prjId)
+    let proposal = await Proposal.findOne({projectId: prjId, isAccept: true})
+    prjId = new Object(prjId).toString().trim()
+    await MileStone.exists({ projectId: prjId })
+        .then(async exists => {
+            if (exists == false) {
+                let newMileStone = new MileStone()
+                newMileStone.projectId = prjId
+                newMileStone.save(err => console.log(err))
+
+                res.render('milestone-client', { milestone: [], user: req.user, project: project, proposal: proposal })
+            }
+            if (exists == true) {
+
+                await MileStone.findOne({ projectId: prjId })
+                    .then(resu => {
+                        console.log(resu)
+                        res.render('milestone-client', { milestone: resu, user: req.user, project: project, proposal: proposal })
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+        .catch(err => console.log(err))
+
+}
+
+exports.addNewMileStone = async (req, res) => {
+    let prjId = req.params.id
+    prjId = new Object(prjId).toString().trim()
+    let body = req.body
+    console.log("project iud", prjId)
+    let project = await Project.findById(prjId)
+    let proposal = await Proposal.findOne({projectId: prjId, isAccept: true})
+
+    let currentStone = await MileStone.findOne({ projectId: prjId })
+    let newTit = []
+    let newDate = []
+    let newDesc = []
+    let newPrice = []
+    if (currentStone.title !== undefined) {
+        newTit = currentStone.title
+        newTit.push(body.stone_title)
+        newDate = currentStone.dueTime
+        newDate.push(body.due_date)
+        newDesc = currentStone.description
+        newDesc.push(body.stone_desc)
+        newPrice = currentStone.price
+        newPrice.push(body.stone_price)
+    }
+    else {
+        newTit.push(body.stone_title)
+        newPrice.push(body.stone_price)
+        newDesc.push(body.stone_desc)
+        newDate.push(body.due_date)
+    }
+    
+    await MileStone.findByIdAndUpdate(currentStone.id, {
+        title: newTit,
+        dueTime: newDate,
+        price: newPrice,
+        description: newDesc
+    },
+        { new: true },
+        (err, ok) => {
+            console.log(newDate)
+            console.log(" XXXXX", ok)
+            res.render('milestone-client', { user: req.user, milestone: ok, project: project, proposal: proposal })
+        }
+    )
+
+}
+

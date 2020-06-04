@@ -18,7 +18,7 @@ const Employee =  require("../controllers/employee");
 
     router.get('/my-proposal', Employee.getMyProposal)
 
-    router.post('/hire-deal-from-dev/:id_worker/:id_project', Employee.devAcceptDealFromClient)
+    router.post('/hire-deal-from-dev/:id_client/:id_project', Employee.devAcceptDealFromClient)
 
     router.post('/add_to_favorite', Employee.addToFavorite)
 
