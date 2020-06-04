@@ -1,19 +1,35 @@
 <%- include('header-client')  %> 
 
-<div>
-  <% if(id_dev){ %> 
-    send to dev id: <%=id_dev %><br>   
-    send to project id: <%=id_project %>   
-  <% } %> 
+<div class="send-offer" >
+  <div class="offer-job-name">
+    <%= project.name %> 
+  </div>
+<div class="offer-proposal">
+    <label for="">Price  <%=dev.name  %>  Deal:</label>
+    <label for=""><%=proposal.priceDeal  %> &nbsp;<i style="color: rgb(255, 72, 0);" class="fas fa-donate"></i> </label>
+</div>
 
-  <form method="POST" action="/hire_deal/<%=id_dev %>/<%=id_project %> ">
-    <label>Final price:</label>
-    <input type="number" name="price_final" value="100" max="10000" min="10"><br>
+  <form method="POST" action="/hire_deal/<%=dev.id %>/<%=project.id %>">
+    <p>Enter Your Final price:</p>
+    <input class="deal-money" type="number" name="price_final" value=<%=proposal.priceDeal  %>  max="10000" min="10"><br>
     <label>Reason deal:</label><br>
-    <textarea  name="reason_change"></textarea><br>
-    <input type="submit" value='send deal'>
+    <textarea class="reason-deal" name="reason_change"></textarea><br>
+    <input class="btn-send-offer" type="submit" value='Send Offer'>
   </form>
+  <div class="client-deposit">
+
+    <label>Divuvila Deposit: </label>
+    <label class="deposit"><%=proposal.priceDeal/5  %></label>  &nbsp;<i style="color: rgb(255, 94, 0);" class="fas fa-donate"></i>
+    <p>Divuvila will hold this money when this freelancer accept your offer</p>
+    <p>And also! We will return you when this work is completed and you had paid for freelancer</p>
+  </div>
+
+  <script>
+    $(".deal-money").change(function(e){
+      $(".deposit").html(Math.ceil($(this).val()*0.2))
+    })
     
+  </script>
 </div>
 
 <%- include('footer')  %> 

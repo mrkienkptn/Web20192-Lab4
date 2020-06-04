@@ -1,0 +1,47 @@
+<%- include('header-client')  %>
+<div class="milestone-container">
+    <h2><%=project.name  %></h2>
+    <h2>Milestones</h2>
+    <p>Price final: <%= proposal.priceFinal %> </p>
+    <div class="milestone">
+        <div class="milestone-head">
+            <label for="">Title</label>
+            <label for="">Price</label>
+
+            <label for="">Due Time</label>
+            <label for="">Description</label>
+            <button for="">Request Pay</button>
+            <label for=""></label>
+        </div>
+        <% for (let i = 0 ; i< milestone.title.length; i++){%>
+        <div class="milestone-head">
+            <label for=""><%= milestone.title[i] %> </label>
+            <label for=""><%= milestone.price[i] %></label>
+            <label for=""><%= milestone.dueTime[i].toUTCString() %></label>
+            <label for=""><%= milestone.description[i] %></label>
+            <label for="">100</label>
+            <button class="review-pay-btn">Submit Work</button>
+        </div>
+
+        <%} %>
+    </div>
+
+    <!-- <form action="../add-new-milestone/<%= milestone.projectId%>" id="form-add-mstone" method="POST">
+
+        <div>
+            <label>Title</label><input type="text" name="stone_title" id="stone-title" required>
+        <label>Price</label><input type="number" name="stone_price" id="stone-price" required>
+
+        <label>Due Date</label><input type="date" name="due_date" id="due_date" id="due-date" required>
+        <label>Description</label><input type="text" name="stone_desc" id="stone-desc" required>
+        </div>
+        <input class="submit-milestone" type="submit" value="Add to Milestones">
+    </form> -->
+
+
+
+</div>
+</div>
+
+
+<%- include('footer')  %>

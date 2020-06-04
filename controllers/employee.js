@@ -2,6 +2,7 @@ const User      = require("../app/models/user")
 const Project   = require("../app/models/project")
 const Message   = require("../app/models/message")
 const Proposal  = require("../app/models/proposal")
+const Contract  = require("../app/models/contract")
 
 exports.jobFeed = (req, res)=>{
     res.render('job-feed',{user: req.user} )
@@ -103,23 +104,24 @@ exports.getMyAcceptedJob = async(req, res)=>{
 exports.devAcceptDealFromClient = async(req, res)=>{
 
 
-    console.log(req.params.id_worker)
-    console.log(req.params.id_project)
-    console.log(req.body.accept_client)
-
-    await Proposal.findOneAndUpdate({workerId: req.params.id_worker, projectId : req.params.id_project},
+    await Proposal.findOneAndUpdate({workerId: req.session.passport.user, projectId : req.params.id_project},
         {
             isAccept : req.body.accept_client
         }
     )
-    
-    
+ 
     await Project.findByIdAndUpdate(req.params.id_project,
         {
             acceptTime : Date.now()
         }
     )
-
+    let acceptProposal = await Proposal.findOne({workerId: req.session.passport.user, projectId : req.params.id_project})
+    let contract = new Contract()
+    contract.projectId = req.params.id_project.trim()
+    contract.wokerId = req.session.passport.user
+    contract.clientId = req.params.id_client.trim()
+    contract.deposite = acceptProposal.priceFinal/5 //20%
+    contract.save(err=>console.log(err))
     res.redirect('/my-proposal')
 }
 exports.changeProfile = async(req, res)=>{

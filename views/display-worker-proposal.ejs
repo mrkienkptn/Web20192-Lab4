@@ -65,7 +65,7 @@
       <p>Reason </p>
       <p style="font-size: 13px;"><%=myProposals[i].dealReason%></p>
 
-      <form method="POST" action="../hire-deal-from-dev/<%=myProposals[i].workerId %>/<%=myProposals[i].projectId %>">
+      <form method="POST" action="../hire-deal-from-dev/<%=myProposals[i].clientId%>/<%=myProposals[i].projectId %>">
         <br>
         <p style="border-top:1px solid; width: fit-content">Do you want to take this work ?</p>
         <input type="radio" name="accept_client" value="true"> &NonBreakingSpace; Agree &nbsp;
