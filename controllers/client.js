@@ -106,7 +106,21 @@ exports.getAllEmployees = async (req, res) => {
         console.log("err")
     }
 }
-exports.searchEmployeeByFilter = async (req, res) => {
+
+
+
+exports.searchEmployeebyAjax = async(req, res)=>{
+    try {
+        const listUser = await User.find({"Type": "freelancer"})
+        res.send(listUser)
+        }
+    catch{
+        console.log("err")
+    }
+}
+
+exports.searchEmployeeByFilter = async(req, res)=>{
+
     const plow = parseInt(req.body.plow);
     const phigh = parseInt(req.body.phigh);
     const ylow = parseInt(req.body.ylow);
@@ -127,7 +141,12 @@ exports.searchEmployeeByFilter = async (req, res) => {
                 { "other.experience": { $gt: ylow } }, { "other.experience": { $lte: yhigh } }, { "other.skill": req.body.skill }]
             })
         }
+
         res.render('display-employee', { listuser: listUser });
+
+        res.render('display-employee',{listuser:listUser});
+        // console.log(listUser);
+
     }
     catch{
         console.log("err")

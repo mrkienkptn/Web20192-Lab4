@@ -38,7 +38,7 @@
   <!-- thanks -->
   <div class="thanks">
     Thanks for joining in <span style="color: green; font-weight: bold;">Divuvila</span>, <span
-      style="font-weight: bold; font-size: larger;"><%=user.name%></span>
+      ><%=user.name%></span>
 
   </div>
 
@@ -108,17 +108,14 @@
 
     <div class="more-info">
 
-      <div class="col-2 bank">
-        <p class="h1">Bank Account</p>
-        <p class="bank-num"><%=user.other.bank_account%></p>
-      </div>
+      
 
       <div class="col-2 exp">
         <p class="h1">Experience</p>
         <p><%=user.other.experience%></p>
       </div>
 
-      <div class="col-2 deal">
+      <div class="col-2 ">
         <p class="h1">Price</p>
         <p style="color: rgb(255, 81, 0);"><%=user.other.price%> $/h</p>
       </div>
@@ -140,8 +137,7 @@
   <div class="question">
     What do you want to change ?
     <div class="close">
-      <span class="barr"></span>
-      <span class="barr"></span>
+      <i style="color: rgb(233, 93, 12);" class="fas fa-times"></i>
     </div>
   </div>
 
@@ -177,12 +173,7 @@
         <input type="text" name='exp' placeholder="Enter your expreiences" value='<%=user.other.experience%>'>
       </div>
 
-      <div class="f">
-        Bank Account:
-      </div>
-      <div>
-        <input type="text" name='bank_acc' placeholder="Enter your Bank account" value='<%=user.other.bank_account%>'>
-      </div>
+      
 
       <div class="f">
         Price:
@@ -192,7 +183,7 @@
       </div>
 
     </div>
-    <div class="submit">
+    <div class="submit1">
       <input type="submit" value="Apply Changes">
     </div>
   </form>

@@ -6,8 +6,8 @@ const{
 const moment = require("moment")
 
 const Message = require("../app/models/message")
-
-
+const Project = require("../app/models/project")
+const User = require("../app/models/user")
 module.exports = (server)=>{
     const io = require("socket.io")(server)
 
@@ -100,7 +100,6 @@ module.exports = (server)=>{
             let receiverSkId = getReceiverSocket(receiver)
             io.to(receiverSkId).emit('done-handshake', signal)
         })
-    
         socket.on('invite',async data =>{
             let receiver = data.receiverId
             let jobId = data.job_id
@@ -109,6 +108,7 @@ module.exports = (server)=>{
             let receiverSkId = getReceiverSocket(receiver)
             io.to(receiverSkId).emit('receive-invite', {clientSent: sendInvite, job: job})
         })
+        
         
     })
 }

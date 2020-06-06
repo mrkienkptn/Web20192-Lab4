@@ -24,7 +24,7 @@ exports.getProfileEmployee = (req, res)=>{
 exports.getMyProposal = async(req, res)=>{
     await Proposal.exists({workerId: req.session.passport.user})
     .then(async exist => {
-        console.log("ssssssssssssssssssssss "+exist)
+        
         if (exist){
             await Proposal.find({workerId: req.session.passport.user})
             .then(obj =>{
@@ -65,7 +65,7 @@ exports.getMyProposal = async(req, res)=>{
         }
     })
     
-
+          
     
 }
 
@@ -175,11 +175,7 @@ exports.postEmployeeInfo = async (req, res)=>{
                 email               : req.body.email,
                 education_level     : req.body.edu_level,
                 experience          : req.body.exp,
-                bank_account        : req.body.bank_acc,
-                price               : req.body.price,
-                completed_projects  : completed_projects,
-                skill               : skills,
-                about_me            : about_me
+                price               : req.body.price
             }
 
         },

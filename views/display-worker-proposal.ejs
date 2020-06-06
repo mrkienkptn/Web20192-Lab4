@@ -7,12 +7,9 @@
   </div>
 
   <% for (let i=myProposals.length-1; i>=0 ;i--) {%>
-
-
   <div class="job_each status<%=myProposals[i].isAccept %>" id='job_<%=i %>'>
     <div class='job_name'><a href='/detail_work/ <%=projects[i]._id %> '> <%=projects[i].name%></a> <button
         title="Add to favorite" id="add-to-favorite"><i class="far fa-bookmark"></i></button> </div>
-
     <div class="xxxx">
       <input id="projects-id" type="hidden" name='work_id' value="<%=projects[i]._id %>">
       <div class='job_price'> <i class="fas fa-donate"></i> &nbsp; <%=projects[i].price %> <span
@@ -20,23 +17,17 @@
       <div class='job_candidate'> <i class="far fa-poll-people"></i> - &nbsp; <%=projects[i].candidates %>&nbsp;
         candidates</div>
       <div class='job_user_post'> Post by - &nbsp; <p style="color: green; font-weight: bolder; display: inline;">
-
       </div>
     </div>
-
     <div class="job_descrip">
       <div class="job_descrip_head">Description</div>
       <div class="job_descrip_detail">
         <%=projects[i].description%>
       </div>
     </div>
-
     <div class='job_require'> Requirement - &nbsp; <%projects[i].requirements.forEach(function(item){%>
       <label for=""><%=item %></label>
       <%}) %></div>
-
-
-
     <div class="proposal-content">
       <hr style="border: 1px solid; width: 100%; height: 1px;">
       <br>
@@ -45,17 +36,11 @@
         <%=myProposals[i].proposalContent  %>
       </div>
     </div>
-
     <div class="desire-cost">
       <label>Desire Cost : </label>
       <%= myProposals[i].priceDeal %>
       <i style="color: #4e507b;" class="fas fa-donate"></i>
     </div>
-
-
-
-
-
     <% if(myProposals[i].priceFinal && myProposals[i].isAccept == "") {%>
     <div class="final-price">
       <label>Final price <label style="color: green;"><%=clients[i].name %></label> hope :
@@ -64,59 +49,46 @@
       <hr style="border: 0.2px solid; width: 100%; height: 0.5px; margin-bottom: 4px;">
       <p>Reason </p>
       <p style="font-size: 13px;"><%=myProposals[i].dealReason%></p>
-
-      <form style="border-top: 1.5px solid gray; margin-top: 15px;" method="POST" action="../hire-deal-from-dev/<%=myProposals[i].clientId%>/<%=myProposals[i].projectId %>">
+      <form style="border-top: 1.5px solid gray; margin-top: 15px;" method="POST"
+        action="../hire-deal-from-dev/<%=myProposals[i].clientId%>/<%=myProposals[i].projectId %>">
         <br>
-        <p >Do you want to take this work ?</p>
-        <p> 
-If you agree, you will have to spend 20% of the contract value, it will be transferred to the deposit, we will return it when the contract terminates.</p>
+        <p>Do you want to take this work ?</p>
+        <p>
+          If you agree, you will have to spend 20% of the contract value, it will be transferred to the deposit, we will
+          return it when the contract terminates.</p>
         <input type="radio" name="accept_client" value="true"> &NonBreakingSpace; Agree &nbsp;
         <input type="radio" name="accept_client" value="false">&NonBreakingSpace; Decline &nbsp;
-
         <input type="submit" value="Submit">
       </form>
     </div>
-      <% } else if(myProposals[i].isAccept == "true" &&myProposals[i].priceFinal ) {%>
+    <% } else if(myProposals[i].isAccept == "true" &&myProposals[i].priceFinal ) {%>
+    <div class="done">
+      <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
+      <% if (projects[i].isCompleted == false){%>
 
+      <%} else {%>
+      <label for="">Finished</label>
+      <%} %>
 
-      <div class="done">
-        <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
-        <% if (projects[i].isCompleted == false){%> 
-          
-        <%} else {%>
-          <label for="">Finished</label>
-        <%} %> 
-        
-
-        <input type="hidden" value="<%=projects[i].name%>" >
-
-      </div>
-
-
-      <% } else if(myProposals[i].priceFinal && myProposals[i].isAccept=="false") { %>
-      <div class="done">
-        <label style="color: red;">Declined &NonBreakingSpace;<i class="fad fa-do-not-enter"></i></label>
-      </div>
-      <% } %>
-
-
-
-
+      <input type="hidden" value="<%=projects[i].name%>">
+    </div>
+    <% } else if(myProposals[i].priceFinal && myProposals[i].isAccept=="false") { %>
+    <div class="done">
+      <label style="color: red;">Declined &NonBreakingSpace;<i class="fad fa-do-not-enter"></i></label>
     </div>
     <% } %>
-  
   </div>
+  <% } %>
 
-  <script>
-    $("#accept").click(e => {
-      $(".statusfalse").hide()
-      $(".statustrue").show()
-    })
-    $("#decline").click(e => {
-      $(".statusfalse").show()
-      $(".statustrue").hide()
-    })
-
-  </script>
-
-  <%- include('footer')  %>
+</div>
+<script>
+  $("#accept").click(e => {
+    $(".statusfalse").hide()
+    $(".statustrue").show()
+  })
+  $("#decline").click(e => {
+    $(".statusfalse").show()
+    $(".statustrue").hide()
+  })
+</script>
+<%- include('footer')  %>

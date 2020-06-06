@@ -4,6 +4,9 @@ const Client = require('../controllers/client')
 // lấy danh sách tất cả nhân viên
 router.get('/all-employee', Client.getAllEmployees)
 
+// lấy danh sách tất cả nhân viên ajax
+router.get('/ajax-employee', Client.searchEmployeebyAjax)
+
 // lấy danh sách theo bộ lọc tìm kiếm
 router.post('/filter', Client.searchEmployeeByFilter)
 
