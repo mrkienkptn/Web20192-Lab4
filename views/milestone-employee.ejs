@@ -1,8 +1,26 @@
-<%- include('header-client')  %>
+<%- include('header-employee')  %>
 <div class="milestone-container">
     <h2><%=project.name  %></h2>
     <h2>Milestones</h2>
     <p>Price final: <%= proposal.priceFinal %> </p>
+    <p>Price final: <%= proposal.priceFinal %> &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i></p>
+
+    <% let escrow = 0;
+    for(let i=0; i<milestone.price.length; i++){
+        if (milestone.price[i]!=null && !milestone.paid[i]){
+            escrow = escrow+milestone.price[i];
+        }
+    }
+    let paid = 0;
+    for(let i=0; i<milestone.price.length; i++){
+        if (milestone.paid[i]!=null){
+            paid = paid + milestone.paid[i];
+        }
+    }
+    
+     %>
+    <p>In escrow: <%=escrow  %> &nbsp;<i style="color:rgb(24, 143, 0);" class="fas fa-donate"></i> </p>
+    <p>Paid: <%=paid  %>&nbsp;<i style="color:rgb(0, 0, 0);" class="fas fa-donate"></i></p><br>
     <div class="milestone">
         <div class="milestone-head">
             <label for="">Title</label>
@@ -10,33 +28,78 @@
 
             <label for="">Due Time</label>
             <label for="">Description</label>
-            <button for="">Request Pay</button>
+            <label for="">Paid</label>
             <label for=""></label>
         </div>
+        <% if (milestone!==undefined){%>
         <% for (let i = 0 ; i< milestone.title.length; i++){%>
-        <div class="milestone-head">
-            <label for=""><%= milestone.title[i] %> </label>
-            <label for=""><%= milestone.price[i] %></label>
-            <label for=""><%= milestone.dueTime[i].toUTCString() %></label>
-            <label for=""><%= milestone.description[i] %></label>
-            <label for="">100</label>
-            <button class="review-pay-btn">Submit Work</button>
-        </div>
+    <div class="milestone-head">
+        <label for=""><%= milestone.title[i] %> </label>
+        <label for=""><%= milestone.price[i] %></label>
+        <label for="">
+            <%= milestone.dueTime[i].getDate()%>/<%= milestone.dueTime[i].getMonth()%>/<%= milestone.dueTime[i].getYear() + 1900%>
+            <% if (Date.now()- milestone.dueTime[i] > 0){%>
+            <label style="color: red; font-size: 11px;">OOD</label>
+            <%} %>
+        </label>
+        <label for=""><%= milestone.description[i] %></label>
+        <% if (milestone.paid[i] !== undefined) {%>
+        <label><%=milestone.paid[i]  %> </label>
+        <%}else{%>
+        <label>--</label>
+        <%}%> 
+            <% if(milestone.submition[i] == undefined) {%>
+        <button id="submit-work-btn-<%=i%>" class="submit-work-btn" value="<%=milestone.id  %>-<%=i  %>">Submit
+            Work</button>
 
-        <%} %>
+        <%} else {%>
+        <button id="submit-work-btn-<%=i%>" class="submit-work-btn" value="<%=milestone.id  %>-<%=i  %>"
+            style="background-color: gray;" disabled>Submited</button>
+
+        <% } %>
     </div>
 
-    <!-- <form action="../add-new-milestone/<%= milestone.projectId%>" id="form-add-mstone" method="POST">
+    <%} %>
+    <%} %>
+    <div class="submit-work">
+        <form action="">
+            <input id="submit-link" type="text" name="submit-link" placeholder="Link to your submition">
+            <textarea id="submit-desc" name="submit-desc" id="" cols="30" rows="10"
+                placeholder="Description Something in your submit"></textarea>
+            <input type="submit" value="Submit now">
+        </form>
+    </div>
+    <script>
+        let milestoneId = ""
+        $(".submit-work").hide()
+        $(".submit-work-btn").click(function (e) {
+            $(".submit-work").slideToggle()
+            milestoneId = $(this).attr('value')
+        })
+        $(".submit-work form").submit(function (e) {
+            e.preventDefault()
+            let submitLink = $("#submit-link").val()
+            let submitDesc = $("#submit-desc").val()
+            $.ajax({
+                url: '/submit-work-milestone',
+                method: 'POST',
+                data: { milestoneId: milestoneId, submitLink: submitLink, submitDesc: submitDesc },
+                success: result => {
+                    let index = milestoneId.split("-")[1]
+                    let idBtnChange = "#submit-work-btn-" + index
+                    $(idBtnChange).html("Submited")
+                    $(idBtnChange).attr('disabled', true)
+                    $(idBtnChange).css({
+                        "background-color": "gray"
+                    })
+                    $(".submit-work").hide()
+                }
+            })
+        })
+    </script>
+</div>
 
-        <div>
-            <label>Title</label><input type="text" name="stone_title" id="stone-title" required>
-        <label>Price</label><input type="number" name="stone_price" id="stone-price" required>
 
-        <label>Due Date</label><input type="date" name="due_date" id="due_date" id="due-date" required>
-        <label>Description</label><input type="text" name="stone_desc" id="stone-desc" required>
-        </div>
-        <input class="submit-milestone" type="submit" value="Add to Milestones">
-    </form> -->
 
 
 

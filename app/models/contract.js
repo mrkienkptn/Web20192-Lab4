@@ -18,6 +18,14 @@ const ContractSchema = new mongoose.Schema({
     startTime:{
         type: Date,
         default: Date.now()
+    },
+    paid:{
+        type: Number,
+        default: 0
+    },
+    isEnd:{
+        type: Boolean,
+        default: false
     }
 
 })

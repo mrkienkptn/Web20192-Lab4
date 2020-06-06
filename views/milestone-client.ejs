@@ -1,9 +1,26 @@
 <%- include('header-client')  %>
 
 <div class="milestone-container">
-    <h2><%=project.name  %></h2>
-    <h2>Milestones</h2>
-    <p>Price final: <%= proposal.priceFinal %> </p>
+    <h2 style="color: green; border-bottom: 2px solid gray; margin-bottom: 20px;"><%=project.name  %></h2>
+    <h3 style="margin-bottom: 15px;">Milestones</h3>
+    <p>Price final: <%= proposal.priceFinal %> &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i></p>
+
+    <% let escrow = 0;
+    for(let i=0; i<milestone.price.length; i++){
+        if (milestone.price[i]!=null && !milestone.paid[i]){
+            escrow = escrow+milestone.price[i];
+        }
+    }
+    let paid = 0;
+    for(let i=0; i<milestone.price.length; i++){
+        if (milestone.paid[i]!=null){
+            paid = paid + milestone.paid[i];
+        }
+    }
+    
+     %>
+    <p>In escrow: <%=escrow  %> &nbsp;<i style="color:rgb(24, 143, 0);" class="fas fa-donate"></i> </p>
+    <p>Paid: <%=paid  %>&nbsp;<i style="color:rgb(0, 0, 0);" class="fas fa-donate"></i></p><br>
     <div class="milestone">
         <div class="milestone-head">
             <label for="">Title</label>
@@ -11,7 +28,7 @@
 
             <label for="">Due Time</label>
             <label for="">Description</label>
-            <label for="">Request Pay</label>
+            <label for="">Paid</label>
             <label for=""></label>
         </div>
         <% for (let i = 0 ; i< milestone.title.length; i++){%>
@@ -20,27 +37,69 @@
             <label for=""><%= milestone.price[i] %></label>
             <label for=""><%= milestone.dueTime[i].toUTCString() %></label>
             <label for=""><%= milestone.description[i] %></label>
-            <label for="">100</label>
-            <button class="review-pay-btn">Review & Pay</button>
+            <% if (milestone.paid[i] !== undefined) {%>
+                <label ><%=milestone.paid[i]  %> </label>
+            <%}else{%>
+                <label>--</label>
+            <%}%> 
+            
+
+            <% if (milestone.submition[i]!== undefined && milestone.submition[i] !=null) {%>
+               
+            <button class="review-pay-btn" value="">Review & Pay</button>
+            <div class="review-submited" >
+                <p>Price:<%= milestone.price[i] %> </p>
+                <p>Link: <label style="text-decoration: underline; color: blueviolet; font-size: 14px;">
+                   
+                    <% if (milestone.submition[i] !=null){%>
+                        <p><%= milestone.submition[i].link %></p>
+                        <p>Description: <label style="font-style: italic; font-weight: 14px;" ><%= milestone.submition[i].desc %></label> </p>
+                    <%} %>  
+                </label> </p>
+                
+
+                <form class="pay-stone" action="" method="POST">
+                    <input type="hidden" class="milestone-id" value="<%=milestone.id%>-<%=i%>">
+                    <input type="number" class="money" min=<%=milestone.price[i]%>  placeholder="How much you want to pay ?"><br>
+                <% if (milestone.paid[i]){%>
+                    <input type="submit"  class="submit-pay-stone" value="Paid" disabled style="background-color: gray;">
+                <%} else{%>
+                    <input type="submit"  class="submit-pay-stone" value="Pay">
+                <%}%> 
+                </form>
+
+                <button class="close-review"><i style="color: rgb(255, 94, 0);" class="fas fa-times"></i></button>
+            </div>
+            <% } else{%>
+            <p>No Submition</p>
+            <%} %>
         </div>
 
         <%} %>
+        <button class="btn-add-mstone">Add new milestone</button>
+        <p class="add-status"><%=status  %></p> 
+        <form class="form-add-mstone" action="../add-new-milestone/<%= milestone.projectId%>" id="form-add-mstone" method="POST">
+
+            <div>
+                <label>Title</label><input type="text" name="stone_title" id="stone-title" required>
+                <label>Price</label><input type="number" name="stone_price" id="stone-price" required>
+    
+                <label>Due Date</label><input type="date" name="due_date" id="due_date" id="due-date" required>
+                <label>Description</label><input type="text" name="stone_desc" id="stone-desc" required>
+            </div>
+            <input class="submit-milestone" type="submit" value="Add to Milestones">
+        </form>
     </div>
 
-    <form action="../add-new-milestone/<%= milestone.projectId%>" id="form-add-mstone" method="POST">
-
-        <div>
-            <label>Title</label><input type="text" name="stone_title" id="stone-title" required>
-        <label>Price</label><input type="number" name="stone_price" id="stone-price" required>
-
-        <label>Due Date</label><input type="date" name="due_date" id="due_date" id="due-date" required>
-        <label>Description</label><input type="text" name="stone_desc" id="stone-desc" required>
-        </div>
-        <input class="submit-milestone" type="submit" value="Add to Milestones">
-    </form>
+    
 
 
+    <script>
 
+
+       
+        // $(".submit-pay-stone")
+    </script>
 </div>
 
 

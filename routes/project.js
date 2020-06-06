@@ -31,5 +31,6 @@ const Project =  require("../controllers/project");
     router.get('/get-milestone/:id', Project.getMileStone)
     router.get('/add-milestone/:id', Project.addMileStone)
     router.post('/add-new-milestone/:id', Project.addNewMileStone)
+    router.post('/submit-work-milestone', Project.submitWorkMileStone)
 
 module.exports = router;

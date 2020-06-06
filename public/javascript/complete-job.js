@@ -11,14 +11,18 @@ $(".bill").submit(function(e){
     let value = $(this).siblings('button').attr('value').split(",")
     let workerId = value[0]
     let projectCompleteId = value[1]
-    let money = $(this).children('#bill-money').val()
-    console.log(money)
-    let posting = $.post('/completed-job/'+projectCompleteId, {
+        let posting = $.post('/completed-job/'+projectCompleteId, {
         workerId: workerId,
         projectCompleteId: projectCompleteId,
-        price: money
+        
     })
     posting.done(data => {
         $(this).siblings(".work-status").html(data.status)
+        if (data.vaid) {
+            $(this).siblings(".work-status").css({'color': 'green'})
+        }
+        else{
+            $(this).siblings(".work-status").css({'color': 'red'})
+        }
     })
 })

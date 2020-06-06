@@ -7,7 +7,7 @@
   <% if(myProposals[i].isAccept == 'true') {%>   
 
   <div class="job_each status<%=myProposals[i].isAccept %>" id='job_<%=i %>'>
-    <div class='job_name'><a href='/detail_work/ <%=projects[i]._id %> '> <%=projects[i].name%></a> <button
+    <div class='job_name'><a href='/detail_work/ <%=projects[i]._id %> '> <%=projects[i].name%></a> <label <button
         title="Add to favorite" id="add-to-favorite"><i class="far fa-bookmark"></i></button> </div>
 
     <div class="xxxx">
@@ -73,8 +73,12 @@
       <% } else if(myProposals[i].isAccept == 'true') {%>
       <div class="done">
         <label style="color: #0a8fb2;">Accepted &NonBreakingSpace;<i class="fas fa-check-double"></i></label>
-        <button title="The clock will run after you click" value="<%=clients[i].id%>">Start Now</button>
-        <a href="/get-milestone/<%=projects[i].id%>"> View Milestone</a>
+        <% if (projects[i].isCompleted === true){%>
+          <button disabled style="background-color: gray; cursor:not-allowed;" >Contract is finished</button>
+          <%} else{%>
+            <button title="If Client is online, they can Watch " value="<%=clients[i].id%>">Share Your Screen</button>
+            <%}%> 
+        <a class="view-milestone" href="/get-milestone/<%=projects[i].id%>"> View Milestone</a>
         <input type="hidden" value="<%=projects[i].name%>" >
       </div>
       <% } else { %>
@@ -89,9 +93,9 @@
     </div>
     <% } %>
     <% } %>
-    <div class="screen-share">
+    <!-- <div class="screen-share">
       <video width="350" height="300" controls id="employee-screen"></video>
-    </div>
+    </div> -->
   </div>
 
 

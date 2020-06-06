@@ -41,7 +41,7 @@
 }
 .div-in{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .all-client-post .my-post .price{
     /* font-style: italic; */

@@ -16,7 +16,18 @@ const MileStoneSchema = new mongoose.Schema({
     },
     description:{
         type:[String]
+    },
+    submition:{
+        type: [Object],
+        default: []
+    },
+    paid:{
+        type: [Number],
+        default: []
     }
+
+
+
 })
 var MileStone = mongoose.model('milestone_model', MileStoneSchema, 'milestone');
 module.exports = MileStone;

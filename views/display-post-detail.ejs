@@ -29,7 +29,8 @@
       <div class="price-want">
         <p>Price <label style="color: green;"><%=list_worker[i].name%></label> want: <%=post_proposal[i].priceDeal%>
           &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i></p>
-
+        <p>Price in contract <label style="color: green;"> <%= post_proposal[i].priceFinal %> 
+          &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i></p>
       </div>
 
       <div class="when-accepted">
@@ -42,8 +43,8 @@
           <a class="add-milestone"  href="../add-milestone/<%= project.id  %>" >Add MileStone</a>
         <%}%> 
       <% if(project.isCompleted==true) {%>
-        <div class="work-status">
-          Pay successfully!
+        <div style="color: rgb(140, 0, 255)" class="work-status">
+          Contract is fisnished
         </div>
         <%}else{%>
         <div class="work-status">
@@ -52,10 +53,11 @@
         <% } %>
 
         <form class="bill" action="" method="post">
-          <h3>Pay for <%= list_worker[i].name  %> </h3>
-          <p for="bill-money">Input how much you want to pay</p>
-          <input placeholder="Enter money..." type="number" name="bill-money" id="bill-money">
-          <input class="submit-bill" type="submit" value="Pay">
+          <h3>Finish Contract with <%= list_worker[i].name  %> </h3>
+          <p>After finish this contract, we will return to you 80% deposit</p>
+          <!-- <p for="bill-money">Input how much you want to pay</p> -->
+          <!-- <input placeholder="Enter money..." type="number" name="bill-money" id="bill-money"> -->
+          <input class="submit-bill" type="submit" value="Finish Contract">
         </form>
 
 

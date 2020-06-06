@@ -49,7 +49,7 @@
   background-color: white
 }
 .job_name{
-  border-bottom: 2px solid rgb(128, 73, 0);
+  border-bottom: 2px solid gray;
   margin-bottom: 10px;
   position: relative;
   grid-area: name;
@@ -68,7 +68,7 @@
 }
 .job_name a{
   text-decoration: none;
-  color: rgb(238, 110, 27);
+  color: green;
   font-size: 18px;
 }
 .job_require{
@@ -176,7 +176,7 @@ height: 30px;
   cursor: pointer;
 }
 .filter-btn button:nth-child(1){
-  background-color: green;
+  background-color: #67abd8f5;
 }
 .screen-share{
   width: fit-content;

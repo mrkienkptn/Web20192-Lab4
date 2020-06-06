@@ -14,8 +14,8 @@
         <p class="category"><%= post[i].jobCategory %></p>
         <div class="div-in">
           <p class="price">Price: <%= post[i].price %> &nbsp;<i style="color:rgb(238, 107, 20);" class="fas fa-donate"></i> </p>
-          <p><%= nProposal[i].length %>  &nbsp;Proposals</p>
-          
+          <p><%= nProposal[i] %>  &nbsp;&nbsp;Proposals</p>
+          <p><%=nContract[i]  %> &nbsp;&nbsp; Contracts</p>
         </div>
         <p class="candidate">Candidate : <%= post[i].candidates %> </p>
         <p class="requirements">Requirements: <%post[i].requirements.forEach(function(item){%>

@@ -24,4 +24,7 @@ router.post('/evaluate', Client.evaluateOther)
 router.get('/post-job', Client.postJob)
 
 router.get('/manage-job', Client.manageMyJob)
+
+router.post('/pay-for-freelancer-milestone', Client.PayMilestone)
+
 module.exports = router;

@@ -116,14 +116,20 @@ exports.devAcceptDealFromClient = async(req, res)=>{
         }
     )
     let acceptProposal = await Proposal.findOne({workerId: req.session.passport.user, projectId : req.params.id_project})
+    let client = await User.findById(req.params.id_client.trim())
+    await User.findByIdAndUpdate(client.id, {money: client.money - acceptProposal.priceFinal/5})
+    let employee = await User.findById(req.session.passport.user)
+    await User.findByIdAndUpdate(req.session.passport.user, {money: employee.money -  acceptProposal.priceFinal/5})
     let contract = new Contract()
     contract.projectId = req.params.id_project.trim()
-    contract.wokerId = req.session.passport.user
+    contract.workerId = req.session.passport.user
     contract.clientId = req.params.id_client.trim()
     contract.deposite = acceptProposal.priceFinal/5 //20%
     contract.save(err=>console.log(err))
-    res.redirect('/my-proposal')
+    res.redirect('/accepted-job')
 }
+
+
 exports.changeProfile = async(req, res)=>{
     const u = await User.findOne({_id: req.session.passport.user})
     console.log("post req ajx")

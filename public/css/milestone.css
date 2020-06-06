@@ -12,30 +12,30 @@
     font-size: 14px;
 }
 
-.milestone-container form{
+.milestone-container .form-add-mstone{
     margin-top: 30px;
     border-top: 2px solid gray;
     background-color: white;
     box-shadow: 0 2px 5px 0 rgba(99, 34, 34, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.milestone-container form div{
+.milestone-container .form-add-mstone div{
 
     padding: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr ;
 }
-.milestone-container form div input{
+.milestone-container .form-add-mstone div input{
  margin: 5px 0px;
  border: 1px solid gray;
     border-radius: 2px;
 }
 
-.milestone-container form label{
+.milestone-container .form-add-mstone label{
     padding-top: 10px;
 }
 
-.submit-milestone, .review-pay-btn{
+.submit-milestone, .review-pay-btn, .submit-work-btn{
     background-color: rgb(236, 95, 0);
     border: none;
     border-radius: 2px;
@@ -45,4 +45,95 @@
     width: 100%;
     margin: auto;
     margin-bottom: 10px;
+}
+.review-submited{
+    position: fixed;
+    width: 70%;
+    height: 80vh;
+    left:14%;
+    top: 10vh;
+    background-color: white;
+    padding: 20px;
+    z-index: 99;
+    
+}
+
+.close-review{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.pay-stone{
+    margin-top: 15px;
+}
+
+.pay-stone input[type="number"]{
+    width: 100%;
+    border: 1px solid gray;
+}
+.pay-stone input[type="submit"]{
+    background-color: rgb(236, 95, 0);
+    border: none;
+    border-radius: 2px;
+    padding: 2px 6px;
+    color: white;
+    
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.btn-add-mstone{
+    background-color: rgb(236, 95, 0);
+    border: none;
+    border-radius: 2px;
+    padding: 2px 6px;
+    color: white;
+    
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.view-milestone{
+    text-decoration: none;
+    background-color: rgb(239, 103, 14);
+  border: none;
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 160px;
+  top: 0px;
+}
+
+.submit-work{
+    /* border: 1px solid; */
+    background-color: white;
+    box-shadow: 0 2px 5px 0 rgba(99, 34, 34, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+
+}
+.submit-work input{
+    width: 100% ;
+    border: 1.5px solid gray;
+}
+.submit-work textarea{
+    width: 100%;
+    margin-top: 15px;
+    border: 1.5px solid gray;
+    border-radius: 2px;
+    padding: 15px;
+}
+.submit-work input[type="submit"]{
+    width: fit-content;
+    background-color: rgb(239, 103, 14);
+  border: none;
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
 }
