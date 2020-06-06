@@ -1,13 +1,13 @@
 $(document).ready(() =>{
-  $('#all_project').hide()
+  $('#myFrom').hide()
   $('.invite_dev').click(function(){
     
 
     let dev_id = $('.invite_dev').val()
     console.log('dev id: '+ dev_id)
-    $('#all_project').slideToggle()
+    $('#myFrom').slideToggle()
 
-    $('#all_project').children('form').submit(function(e){
+    $('#myFrom').children('form').submit(function(e){
       let project_id = $('.each_project:checked').val()
       console.log('project id: '+ project_id)
       e.preventDefault()

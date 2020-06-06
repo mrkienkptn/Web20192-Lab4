@@ -7,6 +7,7 @@ $(document).ready(() => {
       type : "GET",
       dataType : "json",
       success : (data) => {
+       
         let input_key = $('#search-input-work').val()
         $('#search_res').html('');
         $('.HomeHero').html('');
@@ -19,12 +20,12 @@ $(document).ready(() => {
           
           
 
-          console.log("input"+input_key)
-          console.log(data_src)
+          // console.log("input"+input_key)
+          // console.log(data_src)
 
 
           if(data_src.toLowerCase().indexOf(input_key) != -1){
-            console.log(data_src.search(input_key))
+            console.log("kết quả:"+data_src.search(input_key))
 
             
             if(!$('#job_'+i).length){

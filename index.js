@@ -50,4 +50,4 @@ app.use('/', client)
 
 var server = require("http").Server(app)
 require("./controllers/message")(server)
-server.listen(port, console.log("Server is running on port 7000") )
+server.listen(port, console.log("Server is running on http://localhost:"+port) )
