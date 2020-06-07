@@ -3,19 +3,54 @@
 <%- include('header-client') %>
 <script>
   
-</script>
-<div class="client-profile">
-  <div style="font-size: larger;">
-    Hello <span style="color: green; font-weight: bold;">, <%=user.name%></span>
-  </div>
-   <p>Your email: <%=user.other.email  %>  
-</div>
-<form action="/change-profile-client" method="post">
-  <input type="text" name="email" value="<%=user.other.email  %> " placeholder="New email"><br>
 
-  <input type="number" name="money" value=<%=user.money  %> placeholder="Enter money"><br>
-  <input type="submit" value="Change">
+</script>
+
+<div class="client_contain">
+
+<div class="ad_left"><img src='/images/ad_1.gif'></div>
+<div class="client_info">
+
+  <table class="client-profile">
+
+  <tr style="font-size: larger;">
+    <td colspan="2"> 
+      <span style="color: green; font-weight: bold;"><%=user.name%></span>
+    </td>
+    <!-- <td> 
+      <p>Your email: <%=user.other.email  %>  
+    </td> -->
+  </tr>
+
+<form class="form_client" action="/change-profile-client" method="post">
+  <tr>
+    <td>New Email</td>
+    <td>
+      <input type="text" name="email" value="<%=user.other.email  %> " placeholder="New email"><br>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Add money</td>
+    <td>
+      <input type="number" name="money" value=<%=user.money  %> placeholder="Enter money"><br>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+    <input type="submit" value="Change">
+    </td>
+
+  </tr>
+
+  </table>
 </form>
+</div>
+<div class="ad_right"><img src='/images/ad_2.gif'></div>
+</div>
+<div class='clear'></div>
+
 <!-- <button><a href="/hire_info">up work</a></button> -->
 
 <!-- <button><a href="/ownPost">my post</a></button> -->
