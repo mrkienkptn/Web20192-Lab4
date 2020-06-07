@@ -14,17 +14,21 @@
     <div class=" column-info">
       <!-- <%=project %> -->
       <div class="col-1 name">
-          <div><img src="/images/faceui0.jpg" alt="User_avt" class="user-avt"></div>
-          <div>
-            <p class="name" style="color: dodgerblue;"><%=profile.name%></p>
-            <i class="fas fa-map-marker-alt" style="color: red;"></i>
-            <p style="color: red; display: inline"><%=profile.other.country%></p>
-            <br>
-            <i class="far fa-envelope"></i>
-            <p class="" style=" display: inline"><%=profile.other.email%></p>
+          <div class="base-info">
+            <img src="/images/faceui0.jpg" alt="User_avt" class="user-avt">
+            <div>
+              <p class="name" style="color: green;"><%=profile.name%></p>
+              <i class="fas fa-map-marker-alt" style="color: #106ca1; font-size: 14px;"></i>
+              <p style="color:  #106ca1; display: inline; font-size: 14px;"><%=profile.other.country%></p>
+              <br>
+              <i class="far fa-envelope"></i>
+              <p class="" style=" display: inline;  font-size: 14px;"><%=profile.other.email%></p>
+            </div>
+          
           </div>
+          
           <div class="option">
-            <% if (user!= undefined) { %>
+            <% if (user!== undefined) { %>
             <% if (user.Type=="client") { %>
               <button class="invite_dev btn-success" style="border:none" value="<%=profile.id %>" onclick="openForm()">Invite</button>
               
@@ -32,7 +36,7 @@
                 <form  class="form-container">
                   <h3>Choose Projects</h3>
                   <% for(let i = 0; i < project.length; i++){ %> 
-                    <input style="font-size: 15px;" type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label style="font-size: 12px;"><%=project[i].name %></label><br>
+                    <input style="font-size: 15px;" type="radio" class="each_project" name="each_project" value="<%=project[i].id %>"><label style="font-size: 14px; margin-left: 5px;"><%=project[i].name %></label><br>
                   <% } %> 
               
                   <input type="submit" class="btn-success" style="border:none" value="Invite">
@@ -71,7 +75,7 @@
         <p class="h">Completed Projects</p>
         
         <div class="projects">
-        <% if (profile.other.completed_projects != []){%>
+        <% if (profile.completed_projects != []){%>
 
             <% profile.completed_projects.forEach(function(pr){%>
             <i class="fas fa-dot-circle" style="font-size: 10px;"></i>

@@ -97,14 +97,17 @@ exports.postJob = async (req, res) => {
     res.render('post-job', { user: req.user })
 }
 
+
+
 exports.getAllEmployees = async (req, res) => {
-    try {
-        const listUser = await User.find({ "Type": "freelancer" })
-        res.render('display-employee', { listuser: listUser, user: req.user })
-    }
-    catch{
-        console.log("err")
-    }
+
+    await User.find({ Type: "freelancer" })
+    .then(listUser=>{
+        console.log("User: ",req.user)
+    res.render('display-employee', { listuser: listUser, user: req.user })
+    })
+  
+   
 }
 
 

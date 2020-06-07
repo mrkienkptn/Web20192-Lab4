@@ -1,13 +1,8 @@
-<% if (user = "undefined") { %>
-  <%- include ('header-index') %> 
- <% } %>
-  <% if (user.Type == "client") { %>
-   <%- include ('header-client') %> 
-  <% } %>
-  <% if (user.Type == "freelancer") { %>
-    <%- include ('header-employee') %> 
-   <% } %>
-   
+<% if (user==undefined) { %>
+  <%-include ('header-index')%>
+<% } else if (user.Type=='client') {%>
+  <%-include('header-client')%>
+  <%} %>
   <!-- < % var display = 0 %>  -->
 <div class="employee-list">
   <div class="search_div">
@@ -77,7 +72,7 @@
     
 </form>
 </div>
-<div class="main-label">Infomation of all employees: </div><br>
+<div class="main-label">Employees </div><br>
 
 
 <div id="search_res">
@@ -94,7 +89,7 @@
     </div>
     <div class="info">
 
-      <p style="color:dodgerblue; font-size:20px"> <%= item.name%> </p>
+      <p style="font-size:17px; color: green;"> <%= item.name%> </p>
       <p style=" font-size:14px">Price  : <%= item.other.price%> $</p>
       <% item.rating.forEach(e => { %>
       <% sum+=e %> 
@@ -103,7 +98,7 @@
       <p style=" font-size:14px">Skills : <%= item.other.skill%></p>
       </div>
       <div>
-        <a href="/detail-profile/<%=item._id%>" class="btn-success" style="background-color: dodgerblue;">Profile</a>
+        <a href="/detail-profile/<%=item._id%>" class="btn-success" >Profile</a>
 
       
       </div>

@@ -98,10 +98,11 @@ li{
   position: absolute;
   top: 40px;
   right: 8px;
-  z-index: 1;
+  z-index: 99;
+  clip-path: polygon(0 4%, 85% 4%, 89% 0, 92% 4%, 100% 4%, 100% 100%, 0 100%);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
   background-color: rgb(250, 119, 32);  
-  border-radius: 4px;
+  border-radius: 2px;
   width: 160px;
 }
 #username .nav-dropdown li{
@@ -141,6 +142,10 @@ li{
 .search-div {
   display: flex;
   flex-direction: row;
+}
+#btn-search{
+  background-color: white;
+  border: none;
 }
 #search-icon {
   font-size: 0.9rem;

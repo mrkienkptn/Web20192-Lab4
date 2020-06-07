@@ -170,7 +170,7 @@ exports.hireDealToFreelancer = async (req, res) => {
             // other: {
             //     email : req.body.email
             // }
-            isAccept: "false",
+            isAccept: "",
             priceFinal: req.body.price_final,
             dealReason: req.body.reason_change
         }

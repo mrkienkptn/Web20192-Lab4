@@ -19,7 +19,7 @@
 }
 .chat-tab-left{
     color:green;
-    font-size: 20px;
+    font-size: 16px;
     
 }
 .chat-tab-left >div{
@@ -37,12 +37,12 @@
     width: 100%;
     background-color: rgb(255, 102, 0);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
 }
 .chat-tab-right{
-    
+    margin-left: 10px;
     
     border: 1.5px solid gray;
 
@@ -79,10 +79,19 @@
 }
 
 .message-right{
-    background-color: yellow;
+    background-color:#ffe00038;
+    padding: 5px;
+    font-size: 13px;
+    margin-left: 100px;
+    margin-right: 4px;
+    margin-bottom: 10px;
     
 }
 .message-left{
-    background-color: rgb(5, 82, 78);
-    color: white;
+    background-color:#aaaaaa38;
+    padding: 5px;
+    font-size: 13px;
+    margin-left: 5px;
+    margin-right: 100px;
+    margin-bottom: 10px;
 }

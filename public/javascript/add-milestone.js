@@ -3,7 +3,7 @@
 $(".form-add-mstone").hide()
 $(".btn-add-mstone").click(function(){
     $(".form-add-mstone").show()
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYY")
+
 })
 setTimeout(function(){
     $(".add-status").hide()
@@ -42,7 +42,7 @@ $(".pay-stone").submit(function(e){
         data : {milestoneId: milestoneId, price: money},
         success : result=>{
             console.log(result)
-            // $(".form-add-mstone").focusout()
+
             location.reload()
         }
     })

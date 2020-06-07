@@ -3,6 +3,7 @@ const Project   = require("../app/models/project")
 const Message   = require("../app/models/message")
 const Proposal  = require("../app/models/proposal")
 const Contract  = require("../app/models/contract")
+const Milestone = require("../app/models/milestone")
 
 exports.jobFeed = (req, res)=>{
     res.render('job-feed',{user: req.user} )
@@ -120,12 +121,20 @@ exports.devAcceptDealFromClient = async(req, res)=>{
     await User.findByIdAndUpdate(client.id, {money: client.money - acceptProposal.priceFinal/5})
     let employee = await User.findById(req.session.passport.user)
     await User.findByIdAndUpdate(req.session.passport.user, {money: employee.money -  acceptProposal.priceFinal/5})
+
+
+    //create Contract
     let contract = new Contract()
     contract.projectId = req.params.id_project.trim()
     contract.workerId = req.session.passport.user
     contract.clientId = req.params.id_client.trim()
     contract.deposite = acceptProposal.priceFinal/5 //20%
     contract.save(err=>console.log(err))
+
+    // create milestone
+    let milestone = new Milestone()
+    milestone.projectId = req.params.id_project
+    milestone.save(err => console.log(err))
     res.redirect('/accepted-job')
 }
 
